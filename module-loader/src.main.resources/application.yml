@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: module
+server:
+  servlet:
+    context-path: /module
+  port: 8002
+logging:
+ level:
+  org.springframework.security: DEBUG
+  springframework.security.web.FilterChainProxy: DEBUG
+module:
+  oauth:
+    server:
+       port: 8001
+       path: auth-service
+       address: http://localhost
+    clientId: app-open-source
+    clientSecret: password-open-source   
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" 
