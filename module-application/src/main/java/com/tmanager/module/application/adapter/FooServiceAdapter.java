@@ -1,5 +1,8 @@
 package com.tmanager.module.application.adapter;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tmanager.module.application.api.FooService;
@@ -17,12 +20,26 @@ public class FooServiceAdapter implements FooService{
     }
     
 	@Override
-	public void fooMethod(FooDTO fooDto) {
+	public void createFoo(FooDTO fooDto) {
 
 		Foo foo = new Foo();
 		foo.setId(fooDto.getId());
 		
 		fooPersistancePort.fooMethod(foo);
+	}
+
+	@Override
+	public void deleteFoo(int id) {
+		fooPersistancePort.deleteFoo(id);
+	}
+
+	@Override
+	public List<FooDTO> getFoo() {
+		List<Foo> foos = fooPersistancePort.getFoo();
+		
+		return foos.stream()
+				.map(foo -> new FooDTO(foo.getId()))
+				.collect(Collectors.toList());
 	}
 
 }
