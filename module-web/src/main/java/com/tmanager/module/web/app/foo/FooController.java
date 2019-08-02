@@ -1,4 +1,4 @@
-package com.tmanager.module.web.app;
+package com.tmanager.module.web.app.foo;
 
 import java.util.List;
 
