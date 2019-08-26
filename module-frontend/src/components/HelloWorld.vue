@@ -10,7 +10,7 @@
 export default {
   name: "HelloWorld",
   props: {
-    msg: traduccion//Vue.i18n.t('welcomeMsg')
+    msg: this.$i18n.t('welcomeMsgSub')
   }
 };
 </script>

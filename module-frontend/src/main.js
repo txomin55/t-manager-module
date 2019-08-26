@@ -6,22 +6,34 @@ import store from "./store";
 import EnMessages from '@/messages/en.json';
 import EsMessages from '@/messages/es.json';
 
+const MODULE_NAME = 'module' //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
+
 Vue.config.productionTip = false;
 
 Vue.use(VueResource)
 
-if(window.location.search.split("=")[0].match("code")){
-	
-	let firstTime = true;
-	const tokenUtils = new window.t_manager.TokenUtils('module', window.location.search.split("=")[1], token => {
-		window.access_token = token
-		if(firstTime){	
-			firstTime = false
-			router.push('/home')
-		}
-	})
-	
-	tokenUtils.getAuthorizationToken()
+let firstTime = true;
+if(!window.isModuleEnsambled || !window.isModuleEnsambled[MODULE_NAME]){
+  if(window.location.search.split("=")[0].match("code")){
+    
+    const tokenUtils = new window.t_manager.TokenUtils(MODULE_NAME, window.location.search.split("=")[1], token => {
+      window.access_token = token
+      if(firstTime){	
+        firstTime = false
+        router.push('/home')
+      }
+    })
+    
+    tokenUtils.getAuthorizationToken()
+  }
+}else if(window.isModuleEnsambled['module']){
+  window.access_token = window.t_manager_access_token
+  if(firstTime){	
+    firstTime = false
+    router.push('/home')
+  }
+} else{
+  throw alert("NO HAY TOKEN PARA AUTORIZACION")
 }
 
 const i18n = new window.t_manager.LanguageUtils(
