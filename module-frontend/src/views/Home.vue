@@ -1,25 +1,45 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <h3>Access token</h3>
-    {{accessToken}}
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <img 
+    alt="Vue logo" 
+    src="../assets/logo.png" />
+    <app-helloWorld/>
+    <hr>
+    <div class="flags">
+      <button 
+      v-for="(language, index) in languages" 
+      :key="index" 
+      @click="updateLanguage(language.id)">
+        <app-country-flag 
+        :country='language.flag'/>
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
+import CountryFlag from 'vue-country-flag'
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "home",
   components: {
-    HelloWorld
+    appHelloWorld : HelloWorld,
+    appCountryFlag : CountryFlag
   },
   data() {
   	return {  	
-  		accessToken : window.access_token
+  		languages : [
+        {flag : 'es', id : 'es'},
+        {flag : 'gb', id : 'en'}
+      ]
   	}
+  },
+  methods: {
+    updateLanguage(id){
+      this.$store.dispatch('configModule/deleteFooData', id)
+    }
   }
 };
 </script>

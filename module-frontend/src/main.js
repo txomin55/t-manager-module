@@ -17,7 +17,7 @@ if(!window.isModuleEnsambled || !window.isModuleEnsambled[MODULE_NAME]){
   if(window.location.search.split("=")[0].match("code")){
     
     const tokenUtils = new window.t_manager.TokenUtils(MODULE_NAME, window.location.search.split("=")[1], token => {
-      window.access_token = token //TODO: CAMBIAR POR VUEX GENERAL??
+      store.dispatch('configModule/updateToken', token)
       if(firstTime){	
         firstTime = false
         router.push('/home')
@@ -27,13 +27,17 @@ if(!window.isModuleEnsambled || !window.isModuleEnsambled[MODULE_NAME]){
     tokenUtils.getAuthorizationToken()
   }
 }else if(window.isModuleEnsambled['module']){
-  window.access_token = window.t_manager_access_token //TODO: CAMBIAR POR VUEX GENERAL??
   if(firstTime){	
+    store.dispatch('configModule/updateToken', window.t_manager_access_token)
     firstTime = false
     router.push('/home')
+  }else{
+    setInterval(() => {
+      store.dispatch('configModule/updateToken', window.t_manager_access_token)
+    }, window.t_manager_access_token_validity)
   }
 } else{
-  throw alert("NO HAY TOKEN PARA AUTORIZACION")
+  throw alert("NO AUTH TOKEN")
 }
 
 const i18n = new window.t_manager.LanguageUtils(
@@ -44,12 +48,18 @@ const i18n = new window.t_manager.LanguageUtils(
   }
 );
 
-i18n.locale = store.getters.language
+i18n.locale = this.$store.getters['configModule/getLanguage']
+store.$i18n = i18n
 
 Vue.http.interceptors.push((request, next) => {  
   
   //internacionalizacion en todas las urls
-  request.url = `${request.url}?lang=${store.getters.language}`
+  request.url = `${request.url}?lang=${store.getters['configModule/getLanguage']}`
+  
+  //token en todas las urls
+  request.headers.set('token', store.getters['configModule/getToken'])
+
+  next()
 })
 
 new Vue({

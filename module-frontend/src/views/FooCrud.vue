@@ -7,16 +7,24 @@
     <div>
       TOTAL foos {{nFoos}}
       <ul>
-        <li v-for="(foo, index) in foos" :key="index">
-          <a @click="removeFoo(foo.value)">
-            <label>{{foo.name}}-{{foo.value}} (Click to remove)</label>
-          </a>
+        <li 
+        v-for="(foo, index) in foos" 
+        :key="index">
+            <label>{{foo.name}}-{{foo.value}}</label>
+            <button 
+            type="button" 
+            @click="removeFoo(foo.value)">REMOVE FOO
+            </button>
         </li>
       </ul>
 
       <div>
-        <a @click="cretateFoo">CREATE FOO</a>
+        <button 
+        type="button" 
+        @click="cretateFoo()">CREATE FOO
+        </button>
       </div>
+
     </div>
   </div>
 </template>
