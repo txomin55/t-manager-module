@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     updateLanguage(id){
-      this.$store.dispatch('configModule/deleteFooData', id)
+      this.$store.dispatch('updateLanguage', id)
     }
   }
 };

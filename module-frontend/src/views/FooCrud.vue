@@ -1,11 +1,11 @@
 <template>
   <div class="foo">
-    <h1>This is the FOO CRUD page</h1>
+    <h1>{{ $t('fooCrud.welcome') }}</h1>
     <p>
-      This provides GET, POST and DELETE requests from your modules FooController
+      {{ $t('fooCrud.description') }}
     </p>
     <div>
-      TOTAL foos {{nFoos}}
+      {{ $t('fooCrud.total') }}-{{nFoos}}
       <ul>
         <li 
         v-for="(foo, index) in foos" 
@@ -13,7 +13,7 @@
             <label>{{foo.name}}-{{foo.value}}</label>
             <button 
             type="button" 
-            @click="removeFoo(foo.value)">REMOVE FOO
+            @click="removeFoo(foo.value)">{{ $t('fooCrud.remove') }}
             </button>
         </li>
       </ul>
@@ -21,7 +21,7 @@
       <div>
         <button 
         type="button" 
-        @click="cretateFoo()">CREATE FOO
+        @click="cretateFoo()">{{ $t('fooCrud.create') }}
         </button>
       </div>
 

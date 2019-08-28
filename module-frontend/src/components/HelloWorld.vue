@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ $t('welcomeMsg') }}</h1>
+    <h1>{{ $t('helloWorld.welcomeMsg') }}</h1>
     <h2>{{ msg }}</h2>
   </div>
 </template>
@@ -10,7 +10,7 @@
 export default {
   name: "HelloWorld",
   props: {
-    msg: this.$i18n.t('welcomeMsgSub')
+    msg: this.$i18n.t('helloWorld.welcomeMsgSub')
   }
 };
 </script>

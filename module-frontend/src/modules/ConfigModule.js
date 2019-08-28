@@ -1,14 +1,24 @@
 const DEFAULT_LOCALE = 'es' //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
 
 export default ({
-    namespaced: true,
-    state() {
-        return {
-            language : DEFAULT_LOCALE,
-            token : null
-          } 
+    state: {
+        language : DEFAULT_LOCALE,
+        token : null,
+        status: null,
+        error: null
     },
     mutations: { 
+        LOADING: (state) =>{
+            state.status = 'loading'
+        },
+        ERROR: (state, errCode) =>{
+            state.status = 'error'
+            state.error = errCode
+        },
+        SUCCESS: (state) =>{
+            state.status = 'success'
+            state.error = null
+        },
         UPDATE_TOKEN: (state, newToken) =>{
             state.token = newToken
         },
@@ -23,6 +33,15 @@ export default ({
         },
         updateLanguage: (context, newLanguage) => {
             context.commit('UPDATE_LANGUAGE', newLanguage)
+        },
+        successAction: context => {
+            context.commit('SUCCESS')
+        },
+        errorAction: (context, response) => {
+            context.commit('ERROR', response)
+        },
+        loading({commit}){
+            commit('loading')
         }
     },
     getters: { 

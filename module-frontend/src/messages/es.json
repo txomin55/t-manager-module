@@ -1,4 +1,10 @@
 {
-    "welcomeMsg": "Bienvenido a módulo T-MANAGER",
-    "welcomeMsgSub": "Este es tu módulo"
+    "helloWorld.welcomeMsg": "Bienvenido a módulo T-MANAGER",
+    "helloWorld.welcomeMsgSub": "Este es tu módulo",
+    "errorHandler.error": "Error",
+    "fooCrud.welcome": "Esto es la página FOO CRUD",
+    "fooCrud.description": "Esto provee GET, POST and DELETE requests from your modules FooController",
+    "fooCrud.total": "foos TOTAL",
+    "fooCrud.remove": "Borrar Foo",
+    "fooCrud.create": "Crear Foo"
 }
