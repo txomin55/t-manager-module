@@ -17,7 +17,7 @@ if(!window.isModuleEnsambled || !window.isModuleEnsambled[MODULE_NAME]){
   if(window.location.search.split("=")[0].match("code")){
     
     const tokenUtils = new window.t_manager.TokenUtils(MODULE_NAME, window.location.search.split("=")[1], token => {
-      window.access_token = token
+      window.access_token = token //TODO: CAMBIAR POR VUEX GENERAL??
       if(firstTime){	
         firstTime = false
         router.push('/home')
@@ -27,7 +27,7 @@ if(!window.isModuleEnsambled || !window.isModuleEnsambled[MODULE_NAME]){
     tokenUtils.getAuthorizationToken()
   }
 }else if(window.isModuleEnsambled['module']){
-  window.access_token = window.t_manager_access_token
+  window.access_token = window.t_manager_access_token //TODO: CAMBIAR POR VUEX GENERAL??
   if(firstTime){	
     firstTime = false
     router.push('/home')

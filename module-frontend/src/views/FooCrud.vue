@@ -5,10 +5,11 @@
       This provides GET, POST and DELETE requests from your modules FooController
     </p>
     <div>
+      TOTAL foos {{nFoos}}
       <ul>
         <li v-for="(foo, index) in foos" :key="index">
-          <a @click="removeFoo(foo)">
-            <label>{{foo}} (Click to remove)</label>
+          <a @click="removeFoo(foo.value)">
+            <label>{{foo.name}}-{{foo.value}} (Click to remove)</label>
           </a>
         </li>
       </ul>
@@ -24,21 +25,28 @@
 
 export default {
   name: "FooCrud",
-  props: {
-    foos : []
+  computed: {
+    foos(){
+      return this.$store.getters['fooModule/getMappedFoo']
+    },
+    nFoos(){
+      return this.$store.getters['fooModule/getFooQuantity']
+    }
   },
   methods: {
     removeFoo(id){
-      this.foos.array.forEach((element, index) => {
-        if(element == id) this.foos.splice(index, 1);
-      });
+      this.$store.dispatch('fooModule/deleteFooData', id)
     },
     getFoos(){
-      this.foos = [1,2,3,4,5]
+      this.$store.dispatch('fooModule/initFooData')
     },
     cretateFoo(){
-      this.foos.push(Math.floor((Math.random() * 10) + 1))
+      const rValue = Math.floor((Math.random() * 10) + 1)
+      this.$store.dispatch('fooModule/createFoo', rValue)
     }
+  },
+  mounted() {
+    this.getFoos()
   },
 };
 </script>
