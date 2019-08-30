@@ -1,4 +1,4 @@
-const MODULE_NAME = "module"; //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
+import FooApi from "../api/FooApi";
 
 export default {
   namespaced: true,
@@ -22,27 +22,17 @@ export default {
   },
   actions: {
     initFooData: context => {
-      this.$http
-        .get(`http://${MODULE_NAME}/foo`)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(foos => {
-          context.commit("INIT_FOO_DATA", foos);
-        });
+      FooApi.getFoo(foos => {
+        context.commit("INIT_FOO_DATA", foos);
+      });
     },
-    createFoo: (context, foo) => {
-      this.$http
-        .post(`http://${MODULE_NAME}/foo`, foo)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(foo => {
-          context.commit("CREATE_FOO", foo);
-        });
+    createFoo: (context, fooData) => {
+      FooApi.createFoo(fooData, foo => {
+        context.commit("CREATE_FOO", foo);
+      });
     },
     deleteFooData: (context, id) => {
-      this.$http.delete(`http://${MODULE_NAME}/foo/${id}`).then(() => {
+      FooApi.deleteFoo(id, id => {
         context.commit("DELETE_FOO_DATA", id);
       });
     }

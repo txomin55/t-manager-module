@@ -28,6 +28,12 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### Authentication details
+```
+Login credentials for open-source users
+user-open-source
+password-open-source
+```
 ###
 ```
 El módulo launcher tiene que setear window.t_manager_access_token con su token de acceso y window.t_manager_access_token_validity con el tiempo de validez de este.

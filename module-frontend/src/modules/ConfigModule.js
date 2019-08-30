@@ -1,11 +1,13 @@
 const DEFAULT_LOCALE = "es"; //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
+const MODULE_NAME = "module"; //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
 
 export default {
   state: {
     language: DEFAULT_LOCALE,
     token: null,
     status: null,
-    error: null
+    error: null,
+    module: MODULE_NAME
   },
   mutations: {
     LOADING: state => {

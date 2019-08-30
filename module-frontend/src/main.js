@@ -6,17 +6,19 @@ import store from "./store";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 
-const MODULE_NAME = "module"; //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
-
 Vue.config.productionTip = false;
 
 Vue.use(VueResource);
 
 let firstTime = true;
-if (!window.isModuleEnsambled || !window.isModuleEnsambled[MODULE_NAME]) {
-  if (window.location.search.split("=")[0].match("code")) {
+if (
+  !window.isModuleEnsambled ||
+  !window.isModuleEnsambled[store.state.module]
+) {
+  const codeStr = window.location.search.split("=")[0];
+  if (codeStr.match("code")) {
     const tokenUtils = new window.t_manager.TokenUtils(
-      MODULE_NAME,
+      store.state.module,
       window.location.search.split("=")[1],
       token => {
         store.dispatch("updateToken", token);
@@ -47,7 +49,7 @@ const i18n = new window.t_manager.LanguageUtils(Vue, {
   en: EnMessages
 });
 
-i18n.locale = this.$store.getters["getLanguage"];
+i18n.locale = this.$store.state.language;
 store.$i18n = i18n;
 
 Vue.http.interceptors.push((request, next) => {
