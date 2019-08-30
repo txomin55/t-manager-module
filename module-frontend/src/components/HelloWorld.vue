@@ -1,16 +1,17 @@
 <template>
   <div class="hello">
-    <h1>{{ $t('helloWorld.welcomeMsg') }}</h1>
+    <h1>{{ $t("helloWorld.welcomeMsg") }}</h1>
     <h2>{{ msg }}</h2>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "HelloWorld",
-  props: {
-    msg: this.$i18n.t('helloWorld.welcomeMsgSub')
+  data() {
+    return {
+      msg: this.$i18n.t("helloWorld.welcomeMsgSub")
+    };
   }
 };
 </script>

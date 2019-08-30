@@ -5,8 +5,8 @@ module.exports = {
   // see https://cli.vuejs.org/config/#devserver-proxy
   devServer: {
     proxy: {
-      '/': {
-        target: 'http://localhost:8002', // this configuration needs to correspond to the Spring Boot backends' application.properties server.port
+      "/": {
+        target: "http://localhost:8002", // this configuration needs to correspond to the Spring Boot backends' application.properties server.port
         ws: true,
         changeOrigin: true
       }
@@ -14,7 +14,7 @@ module.exports = {
   },
   // Change build paths to make them Maven compatible
   // see https://cli.vuejs.org/config/
-  outputDir: 'target/dist',
-  assetsDir: 'static',
-  publicPath: '/module'
+  outputDir: "target/dist",
+  assetsDir: "static",
+  publicPath: "/module"
 };

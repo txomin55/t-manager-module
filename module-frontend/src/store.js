@@ -10,4 +10,4 @@ export default new Vuex.Store({
     fooModule: FooModule,
     configModule: ConfigModule
   }
-})
+});
