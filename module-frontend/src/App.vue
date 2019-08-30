@@ -5,18 +5,18 @@
       <router-link to="/fooCrud">Foo crud</router-link>
     </div>
     <router-view />
-    <app-error-handler/>
+    <app-error-handler />
   </div>
 </template>
 
 <script>
-import ErrorHandler from '@/components/ErrorHandler'
+import ErrorHandler from "@/components/ErrorHandler";
 
 export default {
-  components:{
-     "app-error-handler" : ErrorHandler
+  components: {
+    "app-error-handler": ErrorHandler
   }
-}
+};
 </script>
 
 <style>
