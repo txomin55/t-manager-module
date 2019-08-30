@@ -46,3 +46,4 @@ module-web/.project
 .class
 *.war
 *.ear
+module-frontend/.history/
