@@ -7,7 +7,7 @@ export default {
   name: "ErrorHandler",
   computed: {
     request() {
-      return this.$store.state.configModule.error;
+      return this.$store.state.error;
     }
   },
   watch: {

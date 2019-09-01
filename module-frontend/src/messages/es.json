@@ -3,7 +3,7 @@
     "helloWorld.welcomeMsgSub": "Este es tu módulo",
     "errorHandler.error": "Error",
     "fooCrud.welcome": "Esto es la página FOO CRUD",
-    "fooCrud.description": "Esto provee GET, POST and DELETE requests from your modules FooController",
+    "fooCrud.description": "Esto provee peticiones GET, POST y DELETE desde tu controlador FooController",
     "fooCrud.total": "foos TOTAL",
     "fooCrud.remove": "Borrar Foo",
     "fooCrud.create": "Crear Foo"

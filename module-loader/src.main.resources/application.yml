@@ -17,6 +17,7 @@ module:
        address: http://localhost
     clientId: app-open-source
     clientSecret: password-open-source   
+    clientRedirectUrl: http://localhost:8080/module/init
     
 management:
   endpoints:

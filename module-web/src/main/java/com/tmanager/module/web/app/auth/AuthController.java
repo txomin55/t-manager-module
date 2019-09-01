@@ -30,6 +30,9 @@ public class AuthController {
 	@Value("${module.oauth.server.address}")
 	private String serverAddress;
 	
+	@Value("${module.oauth.clientRedirectUrl}")
+	private String clientRedirectUrl;
+	
 	@GetMapping("/authorizeApp")
 	public String authorizeApp() {
 
@@ -39,7 +42,7 @@ public class AuthController {
 			    .fromUriString(oauth2ResourceUrl)
 			    .queryParam("client_id", clientId)
 			    .queryParam("response_type", "code")
-			    .queryParam("redirect_uri", "http://localhost:8002/module/init");
+			    .queryParam("redirect_uri", clientRedirectUrl);
 
 		return "redirect:" + builder.toUriString();
 	} 
@@ -56,7 +59,7 @@ public class AuthController {
 			    .queryParam("grant_type", "authorization_code")
 			    .queryParam("client_id", clientId)
 			    .queryParam("client_secret", clientSecret)
-			    .queryParam("redirect_uri", "http://localhost:8002/module/init")
+			    .queryParam("redirect_uri", clientRedirectUrl)
 			    .queryParam("code", code); 
 		
 		OAuth2TokenDTO oauthObj = restTemplate.postForObject(builder.toUriString(), null, OAuth2TokenDTO.class);

@@ -6,8 +6,11 @@ import ConfigModule from "./modules/ConfigModule";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: ConfigModule.state,
+  getters: ConfigModule.getters,
+  actions: ConfigModule.actions,
+  mutations: ConfigModule.mutations,
   modules: {
-    fooModule: FooModule,
-    configModule: ConfigModule
+    fooModule: FooModule
   }
 });
