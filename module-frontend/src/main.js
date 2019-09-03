@@ -49,15 +49,15 @@ const i18n = new window.t_manager.LanguageUtils(Vue, {
   en: EnMessages
 });
 
-i18n.locale = this.$store.state.language;
+i18n.locale = store.state.language;
 store.$i18n = i18n;
 
 Vue.http.interceptors.push((request, next) => {
   //internacionalizacion en todas las urls
-  request.url = `${request.url}?lang=${store.getters["getLanguage"]}`;
+  request.url = `${request.url}?lang=${store.state.language}`;
 
   //token en todas las urls
-  request.headers.set("token", store.getters["getToken"]);
+  request.headers.set("token", store.state.token);
 
   next();
 });

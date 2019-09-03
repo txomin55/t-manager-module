@@ -24,7 +24,7 @@ export default {
     UPDATE_TOKEN: (state, newToken) => {
       state.token = newToken;
     },
-    UPDATE_LANGUAGE: (state, newLanguage) => {
+    UPDATE_LANGUAGE: function(state, newLanguage) {
       state.language = newLanguage;
       this.$i18n.locale = state.language;
     }
@@ -44,14 +44,6 @@ export default {
     },
     loading({ commit }) {
       commit("loading");
-    }
-  },
-  getters: {
-    getLanguage: state => {
-      return state.language;
-    },
-    getToken: state => {
-      return state.token;
     }
   }
 };

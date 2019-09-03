@@ -1,9 +1,13 @@
 import Vue from "vue";
+import VueResource from "vue-resource";
 import store from "../store";
 
+Vue.use(VueResource);
+const RESOURCE = Vue;
+
 const FooApi = {
-  getFoo(cb) {
-    Vue.$http
+  getFoo: function(cb) {
+    RESOURCE.http
       .get(`http://${store.state.module}/foo`)
       .then(function(response) {
         return response.json();
@@ -14,7 +18,7 @@ const FooApi = {
   },
 
   createFoo(foo, cb) {
-    Vue.$http
+    RESOURCE.http
       .post(`http://${store.state.module}/foo`, foo)
       .then(function(response) {
         return response.json();
@@ -25,7 +29,7 @@ const FooApi = {
   },
 
   deleteFoo(id, cb) {
-    Vue.$http.delete(`http://${store.state.module}/foo/${id}`).then(() => {
+    RESOURCE.http.delete(`http://${store.state.module}/foo/${id}`).then(() => {
       cb(id);
     });
   }
