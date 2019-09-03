@@ -10,36 +10,36 @@ export default {
     module: MODULE_NAME
   },
   mutations: {
-    LOADING: state => {
+    LOADING(state){
       state.status = "loading";
     },
-    ERROR: (state, errCode) => {
+    ERROR(state, errCode){
       state.status = "error";
       state.error = errCode;
     },
-    SUCCESS: state => {
+    SUCCESS(state){
       state.status = "success";
       state.error = null;
     },
-    UPDATE_TOKEN: (state, newToken) => {
+    UPDATE_TOKEN(state, newToken){
       state.token = newToken;
     },
-    UPDATE_LANGUAGE: (state, newLanguage) => {
+    UPDATE_LANGUAGE(state, newLanguage){
       state.language = newLanguage;
       this.$i18n.locale = state.language;
     }
   },
   actions: {
-    updateToken: (context, newToken) => {
+    updateToken(context, newToken){
       context.commit("UPDATE_TOKEN", newToken);
     },
-    updateLanguage: (context, newLanguage) => {
+    updateLanguage(context, newLanguage){
       context.commit("UPDATE_LANGUAGE", newLanguage);
     },
-    successAction: context => {
+    successAction(context){
       context.commit("SUCCESS");
     },
-    errorAction: (context, response) => {
+    errorAction(context, response){
       context.commit("ERROR", response);
     },
     loading({ commit }) {
@@ -47,10 +47,10 @@ export default {
     }
   },
   getters: {
-    getLanguage: state => {
+    getLanguage(state){
       return state.language;
     },
-    getToken: state => {
+    getToken(state){
       return state.token;
     }
   }

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import store from "../store";
 
-const FooApi = {
+export default {
   getFoo(cb) {
     Vue.$http
       .get(`http://${store.state.module}/foo`)
@@ -30,7 +30,3 @@ const FooApi = {
     });
   }
 };
-
-Object.freeze(FooApi);
-
-export default FooApi;
