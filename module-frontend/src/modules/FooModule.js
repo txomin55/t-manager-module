@@ -1,4 +1,4 @@
-import FooApi from "../api/FooApi";
+import * as FooApi from "../api/FooApi";
 
 export default {
   namespaced: true,
@@ -8,42 +8,42 @@ export default {
     };
   },
   mutations: {
-    INIT_FOO_DATA: (state, list) => {
+    INIT_FOO_DATA(state, list) {
       state.foos = list;
     },
-    CREATE_FOO: (state, data) => {
+    CREATE_FOO(state, data) {
       state.foos.push(data);
     },
-    DELETE_FOO_DATA: (state, id) => {
+    DELETE_FOO_DATA(state, id) {
       state.foos.array.forEach((element, index) => {
         if (element == id) state.foos.splice(index, 1);
       });
     }
   },
   actions: {
-    initFooData: context => {
+    initFooData(context) {
       FooApi.getFoo(foos => {
         context.commit("INIT_FOO_DATA", foos);
       });
     },
-    createFoo: (context, fooData) => {
+    createFoo(context, fooData) {
       FooApi.createFoo(fooData, foo => {
         context.commit("CREATE_FOO", foo);
       });
     },
-    deleteFooData: (context, id) => {
+    deleteFooData(context, id) {
       FooApi.deleteFoo(id, id => {
         context.commit("DELETE_FOO_DATA", id);
       });
     }
   },
   getters: {
-    getMappedFoo: state => {
+    getMappedFoo(state) {
       return state.foos.map(foo => {
         return { name: new Date().getTime(), value: foo };
       });
     },
-    getFooQuantity: state => {
+    getFooQuantity(state) {
       return state.foos.length;
     }
   }

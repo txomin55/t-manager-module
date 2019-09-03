@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ $t("helloWorld.welcomeMsg") }}</h1>
+    <h2>{{ msg1 }}</h2>
     <h2>{{ msg() }}</h2>
   </div>
 </template>
@@ -8,6 +9,11 @@
 <script>
 export default {
   name: "HelloWorld",
+  data() {
+    return {
+      msg1: this.$i18n.t("helloWorld.welcomeMsgSub")
+    };
+  },
   methods: {
     msg() {
       return this.$i18n.t("helloWorld.welcomeMsgSub");

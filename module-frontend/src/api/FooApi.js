@@ -1,40 +1,34 @@
 import Vue from "vue";
-import VueResource from "vue-resource";
 import store from "../store";
 
-Vue.use(VueResource);
-const RESOURCE = Vue;
+const ADDRESS = "localhost:8080"; //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
 
-const FooApi = {
-  getFoo: function(cb) {
-    RESOURCE.http
-      .get(`http://${store.state.module}/foo`)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(foos => {
-        cb(foos);
-      });
-  },
+export function getFoo(cb) {
+  Vue.http
+    .get(`http://${ADDRESS}/${store.state.module}/foo/`)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(foos => {
+      cb(foos);
+    });
+}
 
-  createFoo(foo, cb) {
-    RESOURCE.http
-      .post(`http://${store.state.module}/foo`, foo)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(foo => {
-        cb(foo);
-      });
-  },
+export function createFoo(foo, cb) {
+  Vue.http
+    .post(`http://${ADDRESS}/${store.state.module}/foo/`, foo)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(foo => {
+      cb(foo);
+    });
+}
 
-  deleteFoo(id, cb) {
-    RESOURCE.http.delete(`http://${store.state.module}/foo/${id}`).then(() => {
+export function deleteFoo(id, cb) {
+  Vue.http
+    .delete(`http://${ADDRESS}/${store.state.module}/foo/${id}`)
+    .then(() => {
       cb(id);
     });
-  }
-};
-
-Object.freeze(FooApi);
-
-export default FooApi;
+}

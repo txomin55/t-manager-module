@@ -1,5 +1,6 @@
 package com.tmanager.module.application.inmemory.adapter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,6 @@ public class FooInMemoryAdapter implements FooPersistancePort{
 
 	@Override
 	public List<Foo> getFoo() {
-		return (List<Foo>) fooMap.values();
+		return new ArrayList<Foo>(fooMap.values());
 	}
 }

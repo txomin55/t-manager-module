@@ -57,7 +57,7 @@ Vue.http.interceptors.push((request, next) => {
   request.url = `${request.url}?lang=${store.state.language}`;
 
   //token en todas las urls
-  request.headers.set("token", store.state.token);
+  request.headers.set("Authorization", `Bearer ${store.state.token}`);
 
   next();
 });
