@@ -28,6 +28,9 @@ export function createFoo(foo, cb) {
 export function deleteFoo(id, cb) {
   Vue.http
     .delete(`http://${ADDRESS}/${store.state.module}/foo/${id}`)
+    .then(function(response) {
+      return response;
+    })
     .then(() => {
       cb(id);
     });
