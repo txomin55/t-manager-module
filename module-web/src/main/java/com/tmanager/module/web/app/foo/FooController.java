@@ -22,6 +22,7 @@ import com.tmanager.module.web.app.exception.error.ErrorEnum;
 @RequestMapping("/foo")
 public class FooController {
 
+    @Autowired
     private FooService fooService;
     
     @Autowired
@@ -32,12 +33,12 @@ public class FooController {
         this.fooService = fooService;
     }
     
-    @GetMapping("/")
-    public List<FooDTO> get(@RequestParam(value = "lang", required = false) String lang) {
+    @GetMapping
+    public List<FooDTO> get() {
     	return fooService.getFoo();
     }
     
-    @PostMapping("/")
+    @PostMapping
     public void createFoo() {
     	fooService.createFoo(new FooDTO((int) Math.random()));
     }
@@ -53,7 +54,7 @@ public class FooController {
     }
     
     @GetMapping("/fooI18nSample")
-    public String fooMethodI18n() {
-    	return messageSource.getMessage("hello", null, LocaleContextHolder.getLocale());
+    public String fooMethodI18n(Locale locale) {
+    	return messageSource.getMessage("hello", null, locale);
     }
 }

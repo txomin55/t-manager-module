@@ -54,8 +54,7 @@ store.$i18n = i18n;
 
 Vue.http.interceptors.push((request, next) => {
   //internacionalizacion en todas las urls
-  request.url = `${request.url}?lang=${store.state.language}`;
-
+  request.headers.set("Accept-language", store.state.language);
   //token en todas las urls
   request.headers.set("Authorization", `Bearer ${store.state.token}`);
 

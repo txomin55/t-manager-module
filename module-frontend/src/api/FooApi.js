@@ -5,7 +5,7 @@ const ADDRESS = "localhost:8080"; //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGU
 
 export function getFoo(cb) {
   Vue.http
-    .get(`http://${ADDRESS}/${store.state.module}/foo/`)
+    .get(`http://${ADDRESS}/${store.state.module}/foo`)
     .then(function(response) {
       return response.json();
     })
@@ -16,7 +16,7 @@ export function getFoo(cb) {
 
 export function createFoo(foo, cb) {
   Vue.http
-    .post(`http://${ADDRESS}/${store.state.module}/foo/`, foo)
+    .post(`http://${ADDRESS}/${store.state.module}/foo`, foo)
     .then(function(response) {
       return response.json();
     })
