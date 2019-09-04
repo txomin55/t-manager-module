@@ -12,16 +12,10 @@ export default {
   },
   watch: {
     request() {
-      switch (this.request.status) {
-        case 404:
-          this.$notify.error({
-            title: this.$i18n.t("errorHandler.error"),
-            message: `${this.request.status}: ${this.request.statusText}`
-          });
-          break;
-        case 401:
-          break;
-      }
+      this.$notify.error({
+        title: this.$i18n.t("errorHandler.error"),
+        message: `${this.request.status}: ${this.request.data.msg}`
+      });
     }
   }
 };

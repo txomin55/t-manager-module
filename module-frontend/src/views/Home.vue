@@ -35,6 +35,9 @@ export default {
     updateLanguage(id) {
       this.$store.dispatch("updateLanguage", id);
     }
+  },
+  mounted() {
+    this.$store.dispatch("fooModule/initFooData");
   }
 };
 </script>

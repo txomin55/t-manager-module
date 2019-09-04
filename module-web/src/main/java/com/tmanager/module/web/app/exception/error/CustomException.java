@@ -11,9 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CustomException extends Exception{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8093367381483867991L;
 
 	private String id;

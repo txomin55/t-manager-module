@@ -3,12 +3,15 @@ import VueResource from "vue-resource";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import Element from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 
 Vue.config.productionTip = false;
 
 Vue.use(VueResource);
+Vue.use(Element);
 
 let firstTime = true;
 if (
@@ -51,6 +54,14 @@ const i18n = new window.t_manager.LanguageUtils(Vue, {
 
 i18n.locale = store.state.language;
 store.$i18n = i18n;
+
+Vue.http.interceptors.push((request, next) => {
+  next(response => {
+    if (response.status != 200) {
+      store.dispatch("errorAction", response);
+    }
+  });
+});
 
 Vue.http.interceptors.push((request, next) => {
   //internacionalizacion en todas las urls

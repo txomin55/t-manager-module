@@ -15,8 +15,8 @@ export default {
       state.foos.push(data);
     },
     DELETE_FOO_DATA(state, id) {
-      state.foos.array.forEach((element, index) => {
-        if (element == id) state.foos.splice(index, 1);
+      state.foos.forEach((element, index) => {
+        if (element.id == id) state.foos.splice(index, 1);
       });
     }
   },
@@ -35,12 +35,15 @@ export default {
       FooApi.deleteFoo(id, id => {
         context.commit("DELETE_FOO_DATA", id);
       });
+    },
+    launchException() {
+      FooApi.launchException();
     }
   },
   getters: {
     getMappedFoo(state) {
       return state.foos.map(foo => {
-        return { name: new Date().getTime(), value: foo };
+        return { name: `NAME-${foo.id}`, value: foo };
       });
     },
     getFooQuantity(state) {

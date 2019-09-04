@@ -5,6 +5,11 @@
       {{ $t("fooCrud.description") }}
     </p>
     <div>
+      <button type="button" @click="getException()">
+        {{ $t("fooCrud.exception") }}
+      </button>
+    </div>
+    <div>
       {{ $t("fooCrud.total") }}-{{ nFoos }}
       <ul>
         <li v-for="(foo, index) in foos" :key="index">
@@ -36,19 +41,19 @@ export default {
     }
   },
   methods: {
-    removeFoo(id) {
-      this.$store.dispatch("fooModule/deleteFooData", id);
-    },
-    getFoos() {
-      this.$store.dispatch("fooModule/initFooData");
+    removeFoo(foo) {
+      this.$store.dispatch("fooModule/deleteFooData", foo.id);
     },
     cretateFoo() {
       const rValue = Math.floor(Math.random() * 10 + 1);
-      this.$store.dispatch("fooModule/createFoo", rValue);
+      const fooDto = {
+        id: rValue
+      };
+      this.$store.dispatch("fooModule/createFoo", fooDto);
+    },
+    getException() {
+      this.$store.dispatch("fooModule/launchException");
     }
-  },
-  mounted() {
-    this.getFoos();
   }
 };
 </script>

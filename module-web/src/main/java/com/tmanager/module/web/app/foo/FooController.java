@@ -1,16 +1,16 @@
 package com.tmanager.module.web.app.foo;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tmanager.module.application.api.FooService;
@@ -39,8 +39,8 @@ public class FooController {
     }
     
     @PostMapping
-    public void createFoo() {
-    	fooService.createFoo(new FooDTO((int) Math.random()));
+    public void createFoo(@RequestBody FooDTO fooDto) {
+    	fooService.createFoo(fooDto);
     }
 
     @DeleteMapping("/{id}")

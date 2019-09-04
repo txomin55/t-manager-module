@@ -6,5 +6,6 @@
     "fooCrud.description": "Esto provee peticiones GET, POST y DELETE desde tu controlador FooController",
     "fooCrud.total": "foos TOTAL",
     "fooCrud.remove": "Borrar Foo",
-    "fooCrud.create": "Crear Foo"
+    "fooCrud.create": "Crear Foo",
+    "fooCrud.exception": "Excepción"
 }

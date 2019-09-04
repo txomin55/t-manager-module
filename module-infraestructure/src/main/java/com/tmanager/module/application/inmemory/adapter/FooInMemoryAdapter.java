@@ -10,7 +10,12 @@ import com.tmanager.module.domain.spi.FooPersistancePort;
 
 public class FooInMemoryAdapter implements FooPersistancePort{
 
-	private static final Map<Integer, Foo> fooMap = new HashMap<Integer, Foo>(0);
+	private static final Map<Integer, Foo> fooMap = new HashMap<Integer, Foo>();
+	
+	public FooInMemoryAdapter() {
+		fooMap.put(0, new Foo(0));
+		fooMap.put(1, new Foo(1));
+	}
 	
 	@Override
 	public void fooMethod(Foo foo) {

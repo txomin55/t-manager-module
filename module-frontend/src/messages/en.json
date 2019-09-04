@@ -6,5 +6,6 @@
     "fooCrud.description": "This provides GET, POST and DELETE requests from your modules FooController",
     "fooCrud.total": "TOTAL foos",
     "fooCrud.remove": "Remove Foo",
-    "fooCrud.create": "Create Foo"
+    "fooCrud.create": "Create Foo",
+    "fooCrud.exception": "Exception"
 }
