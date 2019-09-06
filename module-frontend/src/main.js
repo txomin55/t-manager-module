@@ -1,17 +1,16 @@
 import Vue from "vue";
 import VueResource from "vue-resource";
 import App from "./App.vue";
+import Vuetify from 'vuetify/lib'
 import router from "./router";
 import store from "./store";
-import Element from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 
 Vue.config.productionTip = false;
 
 Vue.use(VueResource);
-Vue.use(Element);
+Vue.use(Vuetify)
 
 let firstTime = true;
 if (

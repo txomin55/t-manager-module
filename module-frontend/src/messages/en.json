@@ -7,5 +7,5 @@
     "fooCrud.total": "TOTAL foos",
     "fooCrud.remove": "Remove Foo",
     "fooCrud.create": "Create Foo",
-    "fooCrud.exception": "Exception"
+    "error.close" : "Close"
 }

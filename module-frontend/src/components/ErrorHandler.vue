@@ -1,22 +1,51 @@
 <template>
-  <div></div>
+  <div>
+
+    <v-snackbar
+        v-model="showError"
+        color = "error"
+        multi-line = true
+        right = true
+        :timeout = "timeout"
+        top = true
+      >
+
+        {{ title }} - {{ message }}
+
+        <v-btn
+          dark
+          text
+          @click = "showError = false"
+        >
+          {{ $t("error.close") }}
+        </v-btn>
+
+    </v-snackbar>
+
+  </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: "ErrorHandler",
-  computed: {
-    request() {
-      return this.$store.state.error;
+  data(){
+    return{
+      showError: false,
+      title: null,
+      message: null,
+      timeout: 6000
     }
   },
-  watch: {
-    request() {
-      this.$notify.error({
-        title: this.$i18n.t("errorHandler.error"),
-        message: `${this.request.status}: ${this.request.data.msg}`
-      });
-    }
+  computed: {
+    ...mapState({
+      error(state){
+        this.showError = true;
+        this.title = this.$i18n.t("errorHandler.error");
+        this.message = `${this.request.status}: ${this.request.data.msg}`;
+      }
+    })
   }
 };
 </script>
