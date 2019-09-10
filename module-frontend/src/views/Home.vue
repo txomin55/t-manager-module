@@ -28,7 +28,10 @@ export default {
   },
   data() {
     return {
-      languages: [{ flag: "es", id: "es" }, { flag: "gb", id: "en" }]
+      languages: [
+        { flag: "es", id: "es" },
+        { flag: "gb", id: "en" }
+      ]
     };
   },
   methods: {

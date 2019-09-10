@@ -2,13 +2,13 @@
   <div>
 
     <v-snackbar
-        v-model="showError"
-        color = "error"
-        multi-line = true
-        right = true
-        :timeout = "timeout"
-        top = true
-      >
+      v-model="showError"
+      color = "error"
+      multi-line = true
+      right = true
+      :timeout = "timeout"
+      top = true
+    >
 
         {{ title }} - {{ message }}
 
