@@ -1,6 +1,5 @@
 <template>
-
-   <v-app>
+  <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
         <span>Vuetify</span>
@@ -9,7 +8,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn text>
-          <router-link to="/">Home</router-link>
+          <router-link to="/home">Home</router-link>
         </v-btn>
         <v-btn text>
           <router-link to="/fooCrud">Foo crud</router-link>
@@ -25,11 +24,10 @@
     </v-app-bar>
 
     <v-content>
-      <router-view/>
+      <router-view />
       <app-error-handler />
     </v-content>
   </v-app>
-  
 </template>
 
 <script>
@@ -42,6 +40,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

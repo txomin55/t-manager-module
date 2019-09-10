@@ -1,45 +1,35 @@
 <template>
   <v-container fluid>
-      
-      <v-row>
-        <v-col>
-          <img alt="Vue logo" src="../assets/logo.png" />
-        </v-col>
-      </v-row>
-      
-      <v-row>
-        <v-col>
-          <app-helloWorld />
-        </v-col>
-      </v-row>
-      
-      <v-row>
-        <v-col>
-          <div class="flags">
-            <button
-              v-for="(language, index) in languages"
-              :key="index"
-              @click="updateLanguage(language.id)"
-            >
-              <app-country-flag :country="language.flag" />
-            </button>
-          </div>
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col>
+    <v-layout text-center wrap>
+      <v-flex xs12>
+        <app-hello-world />
+      </v-flex>
+    </v-layout>
+    <v-layout text-center wrap>
+      <v-flex xs12>
+        <v-btn
+          v-for="(language, index) in languages"
+          :key="index"
+          @click="updateLanguage(language.id)"
+        >
+          <app-country-flag :country="language.flag" />
+        </v-btn>
+      </v-flex>
+    </v-layout>
+    <v-layout text-center wrap>
+      <v-flex xs12>
+        <v-flex xs2>
           <v-combobox
             v-model="selectedTheme"
             :items="themes"
             label="Select a theme"
           ></v-combobox>
-        </v-col>
-        <v-col>
+        </v-flex>
+        <v-flex xs1>
           <v-switch v-model="dark" label="Dark"></v-switch>
-        </v-col>
-      </v-row>
-      
+        </v-flex>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -56,13 +46,10 @@ export default {
   },
   data() {
     return {
-      dark : false,
-      selectedTheme : null,
-      themes : Object.keys(window.t_manager.Themes),
-      languages: [
-        { flag: "es", id: "es" },
-        { flag: "gb", id: "en" }
-      ]
+      dark: false,
+      selectedTheme: null,
+      themes: Object.keys(window.t_manager.Themes),
+      languages: [{ flag: "es", id: "es" }, { flag: "gb", id: "en" }]
     };
   },
   methods: {
@@ -74,14 +61,15 @@ export default {
     this.$store.dispatch("fooModule/initFooData");
   },
   watch: {
-   selectedTheme(val){
+    selectedTheme(val) {
+      this.$vuetify.theme.themes.light = window.t_manager.Themes[val].light;
+      this.$vuetify.theme.themes.dark = window.t_manager.Themes[val].dark;
 
-    this.$vuetify.theme.themes.light = window.t_manager.Themes[val].light;
-    this.$vuetify.theme.themes.dark = window.t_manager.Themes[val].dark;
-
-    this.$vuetify.theme.dark = this.dark;
-
-   } 
+      this.$vuetify.theme.dark = this.dark;
+    },
+    dark(val) {
+      this.$vuetify.theme.dark = val;
+    }
   }
 };
 </script>

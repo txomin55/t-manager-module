@@ -1,17 +1,17 @@
 import Vue from "vue";
 import VueResource from "vue-resource";
 import App from "./App.vue";
-import Vuetify from 'vuetify/lib'
+import Vuetify from "vuetify/lib";
 import router from "./router";
 import store from "./store";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
-import vuetify from './plugins/vuetify';
+import vuetify from "./plugins/vuetify";
 
 Vue.config.productionTip = false;
 
 Vue.use(VueResource);
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
 let firstTime = true;
 if (
