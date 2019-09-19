@@ -80,7 +80,8 @@ export default {
     cretateFoo() {
       const rValue = Math.floor(Math.random() * 10 + 1);
       const fooDto = {
-        id: rValue
+        id: rValue,
+        name : `Soy ${rValue}`
       };
       this.$store.dispatch("fooModule/createFoo", fooDto);
     },

@@ -22,7 +22,7 @@ public class FooServiceAdapter implements FooService{
 	@Override
 	public void createFoo(FooDTO fooDto) {
 
-		Foo foo = new Foo(fooDto.getId());
+		Foo foo = new Foo(fooDto.getId(), fooDto.getName());
 		fooPersistancePort.fooMethod(foo);
 	}
 

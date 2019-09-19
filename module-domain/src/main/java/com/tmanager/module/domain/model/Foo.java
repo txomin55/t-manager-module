@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
 public class Foo {
 
 	private int id;
+	private String name;
 }
