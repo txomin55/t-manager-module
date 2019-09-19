@@ -43,7 +43,7 @@ export default {
   getters: {
     getMappedFoo(state) {
       return state.foos.map(foo => {
-        return { name: `NAME-${foo.id}`, value: foo };
+        return { name: `INFO-${foo.id}`, value: foo };
       });
     },
     getFooQuantity(state) {

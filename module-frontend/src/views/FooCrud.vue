@@ -1,63 +1,66 @@
 <template>
   <v-container fluid>
-      <v-layout text-center wrap>
-        <v-flex xs12>
+    <v-layout text-center>
+      <v-row>
+        <v-col>
           <h1>{{ $t("fooCrud.welcome") }}</h1>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
+    </v-layout>
 
-      <v-layout text-center wrap>
-        <v-flex xs12>
-          <v-subheader>{{ $t("fooCrud.description") }}</v-subheader>
-        </v-flex>
-      </v-layout>
+    <v-layout text-center>
+      <v-row>
+        <v-col>
+          <v-card>
+            <v-subheader>{{ $t("fooCrud.description") }}</v-subheader>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-layout>
 
-      <v-layout text-center wrap>
-        <v-flex xs12>
-          <v-btn 
-           text 
-           @click="getException()"
-          >
+    <v-layout text-center>
+      <v-row>
+        <v-col>
+          <v-btn @click="getException()">
             {{ $t("fooCrud.exception") }}
-          </v-btn >
-        </v-flex>
-      </v-layout>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-layout>
 
-      <v-layout text-center wrap>
-        <v-flex xs12>
+    <v-layout text-center>
+      <v-row>
+        <v-col>
+          <v-btn @click="cretateFoo()">
+            {{ $t("fooCrud.create") }}
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-layout>
+
+    <v-layout text-center>
+      <v-row>
+        <v-col>
           <v-subheader>{{ $t("fooCrud.total") }}-{{ nFoos }}</v-subheader>
-          <v-list-item
-            v-for="(foo, index) in foos"
-            :key="index"
-          >
+          <v-list-item v-for="(foo, index) in foos" :key="index">
             <v-list-item-content>
-              <v-list-item-title>
-                {{ foo.name }}-{{ foo.value }}
-              </v-list-item-title>
-
-              <v-btn 
-               text
-               @click="removeFoo(foo.value)"
-              >
-                {{ $t("fooCrud.remove") }}
-              </v-btn>
-
+              <v-row>
+                <v-col>
+                  <v-list-item-title>
+                    {{ foo.name }}-{{ foo.value }}
+                  </v-list-item-title>
+                </v-col>
+                <v-col>
+                  <v-btn @click="removeFoo(foo.value)">
+                    {{ $t("fooCrud.remove") }}
+                  </v-btn>
+                </v-col>
+              </v-row>
             </v-list-item-content>
           </v-list-item>
-          
-        </v-flex>
-      </v-layout>
-
-      <v-layout text-center wrap>
-        <v-flex xs12>
-          <v-btn 
-            @click="cretateFoo()"
-            text
-          >
-              {{ $t("fooCrud.create") }}
-          </v-btn>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
+    </v-layout>
 
   </v-container>
 </template>
@@ -81,7 +84,7 @@ export default {
       const rValue = Math.floor(Math.random() * 10 + 1);
       const fooDto = {
         id: rValue,
-        name : `Soy ${rValue}`
+        name: `Soy ${rValue}`
       };
       this.$store.dispatch("fooModule/createFoo", fooDto);
     },
