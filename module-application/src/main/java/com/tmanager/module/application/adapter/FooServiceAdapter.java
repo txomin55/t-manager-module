@@ -36,7 +36,7 @@ public class FooServiceAdapter implements FooService{
 		List<Foo> foos = fooPersistancePort.getFoo();
 		
 		return foos.stream()
-				.map(foo -> new FooDTO(foo.getId()))
+				.map(foo -> new FooDTO(foo.getId(), foo.getName()))
 				.collect(Collectors.toList());
 	}
 

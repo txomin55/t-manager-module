@@ -1,8 +1,9 @@
-package com.tmanager.module.domain.model;
+package com.tmanager.module.application.inmemory.foo.bean;
+
+import com.tmanager.module.domain.model.Foo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import com.tmanager.module.domain.model.Foo;
 
 @Getter
 @AllArgsConstructor
