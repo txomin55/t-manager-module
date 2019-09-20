@@ -10,8 +10,6 @@ import lombok.Setter;
 public class CustomError {
 
 	private String id;
-	
 	private String msg;
-	
 	private Long date;
 }

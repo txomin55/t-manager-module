@@ -6,7 +6,7 @@ import com.tmanager.module.application.foo.port.DeleteFooService;
 import com.tmanager.module.application.foo.shared.command.FooDeleteCommand;
 import com.tmanager.module.domain.foo.port.DeleteFooPersistancePort;
 
-public class DeleteFooServiceAdapter implements DeleteFooService{
+public class DeleteFooServiceAdapter implements DeleteFooService {
 
     private DeleteFooPersistancePort deleteFooPersistancePort;
 
@@ -15,9 +15,8 @@ public class DeleteFooServiceAdapter implements DeleteFooService{
         this.deleteFooPersistancePort = deleteFooPersistancePort;
     }
 
-	@Override
-	public void deleteFoo(FooDeleteCommand command) {
-		deleteFooPersistancePort.deleteFoo(command.getId());
-	}
-
+    @Override
+    public void deleteFoo(FooDeleteCommand command) {
+        deleteFooPersistancePort.deleteFoo(command.getId());
+    }
 }

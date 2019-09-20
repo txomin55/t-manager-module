@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 
 @RestController
-public class GetTestTranslationController implements FooOperations{
+public class GetTestTranslationController implements FooOperations {
 
     @Autowired
     private MessageSource messageSource;
-    
+
     @GetMapping("/fooI18nSample")
     public String fooMethodI18n(Locale locale) {
-    	return messageSource.getMessage("hello", null, locale);
+        return messageSource.getMessage("hello", null, locale);
     }
 }

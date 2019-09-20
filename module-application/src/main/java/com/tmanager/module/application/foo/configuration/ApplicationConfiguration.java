@@ -20,14 +20,15 @@ public class ApplicationConfiguration {
     public CreateFooService getFooService(CreateFooPersistancePort fooPersistencePort) {
         return new CreateFooServiceAdapter(fooPersistencePort);
     }
-    
+
     @Bean
-    public GetFooListService getFooListService(GetFooListPersistancePort getFooListPersistancePort) {
-    	return new GetFooListServiceAdapter(getFooListPersistancePort);
+    public GetFooListService getFooListService(
+            GetFooListPersistancePort getFooListPersistancePort) {
+        return new GetFooListServiceAdapter(getFooListPersistancePort);
     }
 
     @Bean
     public DeleteFooService deleteFooService(DeleteFooPersistancePort deleteFooPersistancePort) {
-    	return new DeleteFooServiceAdapter(deleteFooPersistancePort);
+        return new DeleteFooServiceAdapter(deleteFooPersistancePort);
     }
 }

@@ -7,7 +7,7 @@ import com.tmanager.module.application.foo.shared.command.FooCreateCommand;
 import com.tmanager.module.domain.foo.model.Foo;
 import com.tmanager.module.domain.foo.port.CreateFooPersistancePort;
 
-public class CreateFooServiceAdapter implements CreateFooService{
+public class CreateFooServiceAdapter implements CreateFooService {
 
     private CreateFooPersistancePort fooPersistancePort;
 
@@ -15,11 +15,10 @@ public class CreateFooServiceAdapter implements CreateFooService{
     public CreateFooServiceAdapter(CreateFooPersistancePort fooPersistancePort) {
         this.fooPersistancePort = fooPersistancePort;
     }
-    
-	@Override
-	public void createFoo(FooCreateCommand command) {
 
-		Foo foo = new Foo(command.getId(), command.getName());
-		fooPersistancePort.fooMethod(foo);
-	}
+    @Override
+    public void createFoo(FooCreateCommand command) {
+        Foo foo = new Foo(command.getId(), command.getName());
+        fooPersistancePort.fooMethod(foo);
+    }
 }

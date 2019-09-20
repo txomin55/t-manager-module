@@ -8,6 +8,5 @@ import lombok.Getter;
 public class FooDTO {
 
 	private int id;
-
 	private String name;
 }

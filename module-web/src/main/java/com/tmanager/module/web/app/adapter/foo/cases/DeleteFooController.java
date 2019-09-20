@@ -10,7 +10,7 @@ import com.tmanager.module.application.foo.shared.command.FooDeleteCommand;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 
 @RestController
-public class DeleteFooController implements FooOperations{
+public class DeleteFooController implements FooOperations {
 
     @Autowired
     private DeleteFooService deleteFooService;
@@ -19,9 +19,9 @@ public class DeleteFooController implements FooOperations{
     public DeleteFooController(DeleteFooService deleteFooService) {
         this.deleteFooService = deleteFooService;
     }
-    
+
     @DeleteMapping("/{id}")
     public void deleteFoo(@PathVariable int id) {
-    	deleteFooService.deleteFoo(new FooDeleteCommand(id));
+        deleteFooService.deleteFoo(new FooDeleteCommand(id));
     }
 }

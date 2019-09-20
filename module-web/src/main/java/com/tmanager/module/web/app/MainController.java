@@ -8,11 +8,11 @@ public class MainController {
 
     @GetMapping("/")
     public String homePathRedirection() {
-    	return "redirect:auth/authorizeApp";
+        return "redirect:auth/authorizeApp";
     }
-    
+
     @GetMapping("/init")
     public String homePathInit() {
-    	return "forward:/index.html";
+        return "forward:/index.html";
     }
 }

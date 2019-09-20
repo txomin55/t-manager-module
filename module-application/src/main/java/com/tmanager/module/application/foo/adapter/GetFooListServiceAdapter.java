@@ -10,22 +10,20 @@ import com.tmanager.module.application.foo.shared.dto.FooDTO;
 import com.tmanager.module.domain.foo.model.Foo;
 import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 
-public class GetFooListServiceAdapter implements GetFooListService{
+public class GetFooListServiceAdapter implements GetFooListService {
 
-    private GetFooListPersistancePort getFooListPersistancePort;
+	private GetFooListPersistancePort getFooListPersistancePort;
 
-    @Autowired
-    public GetFooListServiceAdapter(GetFooListPersistancePort getFooListPersistancePort) {
-        this.getFooListPersistancePort = getFooListPersistancePort;
-    }
+	@Autowired
+	public GetFooListServiceAdapter(GetFooListPersistancePort getFooListPersistancePort) {
+		this.getFooListPersistancePort = getFooListPersistancePort;
+	}
 
 	@Override
 	public List<FooDTO> getFoo() {
 		List<Foo> foos = getFooListPersistancePort.getFoo();
-		
-		return foos.stream()
-				.map(foo -> new FooDTO(foo.getId(), foo.getName()))
+
+		return foos.stream().map(foo -> new FooDTO(foo.getId(), foo.getName()))
 				.collect(Collectors.toList());
 	}
-
 }

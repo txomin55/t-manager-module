@@ -8,8 +8,6 @@ import lombok.Data;
 public class OAuth2TokenDTO {
 
 	private String access_token;
-	
 	private String refresh_token;
-	
 	private int expires_in;
 }

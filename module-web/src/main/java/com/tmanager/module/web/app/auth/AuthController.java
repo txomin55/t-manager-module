@@ -14,75 +14,73 @@ import com.tmanager.module.web.app.auth.dto.OAuth2TokenDTO;
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
-	
+
 	@Value("${module.oauth.clientId}")
 	private String clientId;
-	
+
 	@Value("${module.oauth.clientSecret}")
 	private String clientSecret;
-	
+
 	@Value("${module.oauth.server.path}")
 	private String serverPath;
-	
+
 	@Value("${module.oauth.server.port}")
 	private String serverPort;
-	
+
 	@Value("${module.oauth.server.address}")
 	private String serverAddress;
-	
+
 	@Value("${module.oauth.clientRedirectUrl}")
 	private String clientRedirectUrl;
-	
+
 	@GetMapping("/authorizeApp")
 	public String authorizeApp() {
 
-		String oauth2ResourceUrl = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth/authorize";
-		
-		UriComponentsBuilder builder = UriComponentsBuilder
-			    .fromUriString(oauth2ResourceUrl)
-			    .queryParam("client_id", clientId)
-			    .queryParam("response_type", "code")
-			    .queryParam("redirect_uri", clientRedirectUrl);
+		String oauth2ResourceUrl =
+				serverAddress + ":" + serverPort + "/" + serverPath + "/oauth/authorize";
+
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(oauth2ResourceUrl)
+				.queryParam("client_id", clientId).queryParam("response_type", "code")
+				.queryParam("redirect_uri", clientRedirectUrl);
 
 		return "redirect:" + builder.toUriString();
-	} 
-	
+	}
+
 	@GetMapping("/get_token")
 	@ResponseBody
 	public OAuth2TokenDTO getToken(@RequestParam String code) {
-		
+
 		RestTemplate restTemplate = new RestTemplate();
-		String oauth2ResourceUrl = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth/token";
-		
-		UriComponentsBuilder builder = UriComponentsBuilder
-			    .fromUriString(oauth2ResourceUrl)
-			    .queryParam("grant_type", "authorization_code")
-			    .queryParam("client_id", clientId)
-			    .queryParam("client_secret", clientSecret)
-			    .queryParam("redirect_uri", clientRedirectUrl)
-			    .queryParam("code", code); 
-		
-		OAuth2TokenDTO oauthObj = restTemplate.postForObject(builder.toUriString(), null, OAuth2TokenDTO.class);
-		
+		String oauth2ResourceUrl =
+				serverAddress + ":" + serverPort + "/" + serverPath + "/oauth/token";
+
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(oauth2ResourceUrl)
+				.queryParam("grant_type", "authorization_code").queryParam("client_id", clientId)
+				.queryParam("client_secret", clientSecret)
+				.queryParam("redirect_uri", clientRedirectUrl).queryParam("code", code);
+
+		OAuth2TokenDTO oauthObj =
+				restTemplate.postForObject(builder.toUriString(), null, OAuth2TokenDTO.class);
+
 		return oauthObj;
-	} 
-	
+	}
+
 	@GetMapping("/refresh_token")
 	@ResponseBody
 	public OAuth2TokenDTO refreshToken(@RequestParam String refresh_token) {
-		
+
 		RestTemplate restTemplate = new RestTemplate();
-		String oauth2ResourceUrl = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth/token";
-		
-		UriComponentsBuilder builder = UriComponentsBuilder
-			    .fromUriString(oauth2ResourceUrl)
-			    .queryParam("grant_type", "refresh_token")
-			    .queryParam("client_id", clientId)
-			    .queryParam("client_secret", clientSecret)
-			    .queryParam("refresh_token", refresh_token); 
-		
-		OAuth2TokenDTO oauthObj = restTemplate.getForObject(builder.toUriString(), OAuth2TokenDTO.class);
-		
+		String oauth2ResourceUrl =
+				serverAddress + ":" + serverPort + "/" + serverPath + "/oauth/token";
+
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(oauth2ResourceUrl)
+				.queryParam("grant_type", "refresh_token").queryParam("client_id", clientId)
+				.queryParam("client_secret", clientSecret)
+				.queryParam("refresh_token", refresh_token);
+
+		OAuth2TokenDTO oauthObj =
+				restTemplate.getForObject(builder.toUriString(), OAuth2TokenDTO.class);
+
 		return oauthObj;
-	} 
+	}
 }

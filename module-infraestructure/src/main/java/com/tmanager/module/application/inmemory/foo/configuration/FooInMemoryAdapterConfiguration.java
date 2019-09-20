@@ -17,25 +17,26 @@ import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 @Configuration
 public class FooInMemoryAdapterConfiguration {
 
-	@Bean 
-	public Map<Integer, FooEntity> simulatedFooMap(){
-		Map<Integer, FooEntity> fooMap = new HashMap<Integer, FooEntity>();
-		fooMap.put(0, new FooEntity(0, "Soy 0"));
-		fooMap.put(1, new FooEntity(1, "Soy 1"));
-		return fooMap;
-	}
+    @Bean
+    public Map<Integer, FooEntity> simulatedFooMap() {
+        Map<Integer, FooEntity> fooMap = new HashMap<Integer, FooEntity>();
+        fooMap.put(0, new FooEntity(0, "Soy 0"));
+        fooMap.put(1, new FooEntity(1, "Soy 1"));
+        return fooMap;
+    }
+
     @Bean
     public CreateFooPersistancePort getFooPersistancePort() {
         return new CreateFooInMemoryAdapter();
     }
-    
+
     @Bean
     public GetFooListPersistancePort getFooListPersistancePort() {
-    	return new GetFooListInMemoryAdapter();
+        return new GetFooListInMemoryAdapter();
     }
-    
+
     @Bean
     public DeleteFooPersistancePort deleteFooPersistancePort() {
-    	return new DeleteFooInMemoryAdapter();
+        return new DeleteFooInMemoryAdapter();
     }
 }

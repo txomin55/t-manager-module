@@ -16,17 +16,18 @@ import com.tmanager.module.web.app.exception.error.CustomError;
 import com.tmanager.module.web.app.exception.error.CustomException;
 
 @ControllerAdvice
-public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
-    
-	@Autowired
-	private MessageSource messageSource;
-	
+public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @Autowired
+    private MessageSource messageSource;
+
     @ExceptionHandler(CustomException.class)
     @ResponseBody
-    final ResponseEntity<CustomError> handleCustomException(CustomException ex, Locale locale, WebRequest request) {
-    	
-    	CustomError error = new CustomError(ex.getId(), messageSource.getMessage(ex.getId(), null, locale), ex.getDate()); 
-    	return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    final ResponseEntity<CustomError> handleCustomException(CustomException ex, Locale locale,
+            WebRequest request) {
+
+        CustomError error = new CustomError(ex.getId(),
+                messageSource.getMessage(ex.getId(), null, locale), ex.getDate());
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    
 }

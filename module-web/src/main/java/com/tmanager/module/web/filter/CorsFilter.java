@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CorsFilter implements Filter{
+public class CorsFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
 
 		HttpServletResponse response = (HttpServletResponse) res;
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
-        response.setHeader("Access-Control-Allow-Methods", "*");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Content-Length, X-Requested-With");
-        
-        chain.doFilter(req, res);
-		
-	}
+		response.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
+		response.setHeader("Access-Control-Allow-Methods", "*");
+		response.setHeader("Access-Control-Allow-Headers",
+				"Content-Type, Authorization, Content-Length, X-Requested-With");
 
+		chain.doFilter(req, res);
+
+	}
 }

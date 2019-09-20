@@ -11,7 +11,7 @@ import com.tmanager.module.application.foo.shared.dto.FooDTO;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 
 @RestController
-public class CreateFooController implements FooOperations{
+public class CreateFooController implements FooOperations {
 
     @Autowired
     private CreateFooService fooService;
@@ -20,9 +20,9 @@ public class CreateFooController implements FooOperations{
     public CreateFooController(CreateFooService fooService) {
         this.fooService = fooService;
     }
-    
+
     @PostMapping
     public void createFoo(@RequestBody FooDTO fooDto) {
-    	fooService.createFoo(new FooCreateCommand(fooDto.getId(), fooDto.getName()));
+        fooService.createFoo(new FooCreateCommand(fooDto.getId(), fooDto.getName()));
     }
 }

@@ -13,8 +13,8 @@ public class WebConfiguration implements WebMvcConfigurer {
 
 	@Bean
 	public LocaleResolver localeResolver() {
-	    AcceptHeaderLocaleResolver slr = new AcceptHeaderLocaleResolver();
-	    slr.setDefaultLocale(new Locale("es"));
-	    return slr;
+		AcceptHeaderLocaleResolver slr = new AcceptHeaderLocaleResolver();
+		slr.setDefaultLocale(new Locale("es"));
+		return slr;
 	}
 }
