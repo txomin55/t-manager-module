@@ -1,9 +1,9 @@
-package com.tmanager.module.application.adapter;
+package com.tmanager.module.application.foo.adapter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tmanager.module.application.port.DeleteFooService;
-import com.tmanager.module.application.shared.command.FooDeleteCommand;
+import com.tmanager.module.application.foo.port.DeleteFooService;
+import com.tmanager.module.application.foo.shared.command.FooDeleteCommand;
 import com.tmanager.module.domain.foo.port.DeleteFooPersistancePort;
 
 public class DeleteFooServiceAdapter implements DeleteFooService{

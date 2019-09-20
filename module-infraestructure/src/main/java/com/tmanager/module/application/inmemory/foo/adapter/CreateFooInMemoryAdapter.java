@@ -17,5 +17,4 @@ public class CreateFooInMemoryAdapter implements CreateFooPersistancePort{
 	public void fooMethod(Foo foo) {
 		simulatedFooMap.put(foo.getId(), new FooEntity(foo));
 	}
-
 }

@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tmanager.module.application.port.CreateFooService;
-import com.tmanager.module.application.shared.command.FooCreateCommand;
-import com.tmanager.module.application.shared.dto.FooDTO;
+import com.tmanager.module.application.foo.port.CreateFooService;
+import com.tmanager.module.application.foo.shared.command.FooCreateCommand;
+import com.tmanager.module.application.foo.shared.dto.FooDTO;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 
 @RestController
