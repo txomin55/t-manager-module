@@ -1,6 +1,6 @@
-package com.tmanager.module.application.inmemory.foo.bean;
+package com.tmanager.module.application.inmemory.foo.entity;
 
-import com.tmanager.module.domain.model.Foo;
+import com.tmanager.module.domain.foo.model.Foo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
