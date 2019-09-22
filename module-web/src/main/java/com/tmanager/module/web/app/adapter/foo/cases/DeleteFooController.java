@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tmanager.module.application.foo.command.FooDeleteCommand;
 import com.tmanager.module.application.foo.port.DeleteFooService;
-import com.tmanager.module.application.foo.shared.command.FooDeleteCommand;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 
 @RestController

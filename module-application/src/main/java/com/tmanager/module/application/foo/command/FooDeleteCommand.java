@@ -1,4 +1,4 @@
-package com.tmanager.module.application.foo.shared.command;
+package com.tmanager.module.application.foo.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

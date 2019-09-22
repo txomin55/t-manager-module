@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.tmanager.module.application.foo.dto.FooDTO;
 import com.tmanager.module.application.foo.port.GetFooListService;
-import com.tmanager.module.application.foo.shared.dto.FooDTO;
 import com.tmanager.module.domain.foo.model.Foo;
 import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 

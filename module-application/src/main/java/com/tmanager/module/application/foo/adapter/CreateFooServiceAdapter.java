@@ -2,8 +2,8 @@ package com.tmanager.module.application.foo.adapter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.tmanager.module.application.foo.command.FooCreateCommand;
 import com.tmanager.module.application.foo.port.CreateFooService;
-import com.tmanager.module.application.foo.shared.command.FooCreateCommand;
 import com.tmanager.module.domain.foo.model.Foo;
 import com.tmanager.module.domain.foo.port.CreateFooPersistancePort;
 
