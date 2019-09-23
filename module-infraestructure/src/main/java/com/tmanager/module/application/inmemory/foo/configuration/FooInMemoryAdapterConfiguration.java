@@ -5,16 +5,18 @@ import java.util.Map;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
-import com.tmanager.module.application.inmemory.foo.adapter.DeleteFooInMemoryAdapter;
 import com.tmanager.module.application.inmemory.foo.adapter.CreateFooInMemoryAdapter;
+import com.tmanager.module.application.inmemory.foo.adapter.DeleteFooInMemoryAdapter;
 import com.tmanager.module.application.inmemory.foo.adapter.GetFooListInMemoryAdapter;
 import com.tmanager.module.application.inmemory.foo.entity.FooEntity;
-import com.tmanager.module.domain.foo.port.DeleteFooPersistancePort;
 import com.tmanager.module.domain.foo.port.CreateFooPersistancePort;
+import com.tmanager.module.domain.foo.port.DeleteFooPersistancePort;
 import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 
 @Configuration
+@Profile({"local-in-memory", "test"})
 public class FooInMemoryAdapterConfiguration {
 
     @Bean

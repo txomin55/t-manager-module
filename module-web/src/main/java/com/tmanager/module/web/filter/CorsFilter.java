@@ -9,9 +9,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
+@Profile("local-in-memory")
 public class CorsFilter implements Filter {
 
 	@Override
@@ -25,6 +27,5 @@ public class CorsFilter implements Filter {
 				"Content-Type, Authorization, Content-Length, X-Requested-With");
 
 		chain.doFilter(req, res);
-
 	}
 }

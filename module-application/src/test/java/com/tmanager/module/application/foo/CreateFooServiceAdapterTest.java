@@ -1,4 +1,4 @@
-package com.tmanager.module.application.foo.adapter;
+package com.tmanager.module.application.foo;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
