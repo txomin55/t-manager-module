@@ -10,6 +10,11 @@ import org.springframework.core.io.Resource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -19,14 +24,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().authorizeRequests()
 				.antMatchers("/").permitAll()
 				.antMatchers("/actuator/**").permitAll()
-				/*
-				.antMatchers("/module/init").permitAll()
-				.antMatchers("/module/static/js/*").permitAll()
-				.antMatchers("/module/static/css/*").permitAll()
-				.antMatchers("/module/static/img/*").permitAll()
-				.antMatchers("/module/favicon.ico").permitAll()
-				.antMatchers("/foo/*").permitAll()
-				*/
 				.antMatchers("/auth/*").permitAll();
 	}
 
@@ -36,11 +33,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		web.ignoring()
 				.antMatchers("/")
 				.antMatchers("/actuator/**")
-				/*
-				.antMatchers("/module/init").antMatchers("/module/static/js/*")
-				.antMatchers("/module/static/css/*").antMatchers("/module/static/img/*")
-				.antMatchers("/module/favicon.ico").antMatchers("/foo/*")
-				*/
 				.antMatchers("/auth/*");
 	}
 	
