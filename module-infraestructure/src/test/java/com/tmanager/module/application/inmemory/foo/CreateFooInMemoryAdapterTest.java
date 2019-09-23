@@ -1,13 +1,14 @@
 package com.tmanager.module.application.inmemory.foo;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
 
 import java.util.Map;
 
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tmanager.module.application.inmemory.foo.entity.FooEntity;
 import com.tmanager.module.domain.foo.model.Foo;
@@ -15,7 +16,7 @@ import com.tmanager.module.domain.foo.model.Foo;
 @RunWith(MockitoJUnitRunner.class)
 public class CreateFooInMemoryAdapterTest {
 
-	@Autowired
+	@Mock
 	private Map<Integer, FooEntity> simulatedFooMap;
 	
 	public void createFooInMemoryAdapter(){
@@ -26,7 +27,7 @@ public class CreateFooInMemoryAdapterTest {
 		
 		int initalNFoo = simulatedFooMap.size();
 		
-		simulatedFooMap.put(foo.getId(), new FooEntity(foo));
+		Mockito.verify(simulatedFooMap.put(foo.getId(), new FooEntity(foo)));
 		
 		int finalNFoo = simulatedFooMap.size();
 		

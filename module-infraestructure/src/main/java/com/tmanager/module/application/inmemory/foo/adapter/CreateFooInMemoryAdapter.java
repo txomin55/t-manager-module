@@ -14,7 +14,7 @@ public class CreateFooInMemoryAdapter implements CreateFooPersistancePort {
 	private Map<Integer, FooEntity> simulatedFooMap;
 
 	@Override
-	public void fooMethod(Foo foo) {
+	public void createFoo(Foo foo) {
 		simulatedFooMap.put(foo.getId(), new FooEntity(foo));
 	}
 }

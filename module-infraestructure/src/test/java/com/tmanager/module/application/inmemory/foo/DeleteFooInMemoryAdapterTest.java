@@ -1,23 +1,28 @@
 package com.tmanager.module.application.inmemory.foo;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
 
 import java.util.Map;
 
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tmanager.module.application.inmemory.foo.entity.FooEntity;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DeleteFooInMemoryAdapterTest {
 
-	@Autowired
+	@Mock
 	private Map<Integer, FooEntity> simulatedFooMap;
 	
 	public void deleteFooListInMemoryAdapter(){
+		
+		simulatedFooMap.put(1, new FooEntity(1, "Test 1"));
+		simulatedFooMap.put(2, new FooEntity(2, "Test 2"));
 		
 		Integer id = simulatedFooMap.entrySet().stream()
 													.findAny()
@@ -26,7 +31,7 @@ public class DeleteFooInMemoryAdapterTest {
 		
 		int initalNFoo = simulatedFooMap.size();
 		
-		simulatedFooMap.remove(id);
+		Mockito.verify(simulatedFooMap.remove(id));
 		
 		int finalNFoo = simulatedFooMap.size();
 		

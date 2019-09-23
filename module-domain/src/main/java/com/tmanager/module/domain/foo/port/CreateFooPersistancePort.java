@@ -4,5 +4,5 @@ import com.tmanager.module.domain.foo.model.Foo;
 
 public interface CreateFooPersistancePort {
 
-	void fooMethod(Foo foo);
+	void createFoo(Foo foo);
 }

@@ -27,7 +27,7 @@ public class CreateFooServiceAdapter implements CreateFooService {
     	Random rand = new Random();
     	int randomNum = MINIMUM + rand.nextInt((MAXIMUM - MINIMUM) + 1);
         Foo foo = new Foo(randomNum, command.getName());
-        fooPersistancePort.fooMethod(foo);
+        fooPersistancePort.createFoo(foo);
         
         return randomNum;
     }
