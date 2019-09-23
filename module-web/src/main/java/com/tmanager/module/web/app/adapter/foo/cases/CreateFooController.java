@@ -23,6 +23,6 @@ public class CreateFooController implements FooOperations {
 
     @PostMapping
     public void createFoo(@RequestBody FooWeb fooDto) {
-        fooService.createFoo(new FooCreateCommand(fooDto.getId(), fooDto.getName()));
+        fooService.createFoo(new FooCreateCommand(fooDto.getName()));
     }
 }

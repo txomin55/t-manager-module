@@ -7,6 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class FooCreateCommand {
 
-	private int id;
 	private String name;
 }

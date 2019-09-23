@@ -81,10 +81,8 @@ export default {
       this.$store.dispatch("fooModule/deleteFooData", foo.id);
     },
     cretateFoo() {
-      const rValue = Math.floor(Math.random() * 10 + 1);
       const fooDto = {
-        id: rValue,
-        name: `Soy ${rValue}`
+        name: `Soy ${new Date().getTime()}`
       };
       this.$store.dispatch("fooModule/createFoo", fooDto);
     },
