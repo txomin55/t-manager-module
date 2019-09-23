@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,8 @@ public class GetFooListInMemoryAdapterTest {
 	
 	@Test
 	public void getFooListInMemoryAdapter(){
+		
+		simulatedFooMap = new HashMap<Integer, FooEntity>();
 		
 		simulatedFooMap.put(1, new FooEntity(1, "Test 1"));
 		simulatedFooMap.put(2, new FooEntity(2, "Test 2"));

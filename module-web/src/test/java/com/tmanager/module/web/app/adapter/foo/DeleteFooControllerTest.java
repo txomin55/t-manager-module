@@ -1,25 +1,18 @@
 package com.tmanager.module.web.app.adapter.foo;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.Assert;
 
-import com.tmanager.module.web.app.adapter.foo.cases.DeleteFooController;
-import com.tmanager.module.web.app.adapter.foo.cases.FooDeleteCommand;
-import com.tmanager.module.web.app.adapter.foo.dto.FooWeb;
+import com.tmanager.module.application.foo.command.FooDeleteCommand;
+import com.tmanager.module.application.foo.port.DeleteFooService;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(DeleteFooController.class)
+@RunWith(MockitoJUnitRunner.class)
 public class DeleteFooControllerTest {
 
     @Autowired
-    private DeleteFooService fooService;
+    private DeleteFooService deleteFooService;
     
 	@Test
 	public void deleteFooControllerTest(){

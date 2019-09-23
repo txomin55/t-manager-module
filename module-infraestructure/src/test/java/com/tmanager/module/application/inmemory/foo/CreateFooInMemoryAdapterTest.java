@@ -3,6 +3,7 @@ package com.tmanager.module.application.inmemory.foo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.runner.RunWith;
@@ -20,6 +21,8 @@ public class CreateFooInMemoryAdapterTest {
 	private Map<Integer, FooEntity> simulatedFooMap;
 	
 	public void createFooInMemoryAdapter(){
+		
+		simulatedFooMap = new HashMap<Integer, FooEntity>();
 		
 		Integer id = simulatedFooMap.size() + 1;
 		String name = "Soy " + id;

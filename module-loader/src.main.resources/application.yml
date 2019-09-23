@@ -1,14 +1,20 @@
 spring:
   application:
     name: module
+  profiles:
+    default: local-in-memory
+    active: local-in-memory
+     
 server:
   servlet:
     context-path: /module
   port: 8002
+  
 logging:
  level:
   org.springframework.security: DEBUG
   springframework.security.web.FilterChainProxy: DEBUG
+  
 module:
   oauth:
     server:
@@ -17,7 +23,7 @@ module:
        address: http://localhost
     clientId: app-open-source
     clientSecret: password-open-source   
-    clientRedirectUrl: http://localhost:8080/module/init
+    clientRedirectUrl: http://localhost:8002/module/init
     
 management:
   endpoints:

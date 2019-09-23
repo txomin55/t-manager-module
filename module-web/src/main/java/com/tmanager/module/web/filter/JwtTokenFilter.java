@@ -16,5 +16,6 @@ public class JwtTokenFilter implements Filter{
 	  @Override
 	  public void doFilter(final ServletRequest req, final ServletResponse res, final FilterChain chain) throws IOException, ServletException {
 
+		  chain.doFilter(req, res);
 	  }
 }

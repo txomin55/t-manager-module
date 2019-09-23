@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.runner.RunWith;
@@ -20,6 +21,8 @@ public class DeleteFooInMemoryAdapterTest {
 	private Map<Integer, FooEntity> simulatedFooMap;
 	
 	public void deleteFooListInMemoryAdapter(){
+		
+		simulatedFooMap = new HashMap<Integer, FooEntity>();
 		
 		simulatedFooMap.put(1, new FooEntity(1, "Test 1"));
 		simulatedFooMap.put(2, new FooEntity(2, "Test 2"));

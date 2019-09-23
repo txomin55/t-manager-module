@@ -17,7 +17,7 @@ import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 public class ApplicationConfiguration {
 
     @Bean
-    public CreateFooService getFooService(CreateFooPersistancePort fooPersistencePort) {
+    public CreateFooService getFooCreateService(CreateFooPersistancePort fooPersistencePort) {
         return new CreateFooServiceAdapter(fooPersistencePort);
     }
 

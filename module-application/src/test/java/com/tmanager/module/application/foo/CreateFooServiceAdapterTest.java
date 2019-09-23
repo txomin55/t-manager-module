@@ -22,10 +22,12 @@ public class CreateFooServiceAdapterTest {
 	private CreateFooPersistancePort createFooPersistancePort;
 	
 	@Mock
-	private List<Foo> list = new ArrayList<Foo>();
+	private List<Foo> list;
 	
 	@Test
 	public void deleteFooServiceAdapter(){
+		
+		list = new ArrayList<Foo>();
 		
 		list.add(new Foo(1, "TEST-1"));
 		
