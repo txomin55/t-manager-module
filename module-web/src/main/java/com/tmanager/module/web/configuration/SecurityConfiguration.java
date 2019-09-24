@@ -2,7 +2,6 @@ package com.tmanager.module.web.configuration;
 
 import java.io.IOException;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -15,6 +14,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
+
+import io.micrometer.core.instrument.util.IOUtils;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -39,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 	    JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-	    Resource resource = new ClassPathResource("public.txt");
+	    Resource resource = new ClassPathResource("publicKey/public.txt");
 	    String publicKey = null;
 	    try {
 	        publicKey = IOUtils.toString(resource.getInputStream());
