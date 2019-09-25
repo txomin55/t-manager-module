@@ -9,9 +9,16 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: "/login",
+      name: "login"
+    },
+    {
       path: "/home",
       name: "home",
-      component: Home
+      component: Home,
+      meta: { 
+        requiresAuth: true 
+      }
     },
     {
       path: "/fooCrud",
@@ -20,7 +27,10 @@ export default new Router({
       // this generates a separate chunk (fooCrud.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "fooCrud" */ "./views/FooCrud.vue")
+        import(/* webpackChunkName: "fooCrud" */ "./views/FooCrud.vue"),
+        meta: { 
+          requiresAuth: true 
+        }
     }
   ]
 });
