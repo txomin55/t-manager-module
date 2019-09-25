@@ -1,7 +1,10 @@
 package com.tmanager.module.web.app.auth;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import java.util.Map;
+
 import com.tmanager.module.web.app.auth.dto.OAuth2TokenDTO;
 
 @Controller
@@ -88,6 +91,7 @@ public class AuthController {
 	@GetMapping("/getUserData")
 	@ResponseBody
 	public Map<String, Object> getUserData(Authentication auth){
+		
 		OAuth2AuthenticationDetails oauthDetails = (OAuth2AuthenticationDetails) auth.getDetails();
 
 	  	return (Map<String, Object>) oauthDetails.getDecodedDetails();

@@ -31,6 +31,11 @@
       	  <artifactId>spring-boot-starter-actuator</artifactId>
       </dependency>
 	  <dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+            <version>${oauth.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 	  </dependency>
@@ -53,11 +58,6 @@
   
   <build>
 	<plugins>
-		<plugin>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-maven-plugin</artifactId>
-		</plugin>
-		
 		<plugin>
                <artifactId>maven-resources-plugin</artifactId>
                <executions>

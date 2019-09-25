@@ -1,13 +1,10 @@
 package com.tmanager.module.web.configuration;
 
 import java.util.Map;
-import org.springframework.stereotype.Component;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import java.io.IOException;
 
-import org.springframework.context.annotation.Bean;
-import io.micrometer.core.instrument.util.IOUtils;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
+import org.springframework.stereotype.Component;
 
 @Component
 public class CustomAccessTokenConverter extends DefaultAccessTokenConverter {
