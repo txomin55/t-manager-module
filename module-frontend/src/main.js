@@ -1,5 +1,4 @@
 import Vue from "vue";
-import VueResource from "vue-resource";
 import App from "./App.vue";
 import Vuetify from "vuetify/lib";
 import router from "./router";
@@ -7,6 +6,9 @@ import store from "./store";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 import vuetify from "./plugins/vuetify";
+import axios from 'axios'
+
+Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false;
 
@@ -72,22 +74,30 @@ const i18n = new window.t_manager.LanguageUtils(Vue, {
 i18n.locale = store.state.language;
 store.$i18n = i18n;
 
-Vue.http.interceptors.push((request, next) => {
-  next(response => {
+Vue.http.interceptors.request.use(
+  request => {
+    //internacionalizacion en todas las urls
+    request.headers.set("Accept-language", store.state.language);
+    //token en todas las urls
+    request.headers.set("Authorization", `Bearer ${store.state.token}`);
+
+    return request;
+  }
+);
+
+Vue.http.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
     if (response.status != 200) {
       store.dispatch("errorAction", response);
     }
-  });
-});
+    
+    return Promise.reject({ ...error })
+  }
+);
 
-Vue.http.interceptors.push((request, next) => {
-  //internacionalizacion en todas las urls
-  request.headers.set("Accept-language", store.state.language);
-  //token en todas las urls
-  request.headers.set("Authorization", `Bearer ${store.state.token}`);
-
-  next();
-});
 
 new Vue({
   i18n,

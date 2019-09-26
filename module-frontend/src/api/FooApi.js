@@ -9,8 +9,7 @@ export function getFoo(cb) {
     .then(
       response => {
         return response.json();
-      },
-      () => {}
+      }
     )
     .then(foos => {
       cb(foos);
@@ -21,8 +20,7 @@ export function createFoo(foo, cb) {
   Vue.http.post(`http://${ADDRESS}/${store.state.module}/foo`, foo).then(
     () => {
       cb(foo);
-    },
-    () => {}
+    }
   );
 }
 
@@ -32,8 +30,7 @@ export function deleteFoo(id, cb) {
     .then(
       response => {
         return response;
-      },
-      () => {}
+      }
     )
     .then(() => {
       cb(id);
@@ -43,5 +40,5 @@ export function deleteFoo(id, cb) {
 export function launchException() {
   Vue.http
     .get(`http://${ADDRESS}/${store.state.module}/foo/exception`)
-    .then(() => {}, () => {});
+    .then(() => {});
 }
