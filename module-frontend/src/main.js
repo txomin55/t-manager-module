@@ -8,7 +8,7 @@ import EsMessages from "@/messages/es.json";
 import vuetify from "./plugins/vuetify";
 import axios from 'axios'
 
-Vue.prototype.$http = axios;
+Vue.prototype.http = axios;
 
 Vue.config.productionTip = false;
 
@@ -93,7 +93,7 @@ Vue.http.interceptors.response.use(
     if (response.status != 200) {
       store.dispatch("errorAction", response);
     }
-    
+
     return Promise.reject({ ...error })
   }
 );
