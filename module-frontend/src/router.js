@@ -15,8 +15,8 @@ export default new Router({
       path: "/home",
       name: "home",
       component: Home,
-      meta: { 
-        requiresAuth: true 
+      meta: {
+        requiresAuth: true
       }
     },
     {
@@ -27,9 +27,9 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "fooCrud" */ "./views/FooCrud.vue"),
-        meta: { 
-          requiresAuth: true 
-        }
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 });

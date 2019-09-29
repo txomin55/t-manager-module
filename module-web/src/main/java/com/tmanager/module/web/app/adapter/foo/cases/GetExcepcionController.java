@@ -8,7 +8,7 @@ import com.tmanager.module.web.app.exception.error.CustomException;
 import com.tmanager.module.web.app.exception.error.ErrorEnum;
 
 @RestController
-public class GetTestExcepcionController implements FooOperations {
+public class GetExcepcionController implements FooOperations {
 
     @GetMapping("/exception")
     public void fooMethodError() throws CustomException {

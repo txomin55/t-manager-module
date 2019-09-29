@@ -45,3 +45,6 @@ keystore name: t-manager
 keypass: t-manager-password
 store pass: t-manager-password
 ```
+```
+El resourceId dado de alta en users de mongo tiene que tener el mismo que la aplicacion module en OAuth2ResourceServerConfigJwt -> config.resourceId("foo");
+```

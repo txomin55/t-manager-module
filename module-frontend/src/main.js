@@ -51,18 +51,17 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (store.state.token) {
+    if (!store.state.token) {
       next({
-        path: '/',
-        query: { redirect: to.fullPath }
-      })
+        path: "/"
+      });
     } else {
-      next()
+      next();
     }
   } else {
-    next() // make sure to always call next()!
+    next(); // make sure to always call next()!
   }
-})
+});
 
 const i18n = new window.t_manager.LanguageUtils(Vue, {
   es: EsMessages,
@@ -72,8 +71,10 @@ const i18n = new window.t_manager.LanguageUtils(Vue, {
 i18n.locale = store.state.language;
 store.$i18n = i18n;
 
-Vue.http.interceptors.push((request, next) => {
-  next(response => {
+Vue.http.interceptors.push(function(request, next) {
+  next(function(response) {
+    debugger;
+
     if (response.status != 200) {
       store.dispatch("errorAction", response);
     }

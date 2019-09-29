@@ -16,7 +16,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/init/**").permitAll()
 				.antMatchers("/actuator/**").permitAll()
 				.antMatchers("/auth/**").permitAll()
-				.antMatchers("/public/**").permitAll();
+				.antMatchers("/favicon.ico").permitAll()
+				.antMatchers("/static/**").permitAll()
+				.antMatchers("/static/js/**").permitAll();
 	}
 
 	@Override
@@ -26,6 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/init/**")
 				.antMatchers("/actuator/**")
 				.antMatchers("/auth/**")
-				.antMatchers("/public/**");
+				.antMatchers("/favicon.ico")
+				.antMatchers("/static/**")
+				.antMatchers("/static/js/**");
 	}
 }
