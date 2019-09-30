@@ -11,7 +11,7 @@ import axios from "axios";
 Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
-Vue.prototype.http = axios;
+Vue.prototype.$http = axios;
 
 ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
 let firstTime = true;
@@ -70,7 +70,7 @@ i18n.locale = store.state.language;
 store.$i18n = i18n;
 
 ///////////////////////////AXIOS INTERCEPTORS///////////////////////////
-Vue.http.interceptors.request.use(request => {
+Vue.prototype.$http.interceptors.request.use(request => {
   //internacionalizacion en todas las urls
   request.headers.set("Accept-language", store.state.language);
   //token en todas las urls
@@ -79,11 +79,12 @@ Vue.http.interceptors.request.use(request => {
   return request;
 });
 
-Vue.http.interceptors.response.use(
+Vue.prototype.$http.interceptors.response.use(
   response => {
     return response;
   },
   error => {
+    debugger;
     if (error.status != 200) {
       store.dispatch("errorAction", error);
     }
@@ -99,4 +100,4 @@ new Vue({
   store,
   vuetify,
   render: h => h(App)
-}).$mount(store.state.module);
+}).$mount(`#${store.state.module}`);

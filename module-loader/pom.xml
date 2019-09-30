@@ -17,6 +17,11 @@
           <artifactId>module-web</artifactId>
           <version>0.0.1-SNAPSHOT</version>
       </dependency>
+      <dependency>
+         <groupId>com.tmanager.module</groupId>
+         <artifactId>module-infraestructure</artifactId>
+         <version>0.0.1-SNAPSHOT</version>
+     </dependency>
   </dependencies>
   
   <dependencyManagement>
