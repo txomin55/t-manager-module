@@ -39,22 +39,6 @@
     <v-row>
       <v-col>
         <v-subheader>{{ $t("fooCrud.total") }}-{{ nFoos }}</v-subheader>
-        <v-list-item v-for="(foo, index) in foos" :key="index">
-          <v-list-item-content>
-            <v-row>
-              <v-col>
-                <v-list-item-title>
-                  {{ foo.name }}-{{ foo.value }}
-                </v-list-item-title>
-              </v-col>
-              <v-col>
-                <v-btn @click="removeFoo(foo.value)">
-                  {{ $t("fooCrud.remove") }}
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-list-item-content>
-        </v-list-item>
       </v-col>
     </v-row>
 
@@ -65,6 +49,7 @@
           :items="foos"
           sort-by="calories"
           class="elevation-1"
+          v-if="$breakpoint.smAndUp"
         >
           <template v-slot:top>
             <v-toolbar flat color="white">
@@ -90,6 +75,25 @@
             NO DATA
           </template>
         </v-data-table>
+        <div v-else>
+          <v-list-item v-for="(foo, index) in foos" :key="index">
+          <v-list-item-content>
+            <v-row>
+              <v-col>
+                <v-list-item-title>
+                  {{ foo.name }}-{{ foo.value }}
+                </v-list-item-title>
+              </v-col>
+              <v-col>
+                <v-btn @click="removeFoo(foo.value)">
+                  {{ $t("fooCrud.remove") }}
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-list-item-content>
+        </v-list-item>
+        </div>
+
       </v-col>
     </v-row>
 
