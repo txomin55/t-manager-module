@@ -1,19 +1,18 @@
 <template>
-  <div>
-    <v-snackbar
-      v-model="showError"
-      color="error"
-      multi-line
-      right
-      :timeout="timeout"
-      top
+  <div class="error-handler">
+    <div
+      v-for="(error, index) in errors"
+      :key="index"
+      :ref="`error-${error.id}`"
     >
-      {{ title }} - {{ message }}
-
-      <v-btn dark text @click="showError = false">
-        {{ $t("error.close") }}
-      </v-btn>
-    </v-snackbar>
+      <v-alert
+        dismissible
+        type="error"
+        transition="scale-transition"
+      >
+        {{ error.title }} - {{ error.message }}
+      </v-alert>
+    </div>
   </div>
 </template>
 
@@ -24,21 +23,42 @@ export default {
   name: "ErrorHandler",
   data() {
     return {
-      showError: false,
-      title: null,
-      message: null,
-      timeout: 6000
+      errors: []
     };
+  },
+  watch: {
+    error(errorDTO) {
+      const timeout = 55000;
+      this.errors.push({
+        showError: true,
+        title: this.$i18n.t("errorHandler.error"),
+        message: `${errorDTO.code}: ${errorDTO.message}`,
+        id: new Date().getTime(),
+        timeout: timeout
+      });
+
+      const timeoutId = setTimeout(() => {
+        delete this.$refs[`error-${this.errors[0].id}`];
+        this.errors.shift();
+
+        clearTimeout(timeoutId);
+      }, timeout);
+    }
   },
   computed: {
     ...mapState({
-      error(state) {
-        console.log(state);
-        this.showError = true;
-        this.title = this.$i18n.t("errorHandler.error");
-        this.message = `${this.request.status}: ${this.request.data.msg}`;
-      }
+      error: state => state.error
     })
   }
 };
 </script>
+<style>
+.error-handler{
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+</style>
