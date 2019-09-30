@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tmanager.module.application.foo.command.FooCreateCommand;
+import com.tmanager.module.application.foo.dto.FooDTO;
 import com.tmanager.module.application.foo.port.CreateFooService;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 import com.tmanager.module.web.app.adapter.foo.dto.FooWeb;
@@ -22,7 +23,8 @@ public class CreateFooController implements FooOperations {
     }
 
     @PostMapping
-    public void createFoo(@RequestBody FooWeb fooDto) {
-        fooService.createFoo(new FooCreateCommand(fooDto.getName()));
+    public FooDTO createFoo(@RequestBody FooWeb fooDto) {
+        int id = fooService.createFoo(new FooCreateCommand(fooDto.getName()));
+        return new FooDTO(id, fooDto.getName());
     }
 }

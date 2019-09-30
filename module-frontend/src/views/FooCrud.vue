@@ -27,16 +27,6 @@
     </v-row>
 
     <v-row>
-      <v-col
-        class="text-center"
-      >
-        <v-btn @click="cretateFoo()">
-          {{ $t("fooCrud.create") }}
-        </v-btn>
-      </v-col>
-    </v-row>
-
-    <v-row>
       <v-col>
         <v-subheader>{{ $t("fooCrud.total") }}-{{ nFoos }}</v-subheader>
       </v-col>
@@ -49,15 +39,19 @@
           :items="foos"
           sort-by="calories"
           class="elevation-1"
-          v-if="$breakpoint.smAndUp"
+          v-if="$vuetify.breakpoint.smAndUp"
         >
           <template v-slot:top>
             <v-toolbar flat color="white">
               <v-toolbar-title>FOO CRUD</v-toolbar-title>
               <v-divider class="mx-4" inset vertical></v-divider>
               <div class="flex-grow-1"></div>
-              <v-btn color="primary" dark class="mb-2">
-                New Item
+              <v-btn 
+                color="primary" 
+                dark
+                @click="cretateFoo()"
+              >
+                {{ $t("fooCrud.create") }}
               </v-btn>
             </v-toolbar>
           </template>
@@ -66,7 +60,7 @@
             <v-icon small class="mr-2" @click="editItem(item)">
               edit
             </v-icon>
-            <v-icon small @click="deleteItem(item)">
+            <v-icon small @click="removeFoo(item.id)">
               delete
             </v-icon>
           </template>
@@ -74,6 +68,7 @@
           <template v-slot:no-data>
             NO DATA
           </template>
+          
         </v-data-table>
         <div v-else>
           <v-list-item v-for="(foo, index) in foos" :key="index">
@@ -81,11 +76,11 @@
             <v-row>
               <v-col>
                 <v-list-item-title>
-                  {{ foo.name }}-{{ foo.value }}
+                  {{ foo.id }}-{{ foo.name }}
                 </v-list-item-title>
               </v-col>
               <v-col>
-                <v-btn @click="removeFoo(foo.value)">
+                <v-btn @click="removeFoo(foo.id)">
                   {{ $t("fooCrud.remove") }}
                 </v-btn>
               </v-col>
@@ -101,25 +96,27 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 export default {
   name: "FooCrud",
   data: () => ({
     headers: [
+      { text: "Id", value: "id" },
       { text: "Name", value: "name" },
-      { text: "Value", value: "value" }
+      { text: 'Actions', value: 'action', sortable: false }
     ]
   }),
   computed: {
-    foos() {
-      return this.$store.getters["fooModule/getMappedFoo"];
-    },
+    ...mapState({
+      foos : state => state.fooModule.foos
+    }),
     nFoos() {
       return this.$store.getters["fooModule/getFooQuantity"];
     }
   },
   methods: {
-    removeFoo(foo) {
-      this.$store.dispatch("fooModule/deleteFooData", foo.id);
+    removeFoo(id) {
+      this.$store.dispatch("fooModule/deleteFooData", id);
     },
     cretateFoo() {
       const fooDto = {

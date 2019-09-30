@@ -15,8 +15,8 @@ export function getFoo(cb) {
 export function createFoo(foo, cb) {
   axios
     .post(`http://${ADDRESS}/${store.state.module}/foo`, foo)
-    .then(() => {
-      cb(foo);
+    .then((result) => {
+      cb(result.data);
     })
     .catch(() => {});
 }

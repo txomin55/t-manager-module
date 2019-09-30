@@ -27,12 +27,13 @@ export default {
     };
   },
   watch: {
-    error(errorDTO) {
+    error(errorData) {
+      const errorDTO = errorData.response.data
       const timeout = 5000;
       this.errors.push({
         showError: true,
-        title: this.$i18n.t("errorHandler.error"),
-        message: `${errorDTO.code}: ${errorDTO.message}`,
+        title: `${this.$i18n.t("errorHandler.error")} ${errorDTO.date}`,
+        message: `${errorDTO.id}: ${errorDTO.msg}`,
         id: new Date().getTime(),
         timeout: timeout
       });
