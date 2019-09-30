@@ -8,10 +8,8 @@ import EsMessages from "@/messages/es.json";
 import vuetify from "./plugins/vuetify";
 import axios from 'axios'
 
-
 Vue.config.productionTip = false;
 
-Vue.use(VueResource);
 Vue.use(Vuetify);
 
 ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
@@ -88,8 +86,8 @@ axios.interceptors.response.use(
     return response;
   },
   error => {
-    store.dispatch("errorAction", response);
-    return Promise.reject({ ...error })
+    store.dispatch("errorAction", error);
+    return Promise.reject({ ...error });
   }
 );
 
