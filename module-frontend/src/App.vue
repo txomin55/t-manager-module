@@ -24,8 +24,8 @@
     </v-app-bar>
 
     <v-content>
-      <router-view />
       <app-error-handler />
+      <router-view />
     </v-content>
   </v-app>
 </template>

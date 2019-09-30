@@ -6,12 +6,11 @@ import store from "./store";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 import vuetify from "./plugins/vuetify";
-import axios from "axios";
+import axios from 'axios'
 
 Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
-Vue.prototype.$http = axios;
 
 ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
 let firstTime = true;
@@ -69,26 +68,23 @@ const i18n = new window.t_manager.LanguageUtils(Vue, {
 i18n.locale = store.state.language;
 store.$i18n = i18n;
 
-///////////////////////////AXIOS INTERCEPTORS///////////////////////////
-Vue.prototype.$http.interceptors.request.use(request => {
-  //internacionalizacion en todas las urls
-  request.headers.set("Accept-language", store.state.language);
-  //token en todas las urls
-  request.headers.set("Authorization", `Bearer ${store.state.token}`);
+///////////////////////////REQUESTS CONFIG///////////////////////////
+axios.interceptors.request.use(
+  request => {
+    //internacionalizacion en todas las urls
+    request.headers["Accept-language"] = store.state.language;
+    //token en todas las urls
+    request.headers["Authorization"] = `Bearer ${store.state.token}`;
 
   return request;
 });
 
-Vue.prototype.$http.interceptors.response.use(
+axios.interceptors.response.use(
   response => {
     return response;
   },
   error => {
-    debugger;
-    if (error.status != 200) {
-      store.dispatch("errorAction", error);
-    }
-
+    store.dispatch("errorAction", error);
     return Promise.reject({ ...error });
   }
 );
