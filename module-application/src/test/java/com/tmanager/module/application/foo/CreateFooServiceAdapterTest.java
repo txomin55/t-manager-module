@@ -29,11 +29,11 @@ public class CreateFooServiceAdapterTest {
 		
 		list = new ArrayList<Foo>();
 		
-		list.add(new Foo(1, "TEST-1"));
+		list.add(new Foo(1, "TEST-1", "1"));
 		
 		doNothing().when(createFooPersistancePort).createFoo(isA(Foo.class)); 
 		
-		createFooPersistancePort.createFoo(new Foo(2, "TEST-2"));
+		createFooPersistancePort.createFoo(new Foo(2, "TEST-2", "2"));
 		
 		verify(list);
 	}

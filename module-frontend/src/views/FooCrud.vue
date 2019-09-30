@@ -103,6 +103,7 @@ export default {
     headers: [
       { text: "Id", value: "id" },
       { text: "Name", value: "name" },
+      { text: "Value", value: "value" },
       { text: 'Actions', value: 'action', sortable: false }
     ]
   }),
@@ -120,7 +121,8 @@ export default {
     },
     cretateFoo() {
       const fooDto = {
-        name: `Soy ${new Date().getTime()}`
+        name: `Soy ${new Date().getTime()}`,
+        value: `Valor ${new Date().getTime()}`
       };
       this.$store.dispatch("fooModule/createFoo", fooDto);
     },

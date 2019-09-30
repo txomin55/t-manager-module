@@ -9,7 +9,7 @@ import com.tmanager.module.application.foo.command.FooCreateCommand;
 import com.tmanager.module.application.foo.dto.FooDTO;
 import com.tmanager.module.application.foo.port.CreateFooService;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
-import com.tmanager.module.web.app.adapter.foo.dto.FooWeb;
+import com.tmanager.module.web.app.adapter.foo.dto.CreateFooWeb;
 
 @RestController
 public class CreateFooController implements FooOperations {
@@ -23,8 +23,8 @@ public class CreateFooController implements FooOperations {
     }
 
     @PostMapping
-    public FooDTO createFoo(@RequestBody FooWeb fooDto) {
-        int id = fooService.createFoo(new FooCreateCommand(fooDto.getName()));
-        return new FooDTO(id, fooDto.getName());
+    public FooDTO createFoo(@RequestBody CreateFooWeb fooDto) {
+        int id = fooService.createFoo(new FooCreateCommand(fooDto.getName(), fooDto.getValue()));
+        return new FooDTO(id, fooDto.getName(), fooDto.getValue());
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tmanager.module.application.foo.port.GetFooListService;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
-import com.tmanager.module.web.app.adapter.foo.dto.FooWeb;
+import com.tmanager.module.web.app.adapter.foo.dto.GetFooWeb;
 
 @RestController
 public class GetFooListController implements FooOperations {
@@ -23,9 +23,9 @@ public class GetFooListController implements FooOperations {
     }
 
     @GetMapping
-    public List<FooWeb> getFoos() {    	
+    public List<GetFooWeb> getFoos() {    	
         return getFooListService.getFoo().stream()
-            .map(foo -> new FooWeb(foo.getId(), foo.getName()))
+            .map(foo -> new GetFooWeb(foo.getId(), foo.getName(), foo.getValue()))
             .collect(Collectors.toList());
     }
 }

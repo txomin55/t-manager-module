@@ -28,11 +28,11 @@ public class GetFooListInMemoryAdapterTest {
 		
 		simulatedFooMap = new HashMap<Integer, FooEntity>();
 		
-		simulatedFooMap.put(1, new FooEntity(1, "Test 1"));
-		simulatedFooMap.put(2, new FooEntity(2, "Test 2"));
+		simulatedFooMap.put(1, new FooEntity(1, "Test 1", "1"));
+		simulatedFooMap.put(2, new FooEntity(2, "Test 2", "2"));
 		
 		ArrayList<Foo> foos = new ArrayList<Foo>(simulatedFooMap.values().stream().map(foo -> {
-			return new Foo(foo.getId(), foo.getName());
+			return new Foo(foo.getId(), foo.getName(), foo.getValue());
 		}).collect(Collectors.toList()));
 		
 		assertThat(foos, not(IsEmptyCollection.empty()));

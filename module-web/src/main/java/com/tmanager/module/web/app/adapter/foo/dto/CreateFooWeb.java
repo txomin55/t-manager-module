@@ -3,10 +3,10 @@ package com.tmanager.module.web.app.adapter.foo.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@Getter
 @AllArgsConstructor
-public class FooWeb {
+@Getter
+public class CreateFooWeb {
 
-	private int id;
 	private String name;
+	private String value;
 }

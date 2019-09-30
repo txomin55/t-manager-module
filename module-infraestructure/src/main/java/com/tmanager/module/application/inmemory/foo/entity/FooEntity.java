@@ -11,9 +11,11 @@ public class FooEntity {
 
     private int id;
     private String name;
+    private String value;
 
     public FooEntity(Foo foo) {
         this.id = foo.getId();
         this.name = foo.getName();
+        this.value = foo.getValue();
     }
 }

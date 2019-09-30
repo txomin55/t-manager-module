@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
 import com.tmanager.module.application.foo.port.GetFooListService;
-import com.tmanager.module.web.app.adapter.foo.dto.FooWeb;
+import com.tmanager.module.web.app.adapter.foo.dto.GetFooWeb;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GetFooListControllerTest {
@@ -21,8 +21,8 @@ public class GetFooListControllerTest {
 	@Test
 	public void getFooListController(){
 		
-		List<FooWeb> foos = getFooListService.getFoo().stream()
-					            .map(foo -> new FooWeb(foo.getId(), foo.getName()))
+		List<GetFooWeb> foos = getFooListService.getFoo().stream()
+					            .map(foo -> new GetFooWeb(foo.getId(), foo.getName(), foo.getValue()))
 					            .collect(Collectors.toList());
 		
 		Assert.notEmpty(foos, "Empty foos list");

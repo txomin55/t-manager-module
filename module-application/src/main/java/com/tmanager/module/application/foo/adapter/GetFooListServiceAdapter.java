@@ -23,7 +23,7 @@ public class GetFooListServiceAdapter implements GetFooListService {
 	public List<FooDTO> getFoo() {
 		List<Foo> foos = getFooListPersistancePort.getFoo();
 
-		return foos.stream().map(foo -> new FooDTO(foo.getId(), foo.getName()))
+		return foos.stream().map(foo -> new FooDTO(foo.getId(), foo.getName(), foo.getValue()))
 				.collect(Collectors.toList());
 	}
 }

@@ -27,8 +27,8 @@ public class DeleteFooServiceAdapterTest {
 	@Test
 	public void deleteFooServiceAdapter(){
 		
-		list.add(new Foo(1, "TEST-1"));
-		list.add(new Foo(2, "TEST-2"));
+		list.add(new Foo(1, "TEST-1", "1"));
+		list.add(new Foo(2, "TEST-2", "2"));
 		
 		int id = 1;
 		

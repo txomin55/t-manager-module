@@ -24,8 +24,8 @@ public class DeleteFooInMemoryAdapterTest {
 		
 		simulatedFooMap = new HashMap<Integer, FooEntity>();
 		
-		simulatedFooMap.put(1, new FooEntity(1, "Test 1"));
-		simulatedFooMap.put(2, new FooEntity(2, "Test 2"));
+		simulatedFooMap.put(1, new FooEntity(1, "Test 1", "1"));
+		simulatedFooMap.put(2, new FooEntity(2, "Test 2", "1"));
 		
 		Integer id = simulatedFooMap.entrySet().stream()
 													.findAny()

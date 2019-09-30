@@ -1,12 +1,13 @@
-package com.tmanager.module.application.foo.command;
+package com.tmanager.module.web.app.adapter.foo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class FooCreateCommand {
+public class GetFooWeb {
 
+	private int id;
 	private String name;
 	private String value;
 }

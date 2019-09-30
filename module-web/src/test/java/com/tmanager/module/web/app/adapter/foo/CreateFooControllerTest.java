@@ -18,7 +18,7 @@ public class CreateFooControllerTest {
 	@Test
 	public void createFooController(){
 		
-		int fooId = fooService.createFoo(new FooCreateCommand("TEST-FOO"));
+		int fooId = fooService.createFoo(new FooCreateCommand("TEST-FOO", "1"));
 		
 		Assert.isTrue(fooId > 0, "Foo successfully created");
 	}
