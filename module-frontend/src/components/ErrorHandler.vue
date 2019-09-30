@@ -28,7 +28,7 @@ export default {
   },
   watch: {
     error(errorDTO) {
-      const timeout = 55000;
+      const timeout = 5000;
       this.errors.push({
         showError: true,
         title: this.$i18n.t("errorHandler.error"),
