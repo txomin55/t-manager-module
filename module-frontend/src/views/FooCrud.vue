@@ -1,25 +1,19 @@
 <template>
   <v-container>
     <v-row>
-      <v-col
-        class="text-center"
-      >
+      <v-col class="text-center">
         <h1>{{ $t("fooCrud.welcome") }}</h1>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col
-        class="text-center"
-      >
+      <v-col class="text-center">
         <h3>{{ $t("fooCrud.description") }}</h3>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col
-        class="text-center"
-      >
+      <v-col class="text-center">
         <v-btn @click="getException()">
           {{ $t("fooCrud.exception") }}
         </v-btn>
@@ -46,11 +40,7 @@
               <v-toolbar-title>FOO CRUD</v-toolbar-title>
               <v-divider class="mx-4" inset vertical></v-divider>
               <div class="flex-grow-1"></div>
-              <v-btn 
-                color="primary" 
-                dark
-                @click="cretateFoo()"
-              >
+              <v-btn color="primary" dark @click="cretateFoo()">
                 {{ $t("fooCrud.create") }}
               </v-btn>
             </v-toolbar>
@@ -58,45 +48,45 @@
 
           <template v-slot:item.action="{ item }">
             <v-icon small class="mr-2" @click="editItem(item)">
-              edit
+              mdi-pencil
             </v-icon>
             <v-icon small @click="removeFoo(item.id)">
-              delete
+              mdi-delete
             </v-icon>
           </template>
 
           <template v-slot:no-data>
             NO DATA
           </template>
-          
         </v-data-table>
         <div v-else>
+          <v-btn color="primary" dark @click="cretateFoo()">
+                {{ $t("fooCrud.create") }}
+          </v-btn>
           <v-list-item v-for="(foo, index) in foos" :key="index">
-          <v-list-item-content>
-            <v-row>
-              <v-col>
-                <v-list-item-title>
-                  {{ foo.id }}-{{ foo.name }}
-                </v-list-item-title>
-              </v-col>
-              <v-col>
-                <v-btn @click="removeFoo(foo.id)">
-                  {{ $t("fooCrud.remove") }}
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-list-item-content>
-        </v-list-item>
+            <v-list-item-content>
+              <v-row>
+                <v-col>
+                  <v-list-item-title>
+                    {{ foo.id }}-{{ foo.name }}-{{ foo.value }}
+                  </v-list-item-title>
+                </v-col>
+                <v-col>
+                  <v-btn @click="removeFoo(foo.id)">
+                    {{ $t("fooCrud.remove") }}
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-list-item-content>
+          </v-list-item>
         </div>
-
       </v-col>
     </v-row>
-
   </v-container>
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import { mapState } from "vuex";
 export default {
   name: "FooCrud",
   data: () => ({
@@ -104,12 +94,12 @@ export default {
       { text: "Id", value: "id" },
       { text: "Name", value: "name" },
       { text: "Value", value: "value" },
-      { text: 'Actions', value: 'action', sortable: false }
+      { text: "Actions", value: "action", sortable: false }
     ]
   }),
   computed: {
     ...mapState({
-      foos : state => state.fooModule.foos
+      foos: state => state.fooModule.foos
     }),
     nFoos() {
       return this.$store.getters["fooModule/getFooQuantity"];

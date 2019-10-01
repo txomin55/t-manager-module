@@ -1,12 +1,12 @@
 <template>
-  <v-container fluid>
-    <v-layout text-center wrap>
-      <v-flex xs12>
+  <v-container>
+    <v-row>
+      <v-col>
         <app-hello-world />
-      </v-flex>
-    </v-layout>
-    <v-layout text-center wrap>
-      <v-flex xs12>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <v-btn
           v-for="(language, index) in languages"
           :key="index"
@@ -14,29 +14,42 @@
         >
           <app-country-flag :country="language.flag" />
         </v-btn>
-      </v-flex>
-    </v-layout>
-    <v-layout text-center wrap>
-      <v-flex xs12>
-        <v-flex xs2>
+      </v-col>
+    </v-row>
+    <v-row text-center wrap>
+      <v-col>
+        <v-col 
+          xs=12
+          sm=6
+          md=4
+        >
           <v-combobox
             v-model="selectedTheme"
             :items="themes"
             label="Select a theme"
-          ></v-combobox>
-        </v-flex>
-        <v-flex xs1>
-          <v-switch v-model="dark" label="Dark"></v-switch>
-        </v-flex>
-      </v-flex>
-    </v-layout>
+          >
+          </v-combobox>
+        </v-col>
+        <v-col 
+          xs=12
+          sm=6
+          md=4
+        >
+          <v-switch 
+            v-model="dark" 
+            label="Dark"
+          >
+          </v-switch>
+        </v-col>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
-import CountryFlag from "vue-country-flag";
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import CountryFlag from "vue-country-flag";
 
 export default {
   name: "home",
