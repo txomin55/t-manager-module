@@ -70,6 +70,12 @@
       <app-error-handler />
       <router-view />
     </v-content>
+
+    <v-footer
+      app
+    >
+      <span class="white--text">&copy;T-Manager 2019</span>
+    </v-footer>
   </v-app>
 </template>
 
