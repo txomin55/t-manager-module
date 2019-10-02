@@ -18,7 +18,7 @@
   <modules>
   	<module>module-domain</module>
   	<module>module-application</module>
-  	<module>module-infraestructure</module>
+  	<module>module-infrastructure</module>
   	<module>module-frontend</module>
   	<module>module-web</module>
   	<module>module-loader</module>

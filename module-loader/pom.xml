@@ -19,7 +19,7 @@
       </dependency>
       <dependency>
          <groupId>com.tmanager.module</groupId>
-         <artifactId>module-infraestructure</artifactId>
+         <artifactId>module-infrastructure</artifactId>
          <version>0.0.1-SNAPSHOT</version>
      </dependency>
   </dependencies>
