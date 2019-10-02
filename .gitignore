@@ -1,45 +1,45 @@
 .vscode
-/.history/**
+/.history/
 
-module-application/target/**
-module-application/.settings/**
+module-application/target/
+module-application/.settings/
 module-application/.factorypath
 module-application/.classpath
 module-application/.project
 
-module-frontend/node/**
-module-frontend/node_modules/**
-module-frontend/bin/**
-module-frontend/target/**
-module-frontend/.settings/**
+module-frontend/node/
+module-frontend/node_modules/
+module-frontend/bin/
+module-frontend/target/
+module-frontend/.settings/
 module-frontend/.browserslistrc
 module-frontend/.classpath
 module-frontend/.project
 
-module-infraestructure/target/**
-module-infraestructure/.settings/**
-module-infraestructure/.classpath
-module-infraestructure/.project
+module-infrastructure/target/
+module-infrastructure/.settings/
+module-infrastructure/.classpath
+module-infrastructure/.project
 
-module-domain/target/**
-module-domain/.settings/**
+module-domain/target/
+module-domain/.settings/
 module-domain/.factorypath
 module-domain/.classpath
 module-domain/.project
 
-module-loader/.settings/**
-module-loader/target/**
+module-loader/.settings/
+module-loader/target/
 module-loader/.classpath
 module-loader/.project
 
-module-web/target/**
-module-web/src/main/resources/public/**
-module-web/.settings/**
+module-web/target/
+module-web/src/main/resources/public/
+module-web/.settings/
 module-web/.factorypath
 module-web/.classpath
 module-web/.project
 
-.settings/**
+.settings/
 .project
 
 .jar

@@ -1,4 +1,4 @@
-package com.tmanager.module.application.inmemory.foo;
+package com.tmanager.module.infrastructure.inmemory.foo;
 
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.tmanager.module.application.inmemory.foo.entity.FooEntity;
+import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 import com.tmanager.module.domain.foo.model.Foo;
 
 @RunWith(MockitoJUnitRunner.class)

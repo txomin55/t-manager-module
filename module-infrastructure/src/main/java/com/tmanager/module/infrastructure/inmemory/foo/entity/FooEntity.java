@@ -1,4 +1,4 @@
-package com.tmanager.module.application.inmemory.foo.entity;
+package com.tmanager.module.infrastructure.inmemory.foo.entity;
 
 import com.tmanager.module.domain.foo.model.Foo;
 

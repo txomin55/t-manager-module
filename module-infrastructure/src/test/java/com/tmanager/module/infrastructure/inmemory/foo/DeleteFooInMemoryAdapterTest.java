@@ -1,4 +1,4 @@
-package com.tmanager.module.application.inmemory.foo;
+package com.tmanager.module.infrastructure.inmemory.foo;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.tmanager.module.application.inmemory.foo.entity.FooEntity;
+import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DeleteFooInMemoryAdapterTest {
