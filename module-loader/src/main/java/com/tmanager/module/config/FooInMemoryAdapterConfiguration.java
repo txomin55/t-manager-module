@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
-import com.tmanager.module.application.inmemory.foo.adapter.CreateFooInMemoryAdapter;
-import com.tmanager.module.application.inmemory.foo.adapter.DeleteFooInMemoryAdapter;
-import com.tmanager.module.application.inmemory.foo.adapter.GetFooListInMemoryAdapter;
-import com.tmanager.module.application.inmemory.foo.entity.FooEntity;
+import com.tmanager.module.infrastructure.inmemory.foo.adapter.CreateFooInMemoryAdapter;
+import com.tmanager.module.infrastructure.inmemory.foo.adapter.DeleteFooInMemoryAdapter;
+import com.tmanager.module.infrastructure.inmemory.foo.adapter.GetFooListInMemoryAdapter;
+import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 import com.tmanager.module.domain.foo.port.CreateFooPersistancePort;
 import com.tmanager.module.domain.foo.port.DeleteFooPersistancePort;
 import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
@@ -24,8 +24,8 @@ public class FooInMemoryAdapterConfiguration {
     @Bean
     public Map<Integer, FooEntity> simulatedFooMap() {
         Map<Integer, FooEntity> fooMap = new HashMap<Integer, FooEntity>();
-        fooMap.put(0, new FooEntity(0, "Soy 0"));
-        fooMap.put(1, new FooEntity(1, "Soy 1"));
+        fooMap.put(0, new FooEntity(0, "Soy 0", "1"));
+        fooMap.put(1, new FooEntity(1, "Soy 1", "2"));
         return fooMap;
     }
 
