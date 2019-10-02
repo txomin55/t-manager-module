@@ -1,7 +1,7 @@
 .vscode
 /.history/
 
-module-application/target/
+module-application/target/**
 module-application/.settings/
 module-application/.factorypath
 module-application/.classpath
@@ -10,29 +10,29 @@ module-application/.project
 module-frontend/node/
 module-frontend/node_modules/
 module-frontend/bin/
-module-frontend/target/
+module-frontend/target/**
 module-frontend/.settings/
 module-frontend/.browserslistrc
 module-frontend/.classpath
 module-frontend/.project
 
-module-infrastructure/target/
+module-infrastructure/target/**
 module-infrastructure/.settings/
 module-infrastructure/.classpath
 module-infrastructure/.project
 
-module-domain/target/
+module-domain/target/**
 module-domain/.settings/
 module-domain/.factorypath
 module-domain/.classpath
 module-domain/.project
 
 module-loader/.settings/
-module-loader/target/
+module-loader/target/**
 module-loader/.classpath
 module-loader/.project
 
-module-web/target/
+module-web/target/**
 module-web/src/main/resources/public/
 module-web/.settings/
 module-web/.factorypath

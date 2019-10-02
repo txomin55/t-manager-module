@@ -1,5 +1,0 @@
-com\tmanager\module\application\inmemory\foo\entity\FooEntity.class
-com\tmanager\module\application\inmemory\foo\adapter\CreateFooInMemoryAdapter.class
-com\tmanager\module\application\inmemory\foo\configuration\FooInMemoryAdapterConfiguration.class
-com\tmanager\module\application\inmemory\foo\adapter\DeleteFooInMemoryAdapter.class
-com\tmanager\module\application\inmemory\foo\adapter\GetFooListInMemoryAdapter.class
