@@ -6,7 +6,7 @@ import store from "./store";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 import vuetify from "./plugins/vuetify";
-import axios from 'axios'
+import axios from "axios";
 
 Vue.config.productionTip = false;
 
@@ -69,12 +69,11 @@ i18n.locale = store.state.language;
 store.$i18n = i18n;
 
 ///////////////////////////REQUESTS CONFIG///////////////////////////
-axios.interceptors.request.use(
-  request => {
-    //internacionalizacion en todas las urls
-    request.headers["Accept-language"] = store.state.language;
-    //token en todas las urls
-    request.headers["Authorization"] = `Bearer ${store.state.token}`;
+axios.interceptors.request.use(request => {
+  //internacionalizacion en todas las urls
+  request.headers["Accept-language"] = store.state.language;
+  //token en todas las urls
+  request.headers["Authorization"] = `Bearer ${store.state.token}`;
 
   return request;
 });
