@@ -1,11 +1,10 @@
-package com.tmanager.module.config;
+package com.tmanager.module.config.adapters;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 import com.tmanager.module.domain.foo.port.CreateFooPersistancePort;
@@ -16,7 +15,6 @@ import com.tmanager.module.infrastructure.inmemory.foo.adapter.DeleteFooInMemory
 import com.tmanager.module.infrastructure.inmemory.foo.adapter.GetFooListInMemoryAdapter;
 import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 
-@Primary
 @Configuration
 @Profile({"local-in-memory"})
 public class FooInMemoryAdapterConfiguration {

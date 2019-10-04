@@ -1,4 +1,4 @@
-package com.tmanager.module.application.foo.configuration;
+package com.tmanager.module.config.application;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +22,7 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public GetFooListService getFooListService(
-            GetFooListPersistancePort getFooListPersistancePort) {
+    public GetFooListService getFooListService(GetFooListPersistancePort getFooListPersistancePort) {
         return new GetFooListServiceAdapter(getFooListPersistancePort);
     }
 
