@@ -30,7 +30,7 @@ public class FooInMemoryAdapterConfiguration {
     }
 
     @Bean
-    public CreateFooPersistancePort getFooPersistancePort() {
+    public CreateFooPersistancePort fooPersistancePort() {
         return new CreateFooInMemoryAdapter();
     }
 

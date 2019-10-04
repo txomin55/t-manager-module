@@ -40,6 +40,7 @@ module-web/.classpath
 module-web/.project
 
 .settings/
+.idea/
 .project
 
 .jar
