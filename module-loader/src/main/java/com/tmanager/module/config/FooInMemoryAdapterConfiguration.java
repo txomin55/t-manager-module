@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
+import com.tmanager.module.domain.foo.port.CreateFooPersistancePort;
+import com.tmanager.module.domain.foo.port.DeleteFooPersistancePort;
+import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 import com.tmanager.module.infrastructure.inmemory.foo.adapter.CreateFooInMemoryAdapter;
 import com.tmanager.module.infrastructure.inmemory.foo.adapter.DeleteFooInMemoryAdapter;
 import com.tmanager.module.infrastructure.inmemory.foo.adapter.GetFooListInMemoryAdapter;
 import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
-import com.tmanager.module.domain.foo.port.CreateFooPersistancePort;
-import com.tmanager.module.domain.foo.port.DeleteFooPersistancePort;
-import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 
 @Primary
 @Configuration
