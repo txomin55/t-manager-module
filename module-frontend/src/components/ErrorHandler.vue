@@ -5,11 +5,7 @@
       :key="index"
       :ref="`error-${error.id}`"
     >
-      <v-alert
-        dismissible
-        type="error"
-        transition="scale-transition"
-      >
+      <v-alert dismissible type="error" transition="scale-transition">
         {{ error.title }} - {{ error.message }}
       </v-alert>
     </div>
@@ -28,7 +24,7 @@ export default {
   },
   watch: {
     error(errorData) {
-      const errorDTO = errorData.response.data
+      const errorDTO = errorData.response.data;
       const timeout = 5000;
       this.errors.push({
         showError: true,
@@ -54,7 +50,7 @@ export default {
 };
 </script>
 <style>
-.error-handler{
+.error-handler {
   position: absolute;
   width: 100%;
   z-index: 1;

@@ -7,21 +7,23 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-btn
-          v-for="(language, index) in languages"
-          :key="index"
-          @click="updateLanguage(language.id)"
-        >
-          <app-country-flag :country="language.flag" />
-        </v-btn>
+        <div class="text-center">
+          <v-btn
+            v-for="(language, index) in languages"
+            :key="index"
+            @click="updateLanguage(language.id)"
+          >
+            <app-country-flag :country="language.flag" />
+          </v-btn>
+        </div>
       </v-col>
     </v-row>
-    <v-row text-center wrap>
-      <v-col>
-        <v-col 
-          xs=12
-          sm=6
-          md=4
+    <v-row>
+      <v-row>
+        <v-col
+          sm="12"
+          md="4"
+          class="text-center"
         >
           <v-combobox
             v-model="selectedTheme"
@@ -30,25 +32,22 @@
           >
           </v-combobox>
         </v-col>
-        <v-col 
-          xs=12
-          sm=6
-          md=4
+      </v-row>
+      <v-row>
+        <v-col
+          sm="12"
+          md="4"
+          class="text-center"
         >
-          <v-switch 
-            v-model="dark" 
-            label="Dark"
-          >
-          </v-switch>
+          <v-switch v-model="dark" label="Dark"> </v-switch>
         </v-col>
-      </v-col>
+      </v-row>
     </v-row>
   </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import HelloWorld from "@/components/HelloWorld.vue"; 
 import CountryFlag from "vue-country-flag";
 
 export default {

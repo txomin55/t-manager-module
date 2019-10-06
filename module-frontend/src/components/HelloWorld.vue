@@ -1,19 +1,21 @@
 <template>
   <v-container>
     <v-row text-center wrap>
-      <v-v-col>
+      <v-col>
         <v-img
           :src="require('../assets/logo.svg')"
           class="my-3"
           contain
           height="200"
         ></v-img>
-      </v-v-col>
-      <v-v-col>
-        <h1>{{ $t("helloWorld.welcomeMsg") }}</h1>
-        <h2>{{ msg1 }}</h2>
-        <h2>{{ msg() }}</h2>
-      </v-v-col>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="text-center">
+        <h1>{{ $t("helloWorld.welcomeMsg") }} (TEMPLATE)</h1>
+        <h2>{{ msg1 }} (COMPUTED)</h2>
+        <h2>{{ msg() }} (METHOD)</h2>
+      </v-col>
     </v-row>
   </v-container>
 </template>

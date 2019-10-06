@@ -61,7 +61,7 @@
         </v-data-table>
         <div v-else>
           <v-btn color="primary" dark @click="cretateFoo()">
-                {{ $t("fooCrud.create") }}
+            {{ $t("fooCrud.create") }}
           </v-btn>
           <v-list-item v-for="(foo, index) in foos" :key="index">
             <v-list-item-content>
