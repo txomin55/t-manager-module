@@ -43,7 +43,7 @@ if (!window.isModuleEnsambled) {
 }
 
 ///////////////////////////ROUTER CONFIG///////////////////////////
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
