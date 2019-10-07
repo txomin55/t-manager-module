@@ -7,5 +7,7 @@
     "fooCrud.total": "TOTAL foos",
     "fooCrud.remove": "Remove Foo",
     "fooCrud.create": "Create Foo",
-    "error.close" : "Close"
+    "error.close" : "Close",
+    "$vuetify.dataTable.itemsPerPageText" : "Rows per page",
+    "$vuetify.dataIterator.pageText" : "{0}-{1} of {2}"
 }

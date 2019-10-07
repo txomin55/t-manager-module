@@ -5,7 +5,6 @@ import router from "./router";
 import store from "./store";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
-import vuetify from "./plugins/vuetify";
 import axios from "axios";
 
 Vue.config.productionTip = false;
@@ -67,6 +66,22 @@ const i18n = new window.t_manager.LanguageUtils(Vue, {
 
 i18n.locale = store.state.language;
 store.$i18n = i18n;
+
+///////////////////////////VUETIFY CONFIG///////////////////////////
+const vuetify = new Vuetify({
+  icons: {
+    iconfont: "mdi"
+  },
+  theme: {
+    dark: false,
+    options: {
+      customProperties: true
+    }
+  },
+  lang: {
+    t: (key, ...params) => i18n.t(key, params)
+  }
+});
 
 ///////////////////////////REQUESTS CONFIG///////////////////////////
 axios.interceptors.request.use(request => {

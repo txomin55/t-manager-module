@@ -8,5 +8,7 @@
     "fooCrud.remove": "Borrar Foo",
     "fooCrud.create": "Crear Foo",
     "fooCrud.exception": "Excepci√≥n",
-    "error.close" : "Cerrar"
+    "error.close" : "Cerrar",
+    "$vuetify.dataTable.itemsPerPageText" : "Filas por p·gina",
+    "$vuetify.dataIterator.pageText" : "{0}-{1} de {2}"
 }

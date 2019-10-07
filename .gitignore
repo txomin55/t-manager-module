@@ -48,3 +48,4 @@ module-web/.project
 *.war
 *.ear
 module-frontend/.history/
+module-frontend/dist/
