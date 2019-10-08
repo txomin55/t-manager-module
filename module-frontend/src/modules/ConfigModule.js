@@ -1,3 +1,4 @@
+import * as ConfigApi from "../api/ConfigApi";
 const DEFAULT_LOCALE = "es"; //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
 const MODULE_NAME = "module"; //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
 
@@ -7,7 +8,8 @@ export default {
     token: null,
     status: null,
     error: null,
-    module: MODULE_NAME
+    module: MODULE_NAME,
+    userData: null
   },
   mutations: {
     LOADING(state) {
@@ -27,6 +29,9 @@ export default {
     UPDATE_LANGUAGE(state, newLanguage) {
       state.language = newLanguage;
       this.$i18n.locale = state.language;
+    },
+    INIT_USER_DATA(state, user) {
+      state.userData = user;
     }
   },
   actions: {
@@ -42,8 +47,13 @@ export default {
     errorAction(context, response) {
       context.commit("ERROR", response);
     },
-    loading({ commit }) {
-      commit("loading");
+    loadingAction(context) {
+      context.commit("LOADING");
+    },
+    initUserData(context){
+      ConfigApi.getUserData(user => {
+        context.commit("INIT_USER_DATA", user);
+      });
     }
   }
 };

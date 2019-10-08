@@ -11,6 +11,12 @@
       </v-col>
     </v-row>
     <v-row>
+      <v-col>
+        <h4>YOUR DATA</h4>
+        {{userData}}
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col class="text-center">
         <h1>{{ $t("helloWorld.welcomeMsg") }} (TEMPLATE)</h1>
         <h2>{{ msg1 }} (COMPUTED)</h2>
@@ -21,6 +27,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data: () => ({}),
   methods: {
@@ -31,7 +38,10 @@ export default {
   computed: {
     msg1() {
       return this.$i18n.t("helloWorld.welcomeMsgSub");
-    }
+    },
+    ...mapState({
+      userData: state => state.userData
+    })
   }
 };
 </script>

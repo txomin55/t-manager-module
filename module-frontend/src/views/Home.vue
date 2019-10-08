@@ -86,7 +86,6 @@ export default {
   },
   mounted() {
     this.updateColors();
-    this.$store.dispatch("fooModule/initFooData");
   }
 };
 </script>

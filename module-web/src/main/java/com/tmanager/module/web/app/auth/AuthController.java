@@ -50,7 +50,7 @@ public class AuthController {
 		return "redirect:" + builder.toUriString();
 	}
 
-	@GetMapping("/get_token")
+	@GetMapping("/getToken")
 	@ResponseBody
 	public OAuth2TokenDTO getToken(@RequestParam String code) {
 
@@ -69,7 +69,7 @@ public class AuthController {
 		return oauthObj;
 	}
 
-	@GetMapping("/refresh_token")
+	@GetMapping("/refreshToken")
 	@ResponseBody
 	public OAuth2TokenDTO refreshToken(@RequestParam String refresh_token) {
 

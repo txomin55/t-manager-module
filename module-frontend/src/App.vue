@@ -59,6 +59,7 @@
     </v-app-bar>
 
     <v-content>
+      <app-loading-handler />
       <app-error-handler />
       <router-view />
     </v-content>
@@ -75,7 +76,8 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    "app-error-handler": ErrorHandler
+    "app-error-handler": ErrorHandler,
+    "app-loading-handler" : LoadingHandler
   },
   data() {
     return {
@@ -86,6 +88,10 @@ export default {
     ...mapState({
       module: state => state.module
     })
+  },
+  mounted(){
+    this.$store.dispatch("fooModule/initFooData");
+    this.$store.dispatch("initUserData");
   }
 };
 </script>

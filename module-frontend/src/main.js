@@ -85,6 +85,8 @@ const vuetify = new Vuetify({
 
 ///////////////////////////REQUESTS CONFIG///////////////////////////
 axios.interceptors.request.use(request => {
+  //cargando en todas las peticiones
+  store.dispatch("loadingAction");
   //internacionalizacion en todas las urls
   request.headers["Accept-language"] = store.state.language;
   //token en todas las urls
