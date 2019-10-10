@@ -18,7 +18,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/auth/**").permitAll()
 				.antMatchers("/favicon.ico").permitAll()
 				.antMatchers("/static/**").permitAll()
-				.antMatchers("/static/js/**").permitAll();
+				.antMatchers("/static/js/**").permitAll()
+				.antMatchers("/swagger-ui.html**").permitAll();
 	}
 
 	@Override
@@ -30,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/auth/**")
 				.antMatchers("/favicon.ico")
 				.antMatchers("/static/**")
-				.antMatchers("/static/js/**");
+				.antMatchers("/static/js/**")
+				.antMatchers("/swagger-ui.html**");
 	}
 }

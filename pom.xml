@@ -28,6 +28,7 @@
 	  <jwt.version>1.0.10.RELEASE</jwt.version>
 	  <oauth.version>2.3.6.RELEASE</oauth.version>
 	  <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+	  <swagger.version>2.9.2</swagger.version>
   </properties>
   
   <dependencies>

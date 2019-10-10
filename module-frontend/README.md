@@ -54,3 +54,5 @@ El resourceId dado de alta en users de mongo tiene que tener el mismo que la apl
 ```
 La versión de node que se instala para el clean install es v10.16.0, la versión de npm no hace falta definirla
 ```
+swagger-ui.html
+```
