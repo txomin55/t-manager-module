@@ -97,6 +97,7 @@ axios.interceptors.request.use(request => {
 
 axios.interceptors.response.use(
   response => {
+    store.dispatch("successAction");
     return response;
   },
   error => {
