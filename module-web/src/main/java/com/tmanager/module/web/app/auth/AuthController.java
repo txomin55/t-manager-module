@@ -37,13 +37,12 @@ public class AuthController {
 	@Value("${module.oauth.clientRedirectUrl}")
 	private String clientRedirectUrl;
 
+	private String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
+	
 	@GetMapping("/authorizeApp")
 	public String authorizeApp() {
 
-		String oauth2ResourceUrl =
-				serverAddress + ":" + serverPort + "/" + serverPath + "/oauth/authorize";
-
-		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(oauth2ResourceUrl)
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/authorize")
 				.queryParam("client_id", clientId).queryParam("response_type", "code")
 				.queryParam("redirect_uri", clientRedirectUrl);
 
@@ -55,10 +54,8 @@ public class AuthController {
 	public OAuth2TokenDTO getToken(@RequestParam String code) {
 
 		RestTemplate restTemplate = new RestTemplate();
-		String oauth2ResourceUrl =
-				serverAddress + ":" + serverPort + "/" + serverPath + "/oauth/token";
 
-		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(oauth2ResourceUrl)
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/token")
 				.queryParam("grant_type", "authorization_code").queryParam("client_id", clientId)
 				.queryParam("client_secret", clientSecret)
 				.queryParam("redirect_uri", clientRedirectUrl).queryParam("code", code);
@@ -74,10 +71,8 @@ public class AuthController {
 	public OAuth2TokenDTO refreshToken(@RequestParam String refresh_token) {
 
 		RestTemplate restTemplate = new RestTemplate();
-		String oauth2ResourceUrl =
-				serverAddress + ":" + serverPort + "/" + serverPath + "/oauth/token";
 
-		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(oauth2ResourceUrl)
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/token")
 				.queryParam("grant_type", "refresh_token").queryParam("client_id", clientId)
 				.queryParam("client_secret", clientSecret)
 				.queryParam("refresh_token", refresh_token);
