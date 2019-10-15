@@ -72,12 +72,13 @@
 
 <script>
 import ErrorHandler from "@/components/ErrorHandler";
+import LoadingHandler from "@/components/LoadingHandler";
 import { mapState } from "vuex";
 
 export default {
   components: {
     "app-error-handler": ErrorHandler,
-    "app-loading-handler" : LoadingHandler
+    "app-loading-handler": LoadingHandler
   },
   data() {
     return {
@@ -89,7 +90,7 @@ export default {
       module: state => state.module
     })
   },
-  mounted(){
+  mounted() {
     this.$store.dispatch("fooModule/initFooData");
     this.$store.dispatch("initUserData");
   }

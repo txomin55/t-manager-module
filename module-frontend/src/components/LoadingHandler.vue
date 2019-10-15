@@ -1,11 +1,11 @@
 <template>
   <div class="loading-handler">
-	<v-overlay :value="loading">
-		<v-progress-linear
-			indeterminate
-			background-color="secondary"
-			color="primary"
-		></v-progress-linear>
+    <v-overlay :value="loading">
+      <v-progress-linear
+        indeterminate
+        background-color="secondary"
+        color="primary"
+      ></v-progress-linear>
     </v-overlay>
   </div>
 </template>
@@ -22,5 +22,4 @@ export default {
   }
 };
 </script>
-<style>
-</style>
+<style></style>

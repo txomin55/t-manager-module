@@ -13,7 +13,7 @@
     <v-row>
       <v-col>
         <h4>YOUR DATA</h4>
-        {{userData}}
+        {{ userData }}
       </v-col>
     </v-row>
     <v-row>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
   data: () => ({}),
   methods: {

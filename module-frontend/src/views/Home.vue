@@ -32,12 +32,8 @@
       </v-col>
     </v-row>
     <v-row justify="center">
-      <v-btn
-        v-for="(color, index) in colors"
-        :key="index"
-        :color="color"
-      >
-        {{color}}
+      <v-btn v-for="(color, index) in colors" :key="index" :color="color">
+        {{ color }}
       </v-btn>
     </v-row>
   </v-container>
@@ -57,7 +53,7 @@ export default {
     return {
       dark: false,
       selectedTheme: null,
-      themes: Object.keys(window.t_manager.Themes),
+      themes: Object.keys(window.t_manager.plugins.Themes),
       languages: [{ flag: "es", id: "es" }, { flag: "gb", id: "en" }],
       colors: []
     };
@@ -66,15 +62,19 @@ export default {
     updateLanguage(id) {
       this.$store.dispatch("updateLanguage", id);
     },
-    updateColors(){
-      const theme = this.$vuetify.theme.dark ? this.$vuetify.theme.themes.dark : this.$vuetify.theme.themes.light;
+    updateColors() {
+      const theme = this.$vuetify.theme.dark
+        ? this.$vuetify.theme.themes.dark
+        : this.$vuetify.theme.themes.light;
       this.colors = Object.keys(theme);
     }
   },
   watch: {
     selectedTheme(val) {
-      this.$vuetify.theme.themes.light = window.t_manager.Themes[val].light;
-      this.$vuetify.theme.themes.dark = window.t_manager.Themes[val].dark;
+      this.$vuetify.theme.themes.light =
+        window.t_manager.plugins.Themes[val].light;
+      this.$vuetify.theme.themes.dark =
+        window.t_manager.plugins.Themes[val].dark;
 
       this.$vuetify.theme.dark = this.dark;
       this.updateColors();

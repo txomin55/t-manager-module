@@ -50,7 +50,7 @@ export default {
     loadingAction(context) {
       context.commit("LOADING");
     },
-    initUserData(context){
+    initUserData(context) {
       ConfigApi.getUserData(user => {
         context.commit("INIT_USER_DATA", user);
       });

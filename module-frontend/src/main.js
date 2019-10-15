@@ -11,9 +11,12 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
 
+///////////////////////////INIT T-MANAGER COMMONS//////////////////////////
+window.t_manager.install(Vue);
+
 ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
 let firstTime = true;
-const tokenUtils = new window.t_manager.TokenUtils(
+const tokenUtils = new window.t_manager.plugins.TokenUtils(
   store.state.module,
   window.location.search.split("=")[1],
   token => {
@@ -29,8 +32,7 @@ const tokenUtils = new window.t_manager.TokenUtils(
 );
 
 if (!window.isModuleEnsambled) {
-  const codeStr = window.location.search.split("=")[0];
-  if (codeStr.match("code")) {
+  if (window.location.search.split("=")[0].includes("code")) {
     tokenUtils.getAuthorizationToken();
   }
 } else if (window.isModuleEnsambled[store.state.module]) {
@@ -59,7 +61,7 @@ router.beforeEach((to, _from, next) => {
 });
 
 ///////////////////////////LANGUAGE CONFIG///////////////////////////
-const i18n = new window.t_manager.LanguageUtils(Vue, {
+const i18n = new window.t_manager.plugins.LanguageUtils(Vue, {
   es: EsMessages,
   en: EnMessages
 });
@@ -107,10 +109,16 @@ axios.interceptors.response.use(
 );
 
 ///////////////////////////VUE CONFIG///////////////////////////
-new Vue({
-  i18n,
-  router,
-  store,
-  vuetify,
-  render: h => h(App)
-}).$mount(`#${store.state.module}`);
+const refreshId = setInterval(() => {
+  if (store.state.token) {
+    new Vue({
+      i18n,
+      router,
+      store,
+      vuetify,
+      render: h => h(App)
+    }).$mount(`#${store.state.module}`);
+
+    clearInterval(refreshId);
+  }
+}, 500);

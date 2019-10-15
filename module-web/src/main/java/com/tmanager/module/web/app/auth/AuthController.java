@@ -3,7 +3,7 @@ package com.tmanager.module.web.app.auth;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,12 +36,12 @@ public class AuthController {
 
 	@Value("${module.oauth.clientRedirectUrl}")
 	private String clientRedirectUrl;
-
-	private String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
 	
 	@GetMapping("/authorizeApp")
 	public String authorizeApp() {
 
+		String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
+		
 		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/authorize")
 				.queryParam("client_id", clientId).queryParam("response_type", "code")
 				.queryParam("redirect_uri", clientRedirectUrl);
@@ -53,6 +53,8 @@ public class AuthController {
 	@ResponseBody
 	public OAuth2TokenDTO getToken(@RequestParam String code) {
 
+		String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
+		
 		RestTemplate restTemplate = new RestTemplate();
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/token")
@@ -70,6 +72,8 @@ public class AuthController {
 	@ResponseBody
 	public OAuth2TokenDTO refreshToken(@RequestParam String refresh_token) {
 
+		String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
+		
 		RestTemplate restTemplate = new RestTemplate();
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/token")
@@ -85,7 +89,7 @@ public class AuthController {
 
 	@GetMapping("/getUserData")
 	@ResponseBody
-	public Map<String, Object> getUserData(Authentication auth){
+	public Map<String, Object> getUserData(OAuth2Authentication auth){
 		
 		OAuth2AuthenticationDetails oauthDetails = (OAuth2AuthenticationDetails) auth.getDetails();
 
