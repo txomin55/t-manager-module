@@ -11,27 +11,43 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests()
-				.antMatchers("/").permitAll()
-				.antMatchers("/init/**").permitAll()
-				.antMatchers("/actuator/**").permitAll()
-				.antMatchers("/auth/**").permitAll()
-				.antMatchers("/favicon.ico").permitAll()
-				.antMatchers("/static/**").permitAll()
-				.antMatchers("/static/js/**").permitAll()
-				.antMatchers("/swagger-ui.html**").permitAll();
+		http
+			.csrf().disable()
+			.authorizeRequests()
+			.antMatchers(
+					"/", 
+					"/init/**",
+					"/actuator/**",
+					"/auth/**",
+					"/favicon.ico",
+					"/static/**",
+					"/static/js/**",
+					"/v2/api-docs",
+	                "/configuration/ui",
+	                "/swagger-resources/**",
+	                "/configuration/security",
+	                "/swagger-ui.html",
+	                "/webjars/**"
+			).permitAll();
 	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring()
-				.antMatchers("/")
-				.antMatchers("/init/**")
-				.antMatchers("/actuator/**")
-				.antMatchers("/auth/**")
-				.antMatchers("/favicon.ico")
-				.antMatchers("/static/**")
-				.antMatchers("/static/js/**")
-				.antMatchers("/swagger-ui.html**");
+		.antMatchers(
+				"/", 
+				"/init/**",
+				"/actuator/**",
+				"/auth/**",
+				"/favicon.ico",
+				"/static/**",
+				"/static/js/**",
+				"/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**"
+		);
 	}
 }
