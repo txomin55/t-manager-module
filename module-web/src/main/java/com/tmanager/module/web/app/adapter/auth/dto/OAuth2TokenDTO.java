@@ -1,4 +1,4 @@
-package com.tmanager.module.web.app.auth.dto;
+package com.tmanager.module.web.app.adapter.auth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

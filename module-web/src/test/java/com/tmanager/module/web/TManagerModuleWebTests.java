@@ -7,17 +7,17 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class TManagerModuleWebTests {
 
