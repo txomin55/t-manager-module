@@ -40,8 +40,6 @@ public class SwaggerConfiguration {
 	@Value("${module.oauth.server.address}")
 	private String serverAddress;
 	
-	private String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
-	
 	@Bean
 	public Docket api() {
 	    return new Docket(DocumentationType.SWAGGER_2).select()
@@ -53,6 +51,8 @@ public class SwaggerConfiguration {
 	}
 	    
     private SecurityScheme securityScheme() {
+        String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
+
         GrantType grantType = new AuthorizationCodeGrantBuilder()
             .tokenEndpoint(new TokenEndpoint(AUTH_SERVER + "/token", "oauthtoken"))
             .tokenRequestEndpoint(
