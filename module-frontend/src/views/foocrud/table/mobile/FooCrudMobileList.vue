@@ -2,7 +2,7 @@
 
     <v-row>
       <v-col>
-          <v-btn color="primary" dark @click="cretateFoo()">
+          <v-btn color="primary" dark @click="createFunction()">
             {{ $t("fooCrud.create") }}
           </v-btn>
           <v-list-item v-for="(foo, index) in data" :key="index">
@@ -14,7 +14,12 @@
                   </v-list-item-title>
                 </v-col>
                 <v-col>
-                  <v-btn @click="removeFoo(foo.id)">
+                  <v-btn @click="editFunction(foo)">
+                    {{ $t("fooCrud.edit") }}
+                  </v-btn>
+                </v-col>
+                <v-col>
+                  <v-btn @click="deleteFunction(foo.id)">
                     {{ $t("fooCrud.remove") }}
                   </v-btn>
                 </v-col>
@@ -30,8 +35,23 @@
 <script>
 export default {
   name: "FooCrudMobileList",
-  props(){
-    data : []
-  },
+  props: {
+    'data' : {
+      type: Array,
+      default: () => []
+    },
+    'createFunction' : {
+      type: Function,
+      default: () => {}
+    },
+    'editFunction' : {
+      type: Function,
+      default: () => {}
+    },
+    'deleteFunction' : {
+      type: Function,
+      default: () => {}
+    }
+  }
 };
 </script>

@@ -30,12 +30,21 @@
       <v-col
         v-if="$vuetify.breakpoint.smAndUp"
       >
-        <app-foo-crud-web-table :data="foos"/>
+        <app-foo-crud-web-table 
+          :headers="headers"
+          :data="foos"
+          :createFunction="cretateFoo"
+          :deleteFunction="removeFoo"
+        />
       </v-col>
       <v-col
         v-else
       >
-        <app-foo-crud-mobile-list :data="foos"/>
+        <app-foo-crud-mobile-list 
+          :data="foos" 
+          :createFunction="cretateFoo"
+          :deleteFunction="removeFoo"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -48,6 +57,16 @@ import FooCrudMobileList from "@/views/foocrud/table/mobile/FooCrudMobileList";
 import { mapState } from "vuex";
 export default {
   name: "FooCrud",
+  data(){
+    return{
+      headers: [
+        { text: "Id", value: "id" },
+        { text: "Name", value: "name" },
+        { text: "Value", value: "value" },
+        { text: "Actions", value: "action", sortable: false }
+      ]
+    }
+  },
   components: {
     "app-foo-crud-web-table": FooCrudWebTable,
     "app-foo-crud-mobile-list": FooCrudMobileList
