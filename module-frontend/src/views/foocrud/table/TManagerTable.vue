@@ -8,7 +8,6 @@
         <app-foo-crud-web-table 
           :headers="headers"
           :data="data"
-          :createFunction="cretateFoo"
           :deleteFunction="removeFoo"
           :creationPanel="creationPanel"
         />
@@ -18,7 +17,6 @@
       >
         <app-tmanager-mobile-list 
           :data="data" 
-          :createFunction="cretateFoo"
           :deleteFunction="removeFoo"
           :columnData="columnData"
           :creationPanel="creationPanel"
@@ -36,25 +34,17 @@ import TManagerMobileList from "table/mobile/TManagerMobileList";
 export default {
   name: "TManagerTable",
   props: {
-   'data' : {
+    'data' : {
       type: Array,
       default: () => []
     },
-   'headers' : {
+    'headers' : {
       type: Array,
       default: () => []
     },
-   'columnData' : {
+    'columnData' : {
       type: Array,
       default: () => []
-    },
-    'createFunction' : {
-      type: Function,
-      default: () => {}
-    },
-    'editFunction' : {
-      type: Function,
-      default: () => {}
     },
     'deleteFunction' : {
       type: Function,

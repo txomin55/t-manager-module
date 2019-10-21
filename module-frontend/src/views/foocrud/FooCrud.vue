@@ -30,7 +30,6 @@
       <app-tmanager-table
         :headers="headers"
         :data="data"
-        :createFunction="cretateFoo"
         :deleteFunction="removeFoo"
         :columnData="columnData"
         :creationPanel="fooCreatePanel"
@@ -74,16 +73,6 @@ export default {
     }
   },
   methods: {
-    removeFoo(id) {
-      this.$store.dispatch("fooModule/deleteFooData", id);
-    },
-    cretateFoo() {
-      const fooDto = {
-        name: `Soy ${new Date().getTime()}`,
-        value: `Valor ${new Date().getTime()}`
-      };
-      this.$store.dispatch("fooModule/createFoo", fooDto);
-    },
     getException() {
       this.$store.dispatch("fooModule/launchException");
     }

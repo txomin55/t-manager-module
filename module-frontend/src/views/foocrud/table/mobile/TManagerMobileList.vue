@@ -13,9 +13,7 @@
           </template>
           <component 
             :is="creationPanel"
-            :data="selectedItem"
-            :editFunction="editFunction"
-            :createFunction="createFunction" />
+            :data="selectedItem" />
         </v-dialog>
       </v-row>
 
@@ -61,14 +59,6 @@ export default {
     'columnData' : {
       type: Array,
       default: () => []
-    },
-    'createFunction' : {
-      type: Function,
-      default: () => function(){}
-    },
-    'editFunction' : {
-      type: Function,
-      default: () => function(){}
     },
     'deleteFunction' : {
       type: Function,

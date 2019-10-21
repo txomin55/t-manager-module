@@ -3,10 +3,21 @@
   <v-container>
     <v-row>
       CREATE/EDIT PANEL FOO
-      <v-btn color="primary" dark @click="createFunction()">
+      <div v-if="isEdit">{{stringData}}</div>
+      <v-btn 
+        v-if="!isEdit"
+        color="primary" 
+        dark 
+        @click="createFunction()"
+      >
         {{ $t("fooCrud.create") }}
       </v-btn>
-      <v-btn @click="editFunction(data)">
+      <v-btn 
+        v-if="isEdit"
+        color="primary" 
+        dark 
+        @click="editFunction(data)"
+      >
         {{ $t("fooCrud.edit") }}
       </v-btn>
     </v-row>
@@ -22,14 +33,26 @@ export default {
     'data' : {
       type: Array,
       default: () => []
+    }
+  },
+  methods: {
+    cretateFoo() {
+      const fooDto = {
+        name: `Soy ${new Date().getTime()}`,
+        value: `Valor ${new Date().getTime()}`
+      };
+      this.$store.dispatch("fooModule/createFoo", fooDto);
     },
-    'createFunction' : {
-      type: Function,
-      default: () => function(){}
+    editFunction(item){
+      alert(JSON.stringify(item))
+    }
+  },
+  computed: {
+    isEdit(){
+      return this.data
     },
-    'editFunction' : {
-      type: Function,
-      default: () => function(){}
+    stringData(){
+      return JSON.stringify(this.data)
     }
   }
 };
