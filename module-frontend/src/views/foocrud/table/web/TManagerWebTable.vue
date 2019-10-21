@@ -7,12 +7,16 @@
         persistent
       >
         <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
-          <v-btn color="primary" dark @click="createFunction()">
+          <v-btn color="primary" dark v-on="on">
             {{ $t("fooCrud.create") }}
           </v-btn>
+            
         </template>
-        <component :is="creationPanel" />
+        <component 
+          :is="creationPanel"
+          :data="selectedItem"
+          :editFunction="editFunction"
+          :createFunction="createFunction" />
       </v-dialog>
     </v-row>
 
@@ -33,10 +37,7 @@
           </template>
 
           <template v-slot:item.action="{ item }">
-            <v-icon small class="mr-2" v-on="on">
-              mdi-pencil
-            </v-icon>
-            <v-icon small class="mr-2" @click="editFunction(item)">
+            <v-icon small class="mr-2" v-on="on" @click="selectItem(item)">
               mdi-pencil
             </v-icon>
             <v-icon small @click="deleteFunction(item.id)">
@@ -60,12 +61,12 @@ export default {
   name: "TManagerWebTable",
   props: {
     'headers' : {
-          type: Array,
-          default: () => []
+      type: Array,
+      default: () => []
     },
     'data' : {
-          type: Array,
-          default: () => []
+      type: Array,
+      default: () => []
     },
     'createFunction' : {
       type: Function,
@@ -80,13 +81,19 @@ export default {
       default: () => function(){}
     },
     'creationPanel' : {
-        type: Object,
-        default : {}
+      type: Object,
+      default : {}
     }
   },
   data(){
     return {
-      showModal : false
+      showModal : false,
+      selectedItem : null
+    }
+  },
+  methods: {
+    selectItem(item){
+      this.selectedItem = item;
     }
   }
 };

@@ -7,12 +7,15 @@
           persistent
         >
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
-            <v-btn color="primary" dark v-on="on" @click="createFunction()">
+            <v-btn color="primary" dark v-on="on">
               {{ $t("fooCrud.create") }}
             </v-btn>
           </template>
-          <component :is="creationPanel" />
+          <component 
+            :is="creationPanel"
+            :data="selectedItem"
+            :editFunction="editFunction"
+            :createFunction="createFunction" />
         </v-dialog>
       </v-row>
 
@@ -28,10 +31,7 @@
                     </v-list-item-title>
                   </v-col>
                   <v-col>
-                    <v-btn color="primary" dark v-on="on">
-                      Open Dialog
-                    </v-btn>
-                    <v-btn @click="editFunction(item)">
+                    <v-btn color="primary" dark v-on="on" @click="selectItem(item)">
                       {{ $t("fooCrud.edit") }}
                     </v-btn>
                   </v-col>
@@ -81,13 +81,17 @@ export default {
   },
   data(){
     return {
-      showModal : false
+      showModal : false,
+      selectedItem : null
     }
   },
   methods: {
     showItemData(item){
       item.toString().replace(/,/g, "-")
-    }
+    },
+    selectItem(item){
+      this.selectedItem = item;
+    } 
   }
 };
 </script>
