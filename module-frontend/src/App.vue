@@ -50,11 +50,7 @@
           </v-list>
         </v-navigation-drawer>
 
-        <v-navigation-drawer
-          v-model="left"
-          fixed
-          temporary
-        ></v-navigation-drawer>
+        <v-navigation-drawer fixed temporary></v-navigation-drawer>
       </template>
     </v-app-bar>
 

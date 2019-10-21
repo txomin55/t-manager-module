@@ -1,20 +1,13 @@
 <template>
-
   <v-container>
     <v-row>
-      <v-dialog 
-        v-model="showModal"
-        persistent
-      >
+      <v-dialog v-model="showModal" persistent>
         <template v-slot:activator="{ on }">
           <v-btn color="primary" dark v-on="on" @click="selectItem(null)">
             {{ $t("fooCrud.create") }}
           </v-btn>
-            
         </template>
-        <component 
-          :is="creationPanel"
-          :data="selectedItem" />
+        <component :is="creationPanel" :data="selectedItem" />
       </v-dialog>
     </v-row>
 
@@ -50,39 +43,37 @@
       </v-col>
     </v-row>
   </v-container>
-
 </template>
 
 <script>
-
 export default {
   name: "TManagerWebTable",
   props: {
-    'headers' : {
+    headers: {
       type: Array,
       default: () => []
     },
-    'data' : {
+    data: {
       type: Array,
       default: () => []
     },
-    'deleteFunction' : {
+    deleteFunction: {
       type: Function,
-      default: () => function(){}
+      default: () => function() {}
     },
-    'creationPanel' : {
+    creationPanel: {
       type: Object,
-      default : {}
+      default: {}
     }
   },
-  data(){
+  data() {
     return {
-      showModal : false,
-      selectedItem : null
-    }
+      showModal: false,
+      selectedItem: null
+    };
   },
   methods: {
-    selectItem(item){
+    selectItem(item) {
       this.selectedItem = item;
     }
   }

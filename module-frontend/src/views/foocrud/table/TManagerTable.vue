@@ -1,58 +1,52 @@
 <template>
-  
   <v-container>
     <v-row>
-      <v-col
-        v-if="$vuetify.breakpoint.smAndUp"
-      >
-        <app-foo-crud-web-table 
+      <v-col v-if="$vuetify.breakpoint.smAndUp">
+        <app-tmanager-web-table
           :headers="headers"
           :data="data"
-          :deleteFunction="removeFoo"
+          :deleteFunction="deleteFunction"
           :creationPanel="creationPanel"
         />
       </v-col>
-      <v-col
-        v-else
-      >
-        <app-tmanager-mobile-list 
-          :data="data" 
-          :deleteFunction="removeFoo"
+      <v-col v-else>
+        <app-tmanager-mobile-list
+          :data="data"
+          :deleteFunction="deleteFunction"
           :columnData="columnData"
           :creationPanel="creationPanel"
         />
       </v-col>
     </v-row>
   </v-container>
-
 </template>
 
 <script>
-import TManagerWebTable from "table/web/TManagerWebTable";
-import TManagerMobileList from "table/mobile/TManagerMobileList";
+import TManagerWebTable from "@/views/foocrud/table/web/TManagerWebTable";
+import TManagerMobileList from "@/views/foocrud/table/mobile/TManagerMobileList";
 
 export default {
   name: "TManagerTable",
   props: {
-    'data' : {
+    data: {
       type: Array,
       default: () => []
     },
-    'headers' : {
+    headers: {
       type: Array,
       default: () => []
     },
-    'columnData' : {
+    columnData: {
       type: Array,
       default: () => []
     },
-    'deleteFunction' : {
+    creationPanel: {
+      type: Object,
+      default: {}
+    },
+    deleteFunction: {
       type: Function,
       default: () => {}
-    },
-    'creationPanel' : {
-        type: Object,
-        default : {}
     }
   },
   components: {

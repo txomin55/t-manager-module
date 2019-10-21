@@ -30,7 +30,7 @@
       <app-tmanager-table
         :headers="headers"
         :data="foos"
-        :deleteFunction="removeFoo"
+        :deleteFunction="removeFunction"
         :columnData="columnData"
         :creationPanel="fooCreatePanel"
       />
@@ -45,21 +45,17 @@ import FooCreatePanel from "@/views/foocrud/create/FooCreatePanel";
 import { mapState } from "vuex";
 export default {
   name: "FooCrud",
-  data(){
-    return{
+  data() {
+    return {
       headers: [
         { text: "Id", value: "id" },
         { text: "Name", value: "name" },
         { text: "Value", value: "value" },
         { text: "Actions", value: "action", sortable: false }
       ],
-      columnData: [
-        "id",
-        "name",
-        "value"
-      ],
-      fooCreatePanel : FooCreatePanel
-    }
+      columnData: ["id", "name", "value"],
+      fooCreatePanel: FooCreatePanel
+    };
   },
   components: {
     "app-tmanager-table": TManagerTable
@@ -75,6 +71,9 @@ export default {
   methods: {
     getException() {
       this.$store.dispatch("fooModule/launchException");
+    },
+    removeFunction(id) {
+      this.$store.dispatch("fooModule/deleteFoo", id);
     }
   }
 };
