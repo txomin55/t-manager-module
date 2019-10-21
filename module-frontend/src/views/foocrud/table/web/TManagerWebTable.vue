@@ -7,7 +7,7 @@
         persistent
       >
         <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on">
+          <v-btn color="primary" dark v-on="on" @click="selectItem(null)">
             {{ $t("fooCrud.create") }}
           </v-btn>
             

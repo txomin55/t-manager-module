@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import FooCrudWebTable from "table/web/TManagerWebTable";
+import TManagerWebTable from "table/web/TManagerWebTable";
 import TManagerMobileList from "table/mobile/TManagerMobileList";
 
 export default {

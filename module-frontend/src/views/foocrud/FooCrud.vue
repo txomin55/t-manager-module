@@ -29,7 +29,7 @@
     <v-row>
       <app-tmanager-table
         :headers="headers"
-        :data="data"
+        :data="foos"
         :deleteFunction="removeFoo"
         :columnData="columnData"
         :creationPanel="fooCreatePanel"
