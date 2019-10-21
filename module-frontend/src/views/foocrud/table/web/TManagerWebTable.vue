@@ -1,5 +1,21 @@
 <template>
 
+  <v-container>
+    <v-row>
+      <v-dialog 
+        v-model="showModal"
+        persistent
+      >
+        <template v-slot:activator="{ on }">
+          <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
+          <v-btn color="primary" dark @click="createFunction()">
+            {{ $t("fooCrud.create") }}
+          </v-btn>
+        </template>
+        <component :is="creationPanel" />
+      </v-dialog>
+    </v-row>
+
     <v-row>
       <v-col>
         <v-data-table
@@ -13,13 +29,13 @@
               <v-toolbar-title>FOO CRUD</v-toolbar-title>
               <v-divider class="mx-4" inset vertical></v-divider>
               <div class="flex-grow-1"></div>
-              <v-btn color="primary" dark @click="createFunction()">
-                {{ $t("fooCrud.create") }}
-              </v-btn>
             </v-toolbar>
           </template>
 
           <template v-slot:item.action="{ item }">
+            <v-icon small class="mr-2" v-on="on">
+              mdi-pencil
+            </v-icon>
             <v-icon small class="mr-2" @click="editFunction(item)">
               mdi-pencil
             </v-icon>
@@ -34,13 +50,14 @@
         </v-data-table>
       </v-col>
     </v-row>
+  </v-container>
 
 </template>
 
 <script>
 
 export default {
-  name: "FooCrudWebTable",
+  name: "TManagerWebTable",
   props: {
     'headers' : {
           type: Array,
@@ -52,15 +69,24 @@ export default {
     },
     'createFunction' : {
       type: Function,
-      default: () => {}
+      default: () => function(){}
     },
     'editFunction' : {
       type: Function,
-      default: () => {}
+      default: () => function(){}
     },
     'deleteFunction' : {
       type: Function,
-      default: () => {}
+      default: () => function(){}
+    },
+    'creationPanel' : {
+        type: Object,
+        default : {}
+    }
+  },
+  data(){
+    return {
+      showModal : false
     }
   }
 };

@@ -27,32 +27,21 @@
     </v-row>
 
     <v-row>
-      <v-col
-        v-if="$vuetify.breakpoint.smAndUp"
-      >
-        <app-foo-crud-web-table 
-          :headers="headers"
-          :data="foos"
-          :createFunction="cretateFoo"
-          :deleteFunction="removeFoo"
-        />
-      </v-col>
-      <v-col
-        v-else
-      >
-        <app-foo-crud-mobile-list 
-          :data="foos" 
-          :createFunction="cretateFoo"
-          :deleteFunction="removeFoo"
-        />
-      </v-col>
+      <app-tmanager-table
+        :headers="headers"
+        :data="data"
+        :createFunction="cretateFoo"
+        :deleteFunction="removeFoo"
+        :columnData="columnData"
+        :creationPanel="fooCreatePanel"
+      />
     </v-row>
   </v-container>
 </template>
 
 <script>
-import FooCrudWebTable from "@/views/foocrud/table/web/FooCrudWebTable";
-import FooCrudMobileList from "@/views/foocrud/table/mobile/FooCrudMobileList";
+import TManagerTable from "@/views/foocrud/table/TManagerTable";
+import FooCreatePanel from "@/views/foocrud/create/FooCreatePanel";
 
 import { mapState } from "vuex";
 export default {
@@ -64,12 +53,17 @@ export default {
         { text: "Name", value: "name" },
         { text: "Value", value: "value" },
         { text: "Actions", value: "action", sortable: false }
-      ]
+      ],
+      columnData: [
+        "id",
+        "name",
+        "value"
+      ],
+      fooCreatePanel : FooCreatePanel
     }
   },
   components: {
-    "app-foo-crud-web-table": FooCrudWebTable,
-    "app-foo-crud-mobile-list": FooCrudMobileList
+    "app-tmanager-table": TManagerTable
   },
   computed: {
     ...mapState({
