@@ -41,8 +41,7 @@ export default {
       default: () => []
     },
     creationPanel: {
-      type: Object,
-      default: {}
+      type: Object
     },
     deleteFunction: {
       type: Function,

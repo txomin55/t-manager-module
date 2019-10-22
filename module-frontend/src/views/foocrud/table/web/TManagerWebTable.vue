@@ -62,8 +62,7 @@ export default {
       default: () => function() {}
     },
     creationPanel: {
-      type: Object,
-      default: {}
+      type: Object
     }
   },
   data() {
