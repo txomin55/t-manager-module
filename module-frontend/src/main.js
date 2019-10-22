@@ -6,106 +6,120 @@ import store from "./store";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 import axios from "axios";
+import LoadScript from "vue-plugin-load-script";
 
-debugger
+Vue.use(LoadScript);
 window.Vue = Vue;
-Vue.config.productionTip = false; 
 
-///////////////////////////INIT T-MANAGER COMMONS//////////////////////////
-window.t_manager.install(Vue);
+Vue.config.productionTip = false;
 
-///////////////////////////AUTHENTICATION CONFIG///////////////////////////
-let firstTime = true;
-const tokenUtils = new window.t_manager.plugins.TokenUtils(
-  store.state.module,
-  window.location.search.split("=")[1],
-  token => {
-    store.dispatch("updateToken", token);
-    if (firstTime) {
-      firstTime = false;
-      router.push("/home");
+//"http://3.121.59.80:9999/dist/t_manager_common.js"
+Vue.loadScript("http://localhost:9999/dist/t_manager_common.js")
+  .then(() => {
+    loadApp();
+  })
+  .catch(() => {
+    console.error("NO HAY COMMONS");
+  });
+
+const loadApp = () => {
+  ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
+  let firstTime = true;
+  const tokenUtils = new window.t_manager.plugins.TokenUtils(
+    store.state.module,
+    window.location.search.split("=")[1],
+    token => {
+      store.dispatch("updateToken", token);
+      if (firstTime) {
+        firstTime = false;
+        router.push("/home");
+      }
+    },
+    tManagerAccessToken => {
+      store.dispatch("updateToken", tManagerAccessToken);
     }
-  },
-  tManagerAccessToken => {
-    store.dispatch("updateToken", tManagerAccessToken);
-  }
-);
+  );
 
-if (!window.isModuleEnsambled) {
-  if (window.location.search.split("=")[0].includes("code")) {
-    tokenUtils.getAuthorizationToken();
-  }
-} else if (window.isModuleEnsambled[store.state.module]) {
-  store.dispatch("updateToken", window.t_manager_access_token);
-  tokenUtils.refreshTManagerToken();
-  router.push("/home");
-} else {
-  throw alert("NO AUTH TOKEN");
-}
-
-///////////////////////////ROUTER CONFIG///////////////////////////
-router.beforeEach((to, _from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!store.state.token) {
-      next({
-        path: "/"
-      });
-    } else {
-      next();
+  if (!window.isModuleEnsambled) {
+    if (window.location.search.split("=")[0].includes("code")) {
+      tokenUtils.getAuthorizationToken();
     }
+  } else if (window.isModuleEnsambled[store.state.module]) {
+    store.dispatch("updateToken", window.t_manager_access_token);
+    tokenUtils.refreshTManagerToken();
+    router.push("/home");
   } else {
-    next(); // make sure to always call next()!
+    throw alert("NO AUTH TOKEN");
   }
-});
 
-///////////////////////////LANGUAGE CONFIG///////////////////////////
-const i18n = new window.t_manager.plugins.LanguageUtils(Vue, {
-  en: EnMessages,
-  es: EsMessages
-});
+  ///////////////////////////ROUTER CONFIG///////////////////////////
+  router.beforeEach((to, _from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      // this route requires auth, check if logged in
+      // if not, redirect to login page.
+      if (!store.state.token) {
+        next({
+          path: "/"
+        });
+      } else {
+        next();
+      }
+    } else {
+      next(); // make sure to always call next()!
+    }
+  });
 
-i18n.locale = store.state.language;
-store.$i18n = i18n;
+  ///////////////////////////LANGUAGE CONFIG///////////////////////////
+  const i18n = new window.t_manager.plugins.LanguageUtils({
+    en: EnMessages,
+    es: EsMessages
+  });
 
-///////////////////////////VUETIFY CONFIG///////////////////////////
-const vuetify = new window.t_manager.plugins.CustomVuetify(Vue, Vuetify, i18n);
+  i18n.locale = store.state.language;
+  store.$i18n = i18n;
 
-///////////////////////////REQUESTS CONFIG///////////////////////////
-axios.interceptors.request.use(request => {
-  //cargando en todas las peticiones
-  store.dispatch("loadingAction");
-  //internacionalizacion en todas las urls
-  request.headers["Accept-language"] = store.state.language;
-  //token en todas las urls
-  request.headers["Authorization"] = `Bearer ${store.state.token}`;
+  ///////////////////////////VUETIFY CONFIG///////////////////////////
+  const vuetify = new window.t_manager.plugins.CustomVuetify(
+    Vue,
+    Vuetify,
+    i18n
+  );
 
-  return request;
-});
+  ///////////////////////////REQUESTS CONFIG///////////////////////////
+  axios.interceptors.request.use(request => {
+    //cargando en todas las peticiones
+    store.dispatch("loadingAction");
+    //internacionalizacion en todas las urls
+    request.headers["Accept-language"] = store.state.language;
+    //token en todas las urls
+    request.headers["Authorization"] = `Bearer ${store.state.token}`;
 
-axios.interceptors.response.use(
-  response => {
-    store.dispatch("successAction");
-    return response;
-  },
-  error => {
-    store.dispatch("errorAction", error);
-    return Promise.reject({ ...error });
-  }
-);
+    return request;
+  });
 
-///////////////////////////VUE CONFIG///////////////////////////
-const refreshId = setInterval(() => {
-  if (store.state.token) {
-    new Vue({
-      i18n,
-      router,
-      store,
-      vuetify,
-      render: h => h(App)
-    }).$mount(`#${store.state.module}`);
+  axios.interceptors.response.use(
+    response => {
+      store.dispatch("successAction");
+      return response;
+    },
+    error => {
+      store.dispatch("errorAction", error);
+      return Promise.reject({ ...error });
+    }
+  );
 
-    clearInterval(refreshId);
-  }
-}, 500);
+  ///////////////////////////VUE CONFIG///////////////////////////
+  const refreshId = setInterval(() => {
+    if (store.state.token) {
+      new Vue({
+        i18n,
+        router,
+        store,
+        vuetify,
+        render: h => h(App)
+      }).$mount(`#${store.state.module}`);
+
+      clearInterval(refreshId);
+    }
+  }, 500);
+};

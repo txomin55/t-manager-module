@@ -1,12 +1,10 @@
 <template>
   <v-container>
     <v-row>
+      <v-btn color="primary" dark @click="selectItem(null)">
+        {{ $t("fooCrud.create") }}
+      </v-btn>
       <v-dialog v-model="showModal" persistent>
-        <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on" @click="selectItem(null)">
-            {{ $t("fooCrud.create") }}
-          </v-btn>
-        </template>
         <component :is="creationPanel" :data="selectedItem" />
       </v-dialog>
     </v-row>
@@ -22,7 +20,7 @@
                 </v-list-item-title>
               </v-col>
               <v-col>
-                <v-btn color="primary" dark v-on="on" @click="selectItem(item)">
+                <v-btn color="primary" @click="selectItem(item)">
                   {{ $t("fooCrud.edit") }}
                 </v-btn>
               </v-col>
@@ -70,6 +68,7 @@ export default {
       item.toString().replace(/,/g, "-");
     },
     selectItem(item) {
+      this.showModal = !this.showModal;
       this.selectedItem = item;
     }
   }

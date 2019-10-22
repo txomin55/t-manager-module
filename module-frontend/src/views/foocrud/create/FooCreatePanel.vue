@@ -1,14 +1,38 @@
 <template>
   <v-container>
     <v-row>
-      CREATE/EDIT PANEL FOO
-      <div v-if="isEdit">{{ stringData }}</div>
-      <v-btn v-if="!isEdit" color="primary" dark @click="createFunction()">
-        {{ $t("fooCrud.create") }}
-      </v-btn>
-      <v-btn v-if="isEdit" color="primary" dark @click="editFunction(data)">
-        {{ $t("fooCrud.edit") }}
-      </v-btn>
+      <v-col>
+        <v-card>
+          <v-toolbar
+            flat
+            dark
+            color="primary"
+          >
+            <v-btn
+              icon
+              dark
+              @click="closeDialolog()"
+            >
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-toolbar>
+
+          <v-card-title class="headline">CREATE/EDIT PANEL FOO</v-card-title>
+          
+          <div v-if="isEdit">{{ stringData }}</div>
+          
+          <v-card-actions>
+            <v-btn v-if="!isEdit" color="primary" dark @click="createFunction()">
+              {{ $t("fooCrud.create") }}
+            </v-btn>
+            <v-btn v-if="isEdit" color="primary" dark @click="editFunction(data)">
+              {{ $t("fooCrud.edit") }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+        
+        
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -32,6 +56,9 @@ export default {
     },
     editFunction(item) {
       alert(JSON.stringify(item));
+    },
+    closeDialolog(){
+      alert("Close dialog")
     }
   },
   computed: {

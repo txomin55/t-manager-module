@@ -1,12 +1,10 @@
 <template>
   <v-container>
     <v-row>
+      <v-btn color="primary" dark @click="selectItem(null)">
+        {{ $t("fooCrud.create") }}
+      </v-btn>
       <v-dialog v-model="showModal" persistent>
-        <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on" @click="selectItem(null)">
-            {{ $t("fooCrud.create") }}
-          </v-btn>
-        </template>
         <component :is="creationPanel" :data="selectedItem" />
       </v-dialog>
     </v-row>
@@ -28,7 +26,7 @@
           </template>
 
           <template v-slot:item.action="{ item }">
-            <v-icon small class="mr-2" v-on="on" @click="selectItem(item)">
+            <v-icon small class="mr-2" @click="selectItem(item)">
               mdi-pencil
             </v-icon>
             <v-icon small @click="deleteFunction(item.id)">
@@ -73,6 +71,7 @@ export default {
   },
   methods: {
     selectItem(item) {
+      this.showModal = !this.showModal;
       this.selectedItem = item;
     }
   }
