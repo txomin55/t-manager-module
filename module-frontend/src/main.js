@@ -9,8 +9,6 @@ import axios from "axios";
 
 Vue.config.productionTip = false;
 
-Vue.use(Vuetify);
-
 ///////////////////////////INIT T-MANAGER COMMONS//////////////////////////
 window.t_manager.install(Vue);
 
@@ -62,28 +60,15 @@ router.beforeEach((to, _from, next) => {
 
 ///////////////////////////LANGUAGE CONFIG///////////////////////////
 const i18n = new window.t_manager.plugins.LanguageUtils(Vue, {
-  es: EsMessages,
-  en: EnMessages
+  en: EnMessages,
+  es: EsMessages
 });
 
 i18n.locale = store.state.language;
 store.$i18n = i18n;
 
 ///////////////////////////VUETIFY CONFIG///////////////////////////
-const vuetify = new Vuetify({
-  icons: {
-    iconfont: "mdi"
-  },
-  theme: {
-    dark: false,
-    options: {
-      customProperties: true
-    }
-  },
-  lang: {
-    t: (key, ...params) => i18n.t(key, params)
-  }
-});
+const vuetify = new window.t_manager.plugins.CustomVuetify(Vue, Vuetify, i18n);
 
 ///////////////////////////REQUESTS CONFIG///////////////////////////
 axios.interceptors.request.use(request => {
