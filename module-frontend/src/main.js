@@ -7,7 +7,9 @@ import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 import axios from "axios";
 
-Vue.config.productionTip = false;
+debugger
+window.Vue = Vue;
+Vue.config.productionTip = false; 
 
 ///////////////////////////INIT T-MANAGER COMMONS//////////////////////////
 window.t_manager.install(Vue);
