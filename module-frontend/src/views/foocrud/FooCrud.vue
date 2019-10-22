@@ -33,6 +33,8 @@
         :deleteFunction="removeFunction"
         :columnData="columnData"
         :creationPanel="fooCreatePanel"
+        :toggleModal="toggleModal"
+        :showModalValue="showModal"
       />
     </v-row>
   </v-container>
@@ -62,7 +64,8 @@ export default {
   },
   computed: {
     ...mapState({
-      foos: state => state.fooModule.foos
+      foos: state => state.fooModule.foos,
+      showModal: state => state.fooModule.showCreateModal
     }),
     nFoos() {
       return this.$store.getters["fooModule/getFooQuantity"];
@@ -74,6 +77,9 @@ export default {
     },
     removeFunction(id) {
       this.$store.dispatch("fooModule/deleteFoo", id);
+    },
+    toggleModal() {
+      this.$store.dispatch("fooModule/toggleCreateModal");
     }
   }
 };

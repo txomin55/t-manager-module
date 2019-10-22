@@ -4,7 +4,8 @@ export default {
   namespaced: true,
   state() {
     return {
-      foos: []
+      foos: [],
+      showCreateModal: false
     };
   },
   mutations: {
@@ -18,6 +19,9 @@ export default {
       state.foos.forEach((element, index) => {
         if (element.id == id) state.foos.splice(index, 1);
       });
+    },
+    TOGGLE_CREATE_MODAL(state) {
+      state.showCreateModal = !state.showCreateModal;
     }
   },
   actions: {
@@ -38,6 +42,9 @@ export default {
     },
     launchException() {
       FooApi.launchException();
+    },
+    toggleCreateModal(context) {
+      context.commit("TOGGLE_CREATE_MODAL");
     }
   },
   getters: {

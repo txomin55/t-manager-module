@@ -5,7 +5,11 @@
         {{ $t("fooCrud.create") }}
       </v-btn>
       <v-dialog v-model="showModal" persistent>
-        <component :is="creationPanel" :data="selectedItem" />
+        <component
+          :is="creationPanel"
+          :data="selectedItem"
+          :toggleModal="toggleModal"
+        />
       </v-dialog>
     </v-row>
 
@@ -55,21 +59,33 @@ export default {
     },
     creationPanel: {
       type: Object
+    },
+    toggleModal: {
+      type: Function,
+      default: () => {}
+    },
+    showModalValue: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      showModal: false,
       selectedItem: null
     };
   },
   methods: {
     showItemData(item) {
-      item.toString().replace(/,/g, "-");
+      return Object.values(item).toString().replace(/,/g, "||");
     },
     selectItem(item) {
-      this.showModal = !this.showModal;
+      this.toggleModal();
       this.selectedItem = item;
+    }
+  },
+  computed: {
+    showModal(){
+      return this.showModalValue;
     }
   }
 };

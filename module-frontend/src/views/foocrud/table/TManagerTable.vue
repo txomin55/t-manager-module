@@ -7,6 +7,8 @@
           :data="data"
           :deleteFunction="deleteFunction"
           :creationPanel="creationPanel"
+          :toggleModal="toggleModal"
+          :showModalValue="showModalValue"
         />
       </v-col>
       <v-col v-else>
@@ -15,6 +17,8 @@
           :deleteFunction="deleteFunction"
           :columnData="columnData"
           :creationPanel="creationPanel"
+          :toggleModal="toggleModal"
+          :showModalValue="showModalValue"
         />
       </v-col>
     </v-row>
@@ -46,6 +50,14 @@ export default {
     deleteFunction: {
       type: Function,
       default: () => {}
+    },
+    toggleModal: {
+      type: Function,
+      default: () => {}
+    },
+    showModalValue: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
