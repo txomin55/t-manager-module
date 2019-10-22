@@ -23,8 +23,6 @@ Vue.loadScript("http://localhost:9999/dist/t_manager_common.js")
   });
 
 const loadApp = () => {
-  ///////////////////////////INIT T-MANAGER COMMONS//////////////////////////
-  window.t_manager.install(Vue);
 
   ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
   store.dispatch("updateToken", "token falso");
@@ -48,7 +46,7 @@ const loadApp = () => {
   });
 
   ///////////////////////////LANGUAGE CONFIG///////////////////////////
-  const i18n = new window.t_manager.plugins.LanguageUtils(Vue, {
+  const i18n = new window.t_manager.plugins.LanguageUtils({
     en: EnMessages,
     es: EsMessages
   });
