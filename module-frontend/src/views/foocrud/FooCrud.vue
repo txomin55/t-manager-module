@@ -27,7 +27,7 @@
     </v-row>
 
     <v-row>
-      <app-tmanager-table
+      <commons-t-manager-table
         :headers="headers"
         :data="foos"
         :deleteFunction="removeFunction"
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import TManagerTable from "@/views/foocrud/table/TManagerTable";
 import FooCreatePanel from "@/views/foocrud/create/FooCreatePanel";
 
 import { mapState } from "vuex";
@@ -58,9 +57,6 @@ export default {
       columnData: ["id", "name", "value"],
       fooCreatePanel: FooCreatePanel
     };
-  },
-  components: {
-    "app-tmanager-table": TManagerTable
   },
   computed: {
     ...mapState({
