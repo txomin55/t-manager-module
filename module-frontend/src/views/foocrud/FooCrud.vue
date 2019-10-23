@@ -27,7 +27,7 @@
     </v-row>
 
     <v-row>
-      <commons-t-manager-table
+      <commons-table
         :headers="headers"
         :data="foos"
         :deleteFunction="removeFunction"
