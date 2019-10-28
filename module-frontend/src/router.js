@@ -20,6 +20,14 @@ export default new Router({
       }
     },
     {
+      path: "/about",
+      name: "about",
+      component: () => import("./views/about/About.vue"),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: "/foo",
       name: "foo",
       component: () => import("./views/foocrud/Foo.vue"),

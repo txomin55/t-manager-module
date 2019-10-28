@@ -6,6 +6,26 @@
       </v-col>
     </v-row>
     <v-row>
+      <v-col class="text-center">
+        <h1>{{ $t("helloWorld.welcomeMsg") }} (TEMPLATE)</h1>
+        <h2>{{ msg1 }} (COMPUTED)</h2>
+        <h2>{{ msg() }} (METHOD)</h2>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="text-center">
+        <h4>YOUR DATA</h4>
+        {{ userData }}
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="text-center">
+        <v-btn @click="getException()">
+          {{ $t("fooCrud.exception") }}
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col>
         <div class="text-center">
           <v-btn
@@ -40,11 +60,12 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import HelloWorld from "@/components/HelloWorld.vue";
 import CountryFlag from "vue-country-flag";
 
 export default {
-  name: "home",
+  name: "Home",
   components: {
     appHelloWorld: HelloWorld,
     appCountryFlag: CountryFlag
@@ -67,7 +88,21 @@ export default {
         ? this.$vuetify.theme.themes.dark
         : this.$vuetify.theme.themes.light;
       this.colors = Object.keys(theme);
+    },
+    msg() {
+      return this.$i18n.t("helloWorld.welcomeMsgSub");
+    },
+    getException() {
+      this.$store.dispatch("fooModule/launchException");
     }
+  },
+  computed: {
+    msg1() {
+      return this.$i18n.t("helloWorld.welcomeMsgSub");
+    },
+    ...mapState({
+      userData: state => state.userData
+    })
   },
   watch: {
     selectedTheme(val) {

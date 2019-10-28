@@ -14,6 +14,9 @@
         <v-btn text>
           <router-link to="/foo">Foo</router-link>
         </v-btn>
+        <v-btn text icon color="black">
+          <router-link to="/about" class="no-decoration"><v-icon>mdi-help-circle-outline</v-icon></router-link>
+        </v-btn>
       </template>
       <template v-else>
         <v-app-bar-nav-icon @click="drawer = !drawer"> </v-app-bar-nav-icon>
@@ -35,6 +38,7 @@
                 >
               </v-list-item-content>
             </v-list-item>
+            
             <v-list-item>
               <v-list-item-action>
                 <v-icon>mdi-creation</v-icon>
@@ -42,6 +46,17 @@
               <v-list-item-content>
                 <v-list-item-title
                   ><router-link to="/foo">Foo</router-link></v-list-item-title
+                >
+              </v-list-item-content>
+            </v-list-item>
+            
+            <v-list-item>
+              <v-list-item-action>
+                <v-icon>mdi-help-circle-outline</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title
+                  ><router-link to="/about">About</router-link></v-list-item-title
                 >
               </v-list-item-content>
             </v-list-item>
@@ -91,4 +106,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.no-decoration{
+  text-decoration: none;
+}
+</style>
