@@ -1,24 +1,5 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col class="text-center">
-        <h1>{{ $t("fooCrud.welcome") }}</h1>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col class="text-center">
-        <h3>{{ $t("fooCrud.description") }}</h3>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col class="text-center">
-        <v-btn @click="getException()">
-          {{ $t("fooCrud.exception") }}
-        </v-btn>
-      </v-col>
-    </v-row>
 
     <v-row>
       <v-col>
@@ -27,16 +8,26 @@
     </v-row>
 
     <v-row>
-      <commons-table
-        :headers="headers"
+      <commons-crud-table
         :data="foos"
-        :deleteFunction="removeFunction"
+        :headers="headers"
         :columnData="columnData"
         :creationPanel="fooCreatePanel"
-        :toggleModal="toggleModal"
-        :showModalValue="showModal"
+        :createFunction="createAction"
+        :deleteFunction="removeAction"
+        :editFunction="editAction"
+        :tableTitle="title"
       />
     </v-row>
+
+    <v-row>
+      <v-col>
+        <v-btn @click="goBack()">
+          BACK
+        </v-btn>
+      </v-col>
+    </v-row>
+
   </v-container>
 </template>
 
@@ -55,13 +46,13 @@ export default {
         { text: "Actions", value: "action", sortable: false }
       ],
       columnData: ["id", "name", "value"],
-      fooCreatePanel: FooCreatePanel
+      fooCreatePanel: FooCreatePanel,
+      title: "FOO CRUD"
     };
   },
   computed: {
     ...mapState({
-      foos: state => state.fooModule.foos,
-      showModal: state => state.fooModule.showCreateModal
+      foos: state => state.fooModule.foos
     }),
     nFoos() {
       return this.$store.getters["fooModule/getFooQuantity"];
@@ -71,11 +62,17 @@ export default {
     getException() {
       this.$store.dispatch("fooModule/launchException");
     },
-    removeFunction(id) {
-      this.$store.dispatch("fooModule/deleteFoo", id);
+    removeAction(id) {
+      this.$store.dispatch("fooModule/deleteFooData", id);
     },
-    toggleModal() {
-      this.$store.dispatch("fooModule/toggleCreateModal");
+    createAction(fooDto){
+      this.$store.dispatch("fooModule/createFooData", fooDto);
+    },
+    editAction(fooDto){
+      this.$store.dispatch("fooModule/editFooData", fooDto);
+    },
+    goBack(){
+      this.$router.push("/fooSelector");
     }
   }
 };

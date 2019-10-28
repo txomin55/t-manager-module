@@ -21,6 +21,15 @@ export function createFoo(foo, cb) {
     .catch(() => {});
 }
 
+export function editFoo(foo, cb) {
+  axios
+    .put(`http://${ADDRESS}/${store.state.module}/foo`, foo)
+    .then(result => {
+      cb(result.data);
+    })
+    .catch(() => {});
+}
+
 export function deleteFoo(id, cb) {
   axios
     .delete(`http://${ADDRESS}/${store.state.module}/foo/${id}`)

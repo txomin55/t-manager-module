@@ -30,6 +30,15 @@ export default new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/fooSelector",
+      name: "fooSelector",
+      component: () =>
+        import("./views/foocrud/FooSelector.vue"),
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 });

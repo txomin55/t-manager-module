@@ -24,15 +24,26 @@ export default {
   },
   watch: {
     error(errorData) {
-      const errorDTO = errorData.response.data;
       const timeout = 5000;
-      this.errors.push({
-        showError: true,
-        title: `${this.$i18n.t("errorHandler.error")} ${errorDTO.date}`,
-        message: `${errorDTO.id}: ${errorDTO.msg}`,
-        id: new Date().getTime(),
-        timeout: timeout
-      });
+      if(errorData.response && errorData.response.data){
+        const errorDTO = errorData.response.data;
+        this.errors.push({
+          showError: true,
+          title: `${this.$i18n.t("errorHandler.error")} ${errorDTO.date}`,
+          message: `${errorDTO.id}: ${errorDTO.msg}`,
+          id: new Date().getTime(),
+          timeout: timeout
+        });
+  
+      }else{
+        this.errors.push({
+          showError: true,
+          title: `ERROR`,
+          message: `${errorData.message}`,
+          id: new Date().getTime(),
+          timeout: timeout
+        });
+      }
 
       const timeoutId = setTimeout(() => {
         delete this.$refs[`error-${this.errors[0].id}`];

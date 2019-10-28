@@ -4,8 +4,7 @@ export default {
   namespaced: true,
   state() {
     return {
-      foos: [],
-      showCreateModal: false
+      foos: []
     };
   },
   mutations: {
@@ -20,9 +19,9 @@ export default {
         if (element.id == id) state.foos.splice(index, 1);
       });
     },
-    TOGGLE_CREATE_MODAL(state) {
-      state.showCreateModal = !state.showCreateModal;
-    }
+    EDIT_FOO_DATA(state, data) {
+      alert(JSON.stringify(data));
+    },
   },
   actions: {
     initFooData(context) {
@@ -30,7 +29,7 @@ export default {
         context.commit("INIT_FOO_DATA", foos);
       });
     },
-    createFoo(context, fooData) {
+    createFooData(context, fooData) {
       FooApi.createFoo(fooData, foo => {
         context.commit("CREATE_FOO", foo);
       });
@@ -40,11 +39,13 @@ export default {
         context.commit("DELETE_FOO_DATA", id);
       });
     },
+    editFooData(context, fooData) {
+      FooApi.editFoo(fooData, foo => {
+        context.commit("EDIT_FOO_DATA", foo);
+      });
+    },
     launchException() {
       FooApi.launchException();
-    },
-    toggleCreateModal(context) {
-      context.commit("TOGGLE_CREATE_MODAL");
     }
   },
   getters: {
