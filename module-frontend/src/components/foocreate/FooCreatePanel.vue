@@ -53,7 +53,7 @@
 
 <script>
 export default {
-  name: "TestCreationPanel",
+  name: "FooCreationPanel",
   props: {
     data: {
       type: Object
