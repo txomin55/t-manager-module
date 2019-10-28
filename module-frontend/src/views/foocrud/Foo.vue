@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    
     <v-row>
       <v-col class="text-center">
         <h1>{{ $t("fooCrud.welcome") }}</h1>
@@ -12,7 +13,12 @@
       </v-col>
     </v-row>
 
-    <commons-crud-panel :crudConfig="getCrudConfig()" />
+    <v-row>
+      <v-col>
+        <commons-crud-panel :crudConfig="getCrudConfig()"/>
+      </v-col>
+    </v-row>
+
   </v-container>
 </template>
 
