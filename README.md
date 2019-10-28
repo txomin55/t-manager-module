@@ -15,6 +15,8 @@ npm run build
 npm run test
 npm run lint
 ```
+Fuentes de http://materialdesignicons.com/
+
 ### El módulo
 ```
 El módulo launcher setea window.t_manager_access_token con su token de acceso y window.t_manager_access_token_validity con el tiempo de validez de este.
