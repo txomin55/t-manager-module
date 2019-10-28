@@ -23,7 +23,6 @@ Vue.loadScript("http://localhost:9999/dist/t_manager_common.js")
   });
 
 const loadApp = () => {
-
   ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
   store.dispatch("updateToken", "token falso");
   router.push("/home");

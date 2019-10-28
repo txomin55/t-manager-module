@@ -23,6 +23,13 @@
         {{ userData }}
       </v-col>
     </v-row>
+    <v-row>
+      <v-col class="text-center">
+        <v-btn @click="getException()">
+          {{ $t("fooCrud.exception") }}
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -33,6 +40,9 @@ export default {
   methods: {
     msg() {
       return this.$i18n.t("helloWorld.welcomeMsgSub");
+    },
+    getException() {
+      this.$store.dispatch("fooModule/launchException");
     }
   },
   computed: {

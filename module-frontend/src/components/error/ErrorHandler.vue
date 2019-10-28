@@ -25,7 +25,7 @@ export default {
   watch: {
     error(errorData) {
       const timeout = 5000;
-      if(errorData.response && errorData.response.data){
+      if (errorData.response && errorData.response.data) {
         const errorDTO = errorData.response.data;
         this.errors.push({
           showError: true,
@@ -34,8 +34,7 @@ export default {
           id: new Date().getTime(),
           timeout: timeout
         });
-  
-      }else{
+      } else {
         this.errors.push({
           showError: true,
           title: `ERROR`,

@@ -12,7 +12,7 @@
           <router-link to="/home">Home</router-link>
         </v-btn>
         <v-btn text>
-          <router-link to="/fooSelector">Foo</router-link>
+          <router-link to="/foo">Foo</router-link>
         </v-btn>
       </template>
       <template v-else>
@@ -41,9 +41,7 @@
               </v-list-item-action>
               <v-list-item-content>
                 <v-list-item-title
-                  ><router-link to="/fooSelector"
-                    >Foo</router-link
-                  ></v-list-item-title
+                  ><router-link to="/foo">Foo</router-link></v-list-item-title
                 >
               </v-list-item-content>
             </v-list-item>
@@ -67,8 +65,8 @@
 </template>
 
 <script>
-import ErrorHandler from "@/components/ErrorHandler";
-import LoadingHandler from "@/components/LoadingHandler";
+import ErrorHandler from "@/components/error/ErrorHandler";
+import LoadingHandler from "@/components/loading/LoadingHandler";
 import { mapState } from "vuex";
 
 export default {

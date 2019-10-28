@@ -11,53 +11,40 @@
     <v-form v-model="valid">
       <v-container>
         <v-row>
-          <v-col 
-            sm="6" 
-            md="3">
+          <v-col sm="6" md="3">
             <v-text-field
               label="ID"
               v-model="id"
               :rules="requiredRule"
               required
+              :disabled="disabled"
             ></v-text-field>
           </v-col>
-          <v-col 
-            sm="6" 
-            md="3">
+          <v-col sm="6" md="3">
             <v-text-field
               label="NAME"
               v-model="name"
               :rules="requiredRule"
               required
+              :disabled="disabled"
             ></v-text-field>
           </v-col>
-          <v-col 
-            sm="6" 
-            md="3">
+          <v-col sm="6" md="3">
             <v-text-field
               label="VALUE"
               v-model="value"
+              :disabled="disabled"
             ></v-text-field>
           </v-col>
         </v-row>
       </v-container>
     </v-form>
 
-    <v-card-actions>
-      <v-btn
-        v-if="!isEdit"
-        color="primary"
-        dark
-        @click="createFoo()"
-      >
+    <v-card-actions v-if="!disabled">
+      <v-btn v-if="!isEdit" color="primary" dark @click="createFoo()">
         {{ $t("create") }}
       </v-btn>
-      <v-btn
-        v-if="isEdit"
-        color="primary"
-        dark
-        @click="editFoo()"
-      >
+      <v-btn v-if="isEdit" color="primary" dark @click="editFoo()">
         {{ $t("edit") }}
       </v-btn>
     </v-card-actions>
@@ -70,42 +57,43 @@ export default {
   props: {
     data: {
       type: Object
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
-  data(){
-    return{
-      id : null,
-      name : null,
-      value : null,
+  data() {
+    return {
+      id: null,
+      name: null,
+      value: null,
       valid: false,
-      requiredRule: [
-        v => !!v || 'Value is required'
-      ],
-      itemData : {}
-    }
+      requiredRule: [v => !!v || "Value is required"],
+      itemData: {}
+    };
   },
   methods: {
-    removeData(){
+    removeData() {
       this.id = null;
       this.name = null;
       this.value = null;
       this.valid = false;
     },
-    initData(data){
-      if(data){
+    initData(data) {
+      if (data) {
         this.id = data.id;
         this.name = data.name;
         this.value = data.value;
-      }else{
+      } else {
         this.removeData();
       }
     },
     createFoo() {
-      if(this.valid){
-
+      if (this.valid) {
         this.setData();
 
-        this.$emit('create-item', this.itemData);
+        this.$emit("create-item", this.itemData);
 
         this.removeData();
 
@@ -113,18 +101,18 @@ export default {
       }
     },
     editFoo() {
-      if(this.valid){
+      if (this.valid) {
         this.setData();
 
-        this.$emit('edit-item', this.itemData);
+        this.$emit("edit-item", this.itemData);
 
         this.closeModal();
       }
     },
-    closeModal(){
-      this.$emit('close-modal')
+    closeModal() {
+      this.$emit("close-modal");
     },
-    setData(){
+    setData() {
       this.itemData.id = this.id;
       this.itemData.name = this.name;
       this.itemData.value = this.value;
@@ -136,10 +124,10 @@ export default {
     }
   },
   watch: {
-    data : {
+    data: {
       immediate: true,
-      handler(newVal, oldVal) {
-        this.initData(newVal);
+      handler(val) {
+        this.initData(val);
         Object.assign(this.itemData, this.data);
       }
     }

@@ -8,7 +8,7 @@ module.exports = {
     port: 8080,
     proxy: {
       "/": {
-        target: "http://localhost:8002", // this configuration needs to correspond to the Spring Boot backends' application.yml server.port
+        target: "http://localhost:3000", // this configuration needs to correspond to the Spring Boot backends' application.yml server.port
         ws: true,
         changeOrigin: true
       }

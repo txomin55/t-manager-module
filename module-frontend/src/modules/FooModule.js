@@ -21,7 +21,7 @@ export default {
     },
     EDIT_FOO_DATA(state, data) {
       alert(JSON.stringify(data));
-    },
+    }
   },
   actions: {
     initFooData(context) {
@@ -46,11 +46,6 @@ export default {
     },
     launchException() {
       FooApi.launchException();
-    }
-  },
-  getters: {
-    getFooQuantity(state) {
-      return state.foos.length;
     }
   }
 };
