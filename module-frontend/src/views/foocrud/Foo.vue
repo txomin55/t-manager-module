@@ -37,8 +37,13 @@ export default {
         { text: "Actions", value: "action", sortable: false }
       ],
       columnData: ["id", "name", "value"],
+      cardsInfo : {
+        id : "id",
+        title : "name",
+        subtitle : "value"
+      },
       fooCreatePanel: FooCreatePanel,
-      showCrud: false
+      showCrud: true
     };
   },
   methods: {
@@ -49,7 +54,7 @@ export default {
       const config = {};
       config.tableTitle = this.title;
       config.selector = {
-        mappedItems: this.mappedFoos,
+        cardsInfo : this.cardsInfo,
         openSelected: this.openSelected,
         showCrud: this.showCrud
       };
@@ -77,24 +82,7 @@ export default {
   },
   computed: {
     ...mapState({
-      foos: state => state.fooModule.foos,
-      mappedFoos: state => {
-        debugger
-        if (state.fooModule.foos.length > 0) {
-          const mappedList = state.fooModule.foos.map(it => {
-            return {
-              id: it.id,
-              title: it.name,
-              subtitle: it.value,
-              img: "https://cdn.vuetifyjs.com/images/cards/cooking.png"
-            };
-          });
-
-          return mappedList;
-        }
-
-        return [];
-      }
+      foos: state => state.fooModule.foos
     })
   }
 };
