@@ -1,4 +1,4 @@
-package com.tmanager.module.config.application;
+package com.tmanager.module.configuration.application;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
