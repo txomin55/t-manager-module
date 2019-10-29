@@ -8,5 +8,8 @@
     "fooCrud.remove": "Borrar Foo",
     "fooCrud.create": "Crear Foo",
     "fooCrud.exception": "Excepción",
-    "error.close" : "Cerrar"
+    "error.close" : "Cerrar",
+    "selectTheme" : "Seleccionar tema",
+    "dark" : "Oscuro",
+    "yourData" : "Tus datos"
 }

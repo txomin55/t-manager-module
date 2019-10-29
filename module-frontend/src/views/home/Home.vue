@@ -1,8 +1,13 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row text-center wrap>
       <v-col>
-        <app-hello-world />
+        <v-img
+          :src="require('../../assets/logo.svg')"
+          class="my-3"
+          contain
+          height="200"
+        ></v-img>
       </v-col>
     </v-row>
     <v-row>
@@ -14,7 +19,7 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <h4>YOUR DATA</h4>
+        <h4>{{ $t("yourData") }}</h4>
         {{ userData }}
       </v-col>
     </v-row>
@@ -43,12 +48,12 @@
         <v-combobox
           v-model="selectedTheme"
           :items="themes"
-          label="Select a theme"
+          :label="$t('selectTheme')"
         >
         </v-combobox>
       </v-col>
       <v-col sm="12" md="1">
-        <v-switch v-model="dark" label="Dark"> </v-switch>
+        <v-switch v-model="dark" :label="$t('dark')"> </v-switch>
       </v-col>
     </v-row>
     <v-row justify="center">
@@ -61,13 +66,11 @@
 
 <script>
 import { mapState } from "vuex";
-import HelloWorld from "@/components/HelloWorld.vue";
 import CountryFlag from "vue-country-flag";
 
 export default {
   name: "Home",
   components: {
-    appHelloWorld: HelloWorld,
     appCountryFlag: CountryFlag
   },
   data() {
