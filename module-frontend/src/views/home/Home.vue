@@ -124,6 +124,7 @@ export default {
   },
   mounted() {
     this.updateColors();
+    this.$store.dispatch("initUserData");
   }
 };
 </script>

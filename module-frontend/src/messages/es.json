@@ -11,5 +11,8 @@
     "error.close" : "Cerrar",
     "selectTheme" : "Seleccionar tema",
     "dark" : "Oscuro",
-    "yourData" : "Tus datos"
+    "yourData" : "Tus datos",
+    "logout" : "Salir",
+    "home" : "Inicio",
+    "about" : "Acerca de"
 }

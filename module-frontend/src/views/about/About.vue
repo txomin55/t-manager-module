@@ -22,9 +22,9 @@
 <script>
 export default {
     name: "About",
-    computed: {
-        module(){
-            return this.$store.state.module;
+    data(){
+        return{
+            module : this.$store.state.module
         }
     }
 }

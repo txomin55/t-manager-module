@@ -9,20 +9,42 @@ import axios from "axios";
 import LoadScript from "vue-plugin-load-script";
 
 Vue.use(LoadScript);
-window.Vue = Vue;
 
+window.Vue = Vue;
 Vue.config.productionTip = false;
 
 //"http://3.121.59.80:9999/dist/t_manager_common.js"
-Vue.loadScript("http://localhost:9999/dist/t_manager_common.js")
-  .then(() => {
-    loadApp();
-  })
-  .catch(() => {
-    console.error("NO HAY COMMONS");
-  });
+if(!window.t_manager){
+  Vue.loadScript("http://localhost:9999/dist/t_manager_common.js")
+    .then(() => {
+      loadApp();
+    })
+    .catch(() => {
+      console.error("NO HAY COMMONS");
+    });
+}else{
+  loadApp();
+}
 
 const loadApp = () => {
+
+  ///////////////////////////ROUTER CONFIG///////////////////////////
+  router.beforeEach((to, _from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      // this route requires auth, check if logged in
+      // if not, redirect to login page.
+      if (!store.state.token) {
+        next({
+          path: "/login"
+        });
+      } else {
+        next();
+      }
+    } else {
+      next(); // make sure to always call next()!
+    }
+  });
+  
   ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
   let firstTime = true;
   const tokenUtils = new window.t_manager.plugins.TokenUtils(
@@ -51,23 +73,6 @@ const loadApp = () => {
   } else {
     throw alert("NO AUTH TOKEN");
   }
-
-  ///////////////////////////ROUTER CONFIG///////////////////////////
-  router.beforeEach((to, _from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-      // this route requires auth, check if logged in
-      // if not, redirect to login page.
-      if (!store.state.token) {
-        next({
-          path: "/"
-        });
-      } else {
-        next();
-      }
-    } else {
-      next(); // make sure to always call next()!
-    }
-  });
 
   ///////////////////////////LANGUAGE CONFIG///////////////////////////
   const i18n = new window.t_manager.plugins.LanguageUtils({

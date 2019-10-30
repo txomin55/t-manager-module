@@ -1,71 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Your</span>
-        <span class="font-weight-light">{{ module }}</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
 
-      <template v-if="$vuetify.breakpoint.smAndUp">
-        <v-btn text>
-          <router-link to="/home">Home</router-link>
-        </v-btn>
-        <v-btn text>
-          <router-link to="/foo">Foo</router-link>
-        </v-btn>
-        <v-btn text icon color="black">
-          <router-link to="/about" class="no-decoration"><v-icon>mdi-help-circle-outline</v-icon></router-link>
-        </v-btn>
-      </template>
-      <template v-else>
-        <v-app-bar-nav-icon @click="drawer = !drawer"> </v-app-bar-nav-icon>
-
-        <v-navigation-drawer v-model="drawer" app clipped left hide-overlay>
-          <v-list>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Your links</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-action>
-                <v-icon>mdi-home-outline</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title
-                  ><router-link to="/home">Home</router-link></v-list-item-title
-                >
-              </v-list-item-content>
-            </v-list-item>
-            
-            <v-list-item>
-              <v-list-item-action>
-                <v-icon>mdi-creation</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title
-                  ><router-link to="/foo">Foo</router-link></v-list-item-title
-                >
-              </v-list-item-content>
-            </v-list-item>
-            
-            <v-list-item>
-              <v-list-item-action>
-                <v-icon>mdi-help-circle-outline</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title
-                  ><router-link to="/about">About</router-link></v-list-item-title
-                >
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
-
-        <v-navigation-drawer fixed temporary></v-navigation-drawer>
-      </template>
-    </v-app-bar>
+    <app-navbar v-if="isLogged" />
 
     <v-content>
       <app-loading-handler />
@@ -73,41 +9,30 @@
       <router-view />
     </v-content>
 
-    <v-footer app>
-      <span class="white--text">&copy;T-Manager 2019</span>
-    </v-footer>
+    <app-footer />
   </v-app>
 </template>
 
 <script>
 import ErrorHandler from "@/components/error/ErrorHandler";
 import LoadingHandler from "@/components/loading/LoadingHandler";
-import { mapState } from "vuex";
+import Footer from "@/components/footer/Footer";
+import NavBar from "@/components/navbar/NavBar";
+import { mapState } from 'vuex';
 
 export default {
   components: {
+    "app-navbar": NavBar,
     "app-error-handler": ErrorHandler,
-    "app-loading-handler": LoadingHandler
-  },
-  data() {
-    return {
-      drawer: null
-    };
+    "app-loading-handler": LoadingHandler,
+    "app-footer": Footer,
   },
   computed: {
     ...mapState({
-      module: state => state.module
+      isLogged : state => {
+        return state.token;
+      }
     })
-  },
-  mounted() {
-    this.$store.dispatch("fooModule/initFooData");
-    this.$store.dispatch("initUserData");
   }
 };
 </script>
-
-<style scoped>
-.no-decoration{
-  text-decoration: none;
-}
-</style>

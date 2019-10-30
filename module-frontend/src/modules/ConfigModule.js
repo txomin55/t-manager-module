@@ -54,6 +54,9 @@ export default {
       ConfigApi.getUserData(user => {
         context.commit("INIT_USER_DATA", user);
       });
+    },
+    logout(context) {
+      context.commit("UPDATE_TOKEN", null);
     }
   }
 };

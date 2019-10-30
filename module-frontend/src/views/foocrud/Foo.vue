@@ -84,6 +84,9 @@ export default {
     ...mapState({
       foos: state => state.fooModule.foos
     })
+  },
+  mounted(){
+    this.$store.dispatch("fooModule/initFooData");
   }
 };
 </script>

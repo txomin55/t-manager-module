@@ -11,5 +11,8 @@
     "error.close" : "Close",
     "selectTheme" : "Select a theme",
     "dark" : "Dark",
-    "yourData" : "Your data"
+    "yourData" : "Your data",
+    "logout" : "Logout",
+    "home" : "Home",
+    "about" : "About"
 }
