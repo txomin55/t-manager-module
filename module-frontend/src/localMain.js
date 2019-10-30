@@ -60,7 +60,6 @@ const loadApp = () => {
 
   ///////////////////////////VUETIFY CONFIG///////////////////////////
   const vuetify = new window.t_manager.plugins.CustomVuetify(
-    Vue,
     Vuetify,
     i18n
   );
