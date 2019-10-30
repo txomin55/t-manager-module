@@ -33,8 +33,7 @@ export default {
       headers: [
         { text: "Id", value: "id" },
         { text: "Name", value: "name" },
-        { text: "Value", value: "value" },
-        { text: "Actions", value: "action", sortable: false }
+        { text: "Value", value: "value" }
       ],
       columnData: ["id", "name", "value"],
       cardsInfo : {
