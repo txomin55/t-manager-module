@@ -8,6 +8,9 @@ import EsMessages from "@/messages/es.json";
 import axios from "axios";
 import LoadScript from "vue-plugin-load-script";
 
+//MUST BE SET DUE SHEETS.JS
+const global = window;
+
 Vue.use(LoadScript);
 
 window.Vue = Vue;
