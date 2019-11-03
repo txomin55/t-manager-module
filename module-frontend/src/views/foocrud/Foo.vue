@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    
     <v-row>
       <v-col class="text-center">
         <h1>{{ $t("fooCrud.welcome") }}</h1>
@@ -15,10 +14,9 @@
 
     <v-row>
       <v-col>
-        <commons-crud-panel :crudConfig="getCrudConfig()"/>
+        <commons-crud-panel :crudConfig="getCrudConfig()" />
       </v-col>
     </v-row>
-
   </v-container>
 </template>
 
@@ -36,10 +34,10 @@ export default {
         { text: "Value", value: "value" }
       ],
       columnData: ["id", "name", "value"],
-      cardsInfo : {
-        id : "id",
-        title : "name",
-        subtitle : "value"
+      cardsInfo: {
+        id: "id",
+        title: "name",
+        subtitle: "value"
       },
       fooCreatePanel: FooCreatePanel,
       showCrud: true
@@ -53,7 +51,7 @@ export default {
       const config = {};
       config.tableTitle = this.title;
       config.selector = {
-        cardsInfo : this.cardsInfo,
+        cardsInfo: this.cardsInfo,
         openSelected: this.openSelected,
         showCrud: this.showCrud
       };
@@ -84,7 +82,7 @@ export default {
       foos: state => state.fooModule.foos
     })
   },
-  mounted(){
+  mounted() {
     this.$store.dispatch("fooModule/initFooData");
   }
 };

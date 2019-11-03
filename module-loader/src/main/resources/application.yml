@@ -20,8 +20,8 @@ module:
     server:
        port: 8001
        path: auth-service
-       address: http://3.121.59.80
-       #address: http://localhost
+       #address: http://3.121.59.80
+       address: http://localhost
     clientId: app-open-source
     clientSecret: password-open-source   
     clientRedirectUrl: http://localhost:8080/module/init

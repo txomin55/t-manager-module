@@ -49,3 +49,4 @@ module-web/.project
 *.ear
 module-frontend/.history/
 module-frontend/dist/
+module-infrastructure/.factorypath

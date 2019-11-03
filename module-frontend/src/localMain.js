@@ -8,13 +8,17 @@ import EsMessages from "@/messages/es.json";
 import axios from "axios";
 import LoadScript from "vue-plugin-load-script";
 
+//MUST BE SET DUE SHEETS.JS
+// eslint-disable-next-line no-unused-vars
+const global = window;
+
 Vue.use(LoadScript);
 
 window.Vue = Vue;
 Vue.config.productionTip = false;
 
 //"http://3.121.59.80:9999/dist/t_manager_common.js"
-if(!window.t_manager){
+if (!window.t_manager) {
   Vue.loadScript("http://localhost:9999/dist/t_manager_common.js")
     .then(() => {
       loadApp();
@@ -22,7 +26,7 @@ if(!window.t_manager){
     .catch(() => {
       console.error("NO HAY COMMONS");
     });
-}else{
+} else {
   loadApp();
 }
 
@@ -33,9 +37,9 @@ const loadApp = () => {
       // this route requires auth, check if logged in
       // if not, redirect to login page.
       if (!store.state.token) {
-        debugger
+        debugger;
         next({
-          path: '/login'
+          path: "/login"
         });
       } else {
         next();
@@ -59,10 +63,7 @@ const loadApp = () => {
   store.$i18n = i18n;
 
   ///////////////////////////VUETIFY CONFIG///////////////////////////
-  const vuetify = new window.t_manager.plugins.CustomVuetify(
-    Vuetify,
-    i18n
-  );
+  const vuetify = new window.t_manager.plugins.CustomVuetify(Vuetify, i18n);
 
   ///////////////////////////REQUESTS CONFIG///////////////////////////
   axios.interceptors.request.use(request => {
