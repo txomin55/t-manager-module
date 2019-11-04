@@ -13,6 +13,14 @@
     </v-row>
 
     <v-row>
+      <v-col class="text-center">
+        <v-btn @click="getException()">
+          {{ $t("fooCrud.exception") }}
+        </v-btn>
+      </v-col>
+    </v-row>
+
+    <v-row>
       <v-col>
         <commons-crud-panel :crudConfig="getCrudConfig()" />
       </v-col>
@@ -75,6 +83,9 @@ export default {
     },
     editAction(fooDto) {
       this.$store.dispatch("fooModule/editFooData", fooDto);
+    },
+    getException() {
+      this.$store.dispatch("fooModule/launchException");
     }
   },
   computed: {
