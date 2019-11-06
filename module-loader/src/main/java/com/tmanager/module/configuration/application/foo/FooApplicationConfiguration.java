@@ -1,4 +1,4 @@
-package com.tmanager.module.configuration.application;
+package com.tmanager.module.configuration.application.foo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import com.tmanager.module.domain.foo.port.DeleteFooPersistancePort;
 import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 
 @Configuration
-public class ApplicationConfiguration {
+public class FooApplicationConfiguration {
 
     @Bean
     public CreateFooService fooCreateService(CreateFooPersistancePort fooPersistencePort) {

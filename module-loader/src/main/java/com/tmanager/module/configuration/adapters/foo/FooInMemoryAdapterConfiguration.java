@@ -1,4 +1,4 @@
-package com.tmanager.module.configuration.adapters;
+package com.tmanager.module.configuration.adapters.foo;
 
 import java.util.HashMap;
 import java.util.Map;
