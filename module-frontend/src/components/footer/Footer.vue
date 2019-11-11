@@ -1,6 +1,6 @@
 <template>
   <v-footer app>
-    <span class="white--text">&copy;T-Manager 2019</span>
+    <span>&copy;T-Manager 2019</span>
   </v-footer>
 </template>
 

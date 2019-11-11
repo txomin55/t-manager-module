@@ -19,6 +19,12 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
+    	<h4>ENV</h4> 
+    	({{env}})
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="text-center">
         <h4>{{ $t("yourData") }}</h4>
         {{ userData }}
       </v-col>
@@ -72,7 +78,8 @@ export default {
       selectedTheme: null,
       themes: Object.keys(window.t_manager.plugins.Themes),
       languages: [{ flag: "es", id: "es" }, { flag: "gb", id: "en" }],
-      colors: []
+      colors: [],
+      env : process.env.VUE_APP_ENV
     };
   },
   methods: {
