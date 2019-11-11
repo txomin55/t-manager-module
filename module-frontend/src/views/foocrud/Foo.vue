@@ -21,6 +21,14 @@
     </v-row>
 
     <v-row>
+      <v-col class="text-center">
+        <v-btn @click="getServerMsg()">
+          {{ $t("fooCrud.messageFromServer") }}
+        </v-btn>
+      </v-col>
+    </v-row>
+
+    <v-row>
       <v-col>
         <commons-crud-panel :crudConfig="getCrudConfig()" />
       </v-col>
@@ -86,11 +94,15 @@ export default {
     },
     getException() {
       this.$store.dispatch("fooModule/launchException");
+    },
+    getServerMsg() {
+      alert(this.serverMsg);
     }
   },
   computed: {
     ...mapState({
-      foos: state => state.fooModule.foos
+      foos: state => state.fooModule.foos,
+      serverMsg: state => state.fooModule.msg
     })
   },
   mounted() {

@@ -6,6 +6,7 @@
     "fooCrud.description": "Esto provee peticiones GET, POST y DELETE desde tu controlador FooController",
     "fooCrud.exception": "Excepción",
     "fooCrud.title": "PANEL CREA/EDITAR FOO",
+    "fooCrud.messageFromServer" : "Msg de servidor",
     "error.close" : "Cerrar",
     "selectTheme" : "Seleccionar tema",
     "dark" : "Oscuro",

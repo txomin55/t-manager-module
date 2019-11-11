@@ -6,6 +6,7 @@
     "fooCrud.description": "This provides GET, POST and DELETE requests from your modules FooController",
     "fooCrud.exception": "Exception",
     "fooCrud.title": "CREATE/EDIT PANEL FOO",
+    "fooCrud.messageFromServer" : "Server msg",
     "error.close" : "Close",
     "selectTheme" : "Select a theme",
     "dark" : "Dark",

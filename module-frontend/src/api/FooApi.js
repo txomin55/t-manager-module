@@ -1,7 +1,7 @@
 import axios from "axios";
 import store from "../store";
 
-const ADDRESS = process.env.VUE_APP_ADDRESS
+const ADDRESS = process.env.VUE_APP_ADDRESS;
 
 export function getFoo(cb) {
   axios
@@ -43,5 +43,14 @@ export function launchException() {
   axios
     .get(`${ADDRESS}/${store.state.module}/foo/exception`)
     .then(() => {})
+    .catch(() => {});
+}
+
+export function getFooMsg(cb) {
+  axios
+    .get(`${ADDRESS}/${store.state.module}/foo/fooI18nSample`)
+    .then(result => {
+      cb(result.data);
+    })
     .catch(() => {});
 }

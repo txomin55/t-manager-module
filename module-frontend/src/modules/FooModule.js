@@ -4,12 +4,16 @@ export default {
   namespaced: true,
   state() {
     return {
-      foos: []
+      foos: [],
+      msg: ""
     };
   },
   mutations: {
     INIT_FOO_DATA(state, list) {
       state.foos = list;
+    },
+    INIT_FOO_MSG_DATA(state, msg) {
+      state.msg = msg;
     },
     CREATE_FOO(state, data) {
       state.foos.push(data);
@@ -27,6 +31,9 @@ export default {
     initFooData(context) {
       FooApi.getFoo(foos => {
         context.commit("INIT_FOO_DATA", foos);
+      });
+      FooApi.getFooMsg(msg => {
+        context.commit("INIT_FOO_MSG_DATA", msg);
       });
     },
     createFooData(context, fooData) {
