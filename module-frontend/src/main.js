@@ -24,7 +24,7 @@ if (!window.t_manager) {
       loadApp();
     })
     .catch(() => {
-      console.error("NO HAY COMMONS");
+      console.error("NO COMMONS");
     });
 } else {
   loadApp();

@@ -24,7 +24,7 @@ if (!window.t_manager) {
       loadApp();
     })
     .catch(() => {
-      console.error("NO HAY COMMONS");
+      console.error("NO COMMONS");
     });
 } else {
   loadApp();
@@ -37,9 +37,8 @@ const loadApp = () => {
       // this route requires auth, check if logged in
       // if not, redirect to login page.
       if (!store.state.token) {
-        debugger;
         next({
-          path: "/login"
+          path: "/"
         });
       } else {
         next();
