@@ -11,7 +11,7 @@ server:
   port: 8002
   
 logging:
-  path: {systemProperties['user.home']}/logs/module
+  path: ${user.home}/logs/module
   
 module:
   oauth:
