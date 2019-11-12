@@ -11,9 +11,7 @@ server:
   port: 8002
   
 logging:
- level:
-  org.springframework.security: DEBUG
-  springframework.security.web.FilterChainProxy: DEBUG
+  path: logs
   
 module:
   oauth:

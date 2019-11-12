@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <springProfile name="dev">
+        <root level="info">
+            <appender-ref ref="STDOUT" />
+        </root>
+        <logger name="org.springframework.security" level="debug"> 
+            <appender-ref ref="STDOUT" />
+        </logger>
+        <logger name="springframework.security.web.FilterChainProxy" level="debug">
+            <appender-ref ref="STDOUT" />
+        </logger>
+        <!-- 
+        https://dzone.com/articles/configuring-logback-with-spring-boot
+        -->
+    </springProfile>
+
+    <springProfile name="prod">
+        <root level="info">
+            <appender-ref ref="SAVE-TO-FILE" />
+        </root>
+    </springProfile>
+
+</configuration>
