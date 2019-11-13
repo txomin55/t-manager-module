@@ -2,6 +2,9 @@
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/base.xml"/>
 	
+	<property name="LOG_FILE" value="LogFile" />
+	<property name="LOG_DIR" value="/var/logs/module" />
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n</pattern>
@@ -9,12 +12,12 @@
     </appender>
        
     <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logging.path}/log.log</file>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        <file>${LOG_DIR}/${LOG_FILE}.log</file>
+        <encoder>
             <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${logging.path}/archived/log_%d{dd-MM-yyyy}_%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_DIR}/archived/%d{yyyy/MM}/${LOG_FILE}%i.log</fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
             <maxHistory>30</maxHistory>
             <totalSizeCap>100MB</totalSizeCap>

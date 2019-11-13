@@ -10,9 +10,6 @@ server:
     context-path: /module
   port: 8002
   
-logging:
-  path: ${user.home}/logs/module
-  
 module:
   oauth:
     server:
