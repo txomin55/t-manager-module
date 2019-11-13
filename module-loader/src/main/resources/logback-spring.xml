@@ -4,11 +4,9 @@
     <springProfile name="dev">
         <root level="info">
             <appender-ref ref="STDOUT" />
+            <appender-ref ref="SAVE-TO-FILE" />
         </root>
         <logger name="org.springframework.security" level="debug"> 
-            <appender-ref ref="STDOUT" />
-        </logger>
-        <logger name="springframework.security.web.FilterChainProxy" level="debug">
             <appender-ref ref="STDOUT" />
         </logger>
         <!-- 
