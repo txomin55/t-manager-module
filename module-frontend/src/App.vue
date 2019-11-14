@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <app-navbar v-if="isLogged" />
+    <app-navbar />
 
     <v-content>
       <app-loading-handler />
@@ -25,13 +25,6 @@ export default {
     "app-error-handler": ErrorHandler,
     "app-loading-handler": LoadingHandler,
     "app-footer": Footer
-  },
-  computed: {
-    ...mapState({
-      isLogged: state => {
-        return state.token;
-      }
-    })
   }
 };
 </script>
