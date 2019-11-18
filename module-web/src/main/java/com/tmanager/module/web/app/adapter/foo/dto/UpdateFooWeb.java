@@ -1,15 +1,13 @@
-package com.tmanager.module.domain.foo.model;
+package com.tmanager.module.web.app.adapter.foo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @AllArgsConstructor
-public class Foo {
+@Getter
+public class UpdateFooWeb {
 
-	private int id;
+	private Integer id;
 	private String name;
 	private String value;
 }

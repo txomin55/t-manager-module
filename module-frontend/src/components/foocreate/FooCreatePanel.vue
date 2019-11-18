@@ -11,12 +11,10 @@
     <v-form v-model="valid">
       <v-container>
         <v-row>
-          <v-col sm="6" md="3">
+          <v-col sm="6" md="3" v-show="disabled">
             <v-text-field
               label="ID"
               v-model="id"
-              :rules="requiredRule"
-              required
               :disabled="disabled"
             ></v-text-field>
           </v-col>
