@@ -111,7 +111,6 @@ export default {
       this.$emit("close-modal");
     },
     setData() {
-      this.itemData.id = this.id;
       this.itemData.name = this.name;
       this.itemData.value = this.value;
     }
