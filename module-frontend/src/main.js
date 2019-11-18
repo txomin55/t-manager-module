@@ -48,35 +48,6 @@ const loadApp = () => {
     }
   });
 
-  ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
-  let firstTime = true;
-  const tokenUtils = new window.t_manager.plugins.TokenUtils(
-    store.state.module,
-    window.location.search.split("=")[1],
-    token => {
-      store.dispatch("updateToken", token);
-      if (firstTime) {
-        firstTime = false;
-        router.push("/home");
-      }
-    },
-    tManagerAccessToken => {
-      store.dispatch("updateToken", tManagerAccessToken);
-    }
-  );
-
-  if (!window.isModuleEnsambled) {
-    if (window.location.search.split("=")[0].includes("code")) {
-      tokenUtils.getAuthorizationToken();
-    }
-  } else if (window.isModuleEnsambled[store.state.module]) {
-    store.dispatch("updateToken", window.t_manager_access_token);
-    tokenUtils.refreshTManagerToken();
-    router.push("/home");
-  } else {
-    throw alert("NO AUTH TOKEN");
-  }
-
   ///////////////////////////LANGUAGE CONFIG///////////////////////////
   const i18n = new window.t_manager.plugins.LanguageUtils({
     en: EnMessages,
@@ -112,6 +83,35 @@ const loadApp = () => {
     }
   );
 
+    ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
+    let firstTime = true;
+    const tokenUtils = new window.t_manager.plugins.TokenUtils(
+      store.state.module,
+      window.location.search.split("=")[1],
+      token => {
+        store.dispatch("updateToken", token);
+        if (firstTime) {
+          firstTime = false;
+          router.push("/home");
+        }
+      },
+      tManagerAccessToken => {
+        store.dispatch("updateToken", tManagerAccessToken);
+      }
+    );
+  
+    if (!window.isModuleEnsambled) {
+      if (window.location.search.split("=")[0].includes("code")) {
+        tokenUtils.getAuthorizationToken();
+      }
+    } else if (window.isModuleEnsambled[store.state.module]) {
+      store.dispatch("updateToken", window.t_manager_access_token);
+      tokenUtils.refreshTManagerToken();
+      router.push("/home");
+    } else {
+      throw alert("NO AUTH TOKEN");
+    }
+    
   ///////////////////////////VUE CONFIG///////////////////////////
   const refreshId = setInterval(() => {
     if (store.state.token) {

@@ -48,10 +48,6 @@ const loadApp = () => {
     }
   });
 
-  ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
-  store.dispatch("updateToken", "token falso");
-  router.push("/home");
-
   ///////////////////////////LANGUAGE CONFIG///////////////////////////
   const i18n = new window.t_manager.plugins.LanguageUtils({
     en: EnMessages,
@@ -87,6 +83,10 @@ const loadApp = () => {
     }
   );
 
+  ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
+  store.dispatch("updateToken", "token falso");
+  router.push("/home");
+  
   ///////////////////////////VUE CONFIG///////////////////////////
   const refreshId = setInterval(() => {
     if (store.state.token) {
