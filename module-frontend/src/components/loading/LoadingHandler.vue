@@ -1,11 +1,12 @@
 <template>
   <div class="loading-handler">
     <v-overlay :value="loading">
-      <v-progress-linear
+      <v-progress-circular
+        :active="loading"
         indeterminate
         background-color="secondary"
         color="primary"
-      ></v-progress-linear>
+      ></v-progress-circular>
     </v-overlay>
   </div>
 </template>
