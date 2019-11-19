@@ -13,27 +13,27 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.tmanager.module.domain.foo.model.Foo;
-import com.tmanager.module.domain.foo.port.CreateFooPersistancePort;
+import com.tmanager.module.domain.foo.port.UpdateFooPersistancePort;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CreateFooServiceAdapterTest {
+public class UpdateFooServiceAdapterTest {
 
 	@Mock
-	private CreateFooPersistancePort createFooPersistancePort;
+	private UpdateFooPersistancePort updateFooPersistancePort;
 	
 	@Mock
 	private List<Foo> list;
 	
 	@Test
-	public void createFooServiceAdapter(){
+	public void updateFooServiceAdapter(){
 		
-		list = new ArrayList<Foo>();
-		
+		List<Foo> list = new ArrayList<Foo>();
 		list.add(new Foo(1, "TEST-1", "1"));
+		list.add(new Foo(2, "TEST-2", "2"));
 		
-		doNothing().when(createFooPersistancePort).createFoo(isA(Foo.class)); 
+		doNothing().when(updateFooPersistancePort).updateFoo(isA(Foo.class)); 
 		
-		createFooPersistancePort.createFoo(new Foo(2, "TEST-2", "2"));
+		updateFooPersistancePort.updateFoo(new Foo(2, "TEST-2-EDITED", "2-EDITED"));
 		
 		verify(list);
 	}

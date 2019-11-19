@@ -8,6 +8,8 @@
     "fooCrud.title": "CREATE/EDIT PANEL FOO",
     "fooCrud.messageFromServer" : "Server msg",
     "error.close" : "Close",
+    "validation.required" : "Value is required",
+    "validation.integer" : "The value must be a number",
     "selectTheme" : "Select a theme",
     "dark" : "Dark",
     "yourData" : "Your data",

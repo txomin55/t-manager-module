@@ -11,8 +11,9 @@
     <v-form v-model="valid">
       <v-container>
         <v-row>
-          <v-col sm="6" md="3" v-show="disabled">
+          <v-col sm="6" md="3">
             <v-text-field
+              v-show="disabled"
               label="ID"
               v-model="id"
               :disabled="disabled"
@@ -67,7 +68,7 @@ export default {
       name: null,
       value: null,
       valid: false,
-      requiredRule: [v => !!v || "Value is required"],
+      requiredRule: [v => !!v || this.$i18n.t("validation.required")],
       itemData: {}
     };
   },
