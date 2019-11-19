@@ -86,7 +86,7 @@ const loadApp = () => {
   ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
   store.dispatch("updateToken", "token falso");
   router.push("/home");
-  
+
   ///////////////////////////VUE CONFIG///////////////////////////
   const refreshId = setInterval(() => {
     if (store.state.token) {

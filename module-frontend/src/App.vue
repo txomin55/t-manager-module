@@ -17,7 +17,6 @@ import ErrorHandler from "@/components/error/ErrorHandler";
 import LoadingHandler from "@/components/loading/LoadingHandler";
 import Footer from "@/components/footer/Footer";
 import NavBar from "@/components/navbar/NavBar";
-import { mapState } from "vuex";
 
 export default {
   components: {

@@ -41,12 +41,11 @@
         <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-        </plugin>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
             <configuration>
                 <addResources>true</addResources>
+                <profiles>
+	                <profile>${spring.profiles.active}</profile>
+	            </profiles>
             </configuration>
         </plugin>
     </plugins>
@@ -61,4 +60,5 @@
         </resource>
     </resources>
   </build>
+  
 </project>

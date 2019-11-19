@@ -9,7 +9,7 @@ module.exports = {
     proxy: {
       "/": {
         target: "http://localhost:8002", // this configuration needs to correspond to the Spring Boot backends' application.yml server.port
-        ws: true,
+        ws: false,
         changeOrigin: true
       }
     }

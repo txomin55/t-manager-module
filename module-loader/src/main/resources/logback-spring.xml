@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <logger name="org.springframework" level="INFO"/>
+
     <property name="LOG_FILE" value="LogFile" />
 	<property name="LOG_DIR" value="/var/logs/module" />
 
-    <springProfile name="local-in-memory">
+    <springProfile name="develop-in-memory">
         <root level="INFO">
             <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		        <encoder>
@@ -28,7 +31,7 @@
 
     </springProfile>
 
-    <springProfile name="production">
+    <springProfile name="production-in-memory">
         <root level="ERROR">
             <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		        <file>${LOG_DIR}/${LOG_FILE}.log</file>

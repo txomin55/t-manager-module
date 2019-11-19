@@ -24,7 +24,9 @@ export default {
       });
     },
     EDIT_FOO_DATA(state, data) {
-      alert(JSON.stringify(data));
+      const item = state.foos.filter(it => it.id == data.id)[0];
+      item.name = data.name;
+      item.value = data.value;
     }
   },
   actions: {

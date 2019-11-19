@@ -45,5 +45,25 @@
 	    <version>2.3.0</version>
 	</dependency>
   </dependencies>
+  
+   <profiles>
+    <profile>
+        <id>develop-in-memory</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <spring.profiles.active>develop-in-memory</spring.profiles.active>
+            <npm.build>run build</npm.build>
+        </properties>
+    </profile>
+    <profile>
+        <id>production-in-memory</id>
+        <properties>
+            <spring.profiles.active>production-in-memory</spring.profiles.active>
+            <npm.build>run production-build</npm.build>
+        </properties>
+    </profile>
+  </profiles>
 
 </project>

@@ -19,8 +19,8 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
-    	<h4>ENV</h4> 
-    	({{env}})
+        <h4>ENV</h4>
+        ({{ env }})
       </v-col>
     </v-row>
     <v-row>
@@ -79,7 +79,7 @@ export default {
       themes: Object.keys(window.t_manager.plugins.Themes),
       languages: [{ flag: "es", id: "es" }, { flag: "gb", id: "en" }],
       colors: [],
-      env : process.env.VUE_APP_ENV
+      env: process.env.VUE_APP_ENV
     };
   },
   methods: {
