@@ -9,13 +9,13 @@
 
     <springProfile name="develop-in-memory">
         <root level="INFO">
-            <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" additivity="false">
 		        <encoder>
 		            <pattern>%d{yyyy-MM-dd HH:mm:ss} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n</pattern>
 		        </encoder>
 		    </appender>
 		       
-		    <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		    <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
 		        <file>${LOG_DIR}/${LOG_FILE}.log</file>
 		        <encoder>
 		            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
@@ -33,7 +33,7 @@
 
     <springProfile name="production-in-memory">
         <root level="ERROR">
-            <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
 		        <file>${LOG_DIR}/${LOG_FILE}.log</file>
 		        <encoder>
 		            <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
