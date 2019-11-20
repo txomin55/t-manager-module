@@ -11,7 +11,7 @@
     <v-form v-model="valid">
       <v-container>
         <v-row>
-          <v-col sm="6" md="3">
+          <v-col cols="12" sm="3">
             <v-text-field
               v-show="disabled"
               label="ID"
@@ -19,7 +19,7 @@
               :disabled="disabled"
             ></v-text-field>
           </v-col>
-          <v-col sm="6" md="3">
+          <v-col cols="12" sm="3">
             <v-text-field
               label="NAME"
               v-model="name"
@@ -28,7 +28,7 @@
               :disabled="disabled"
             ></v-text-field>
           </v-col>
-          <v-col sm="6" md="3">
+          <v-col cols="12" sm="3">
             <v-text-field
               label="VALUE"
               v-model="value"
