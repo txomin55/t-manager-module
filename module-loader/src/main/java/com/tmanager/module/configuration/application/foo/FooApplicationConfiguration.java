@@ -6,10 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import com.tmanager.module.application.foo.adapter.CreateFooServiceAdapter;
 import com.tmanager.module.application.foo.adapter.DeleteFooServiceAdapter;
 import com.tmanager.module.application.foo.adapter.GetFooListServiceAdapter;
+import com.tmanager.module.application.foo.adapter.GetFooServiceAdapter;
 import com.tmanager.module.application.foo.adapter.UpdateFooServiceAdapter;
 import com.tmanager.module.application.foo.port.CreateFooService;
 import com.tmanager.module.application.foo.port.DeleteFooService;
 import com.tmanager.module.application.foo.port.GetFooListService;
+import com.tmanager.module.application.foo.port.GetFooService;
 import com.tmanager.module.application.foo.port.UpdateFooService;
 import com.tmanager.module.domain.foo.port.CreateFooPersistancePort;
 import com.tmanager.module.domain.foo.port.DeleteFooPersistancePort;
@@ -38,5 +40,10 @@ public class FooApplicationConfiguration {
     @Bean
     public UpdateFooService updateFooService(UpdateFooPersistancePort updateFooPersistancePort, GetFooPersistancePort getFooPersistancePort) {
     	return new UpdateFooServiceAdapter(updateFooPersistancePort, getFooPersistancePort);
+    }
+    
+    @Bean
+    public GetFooService getFooService(GetFooPersistancePort getFooPersistancePort) {
+    	return new GetFooServiceAdapter(getFooPersistancePort);
     }
 }
