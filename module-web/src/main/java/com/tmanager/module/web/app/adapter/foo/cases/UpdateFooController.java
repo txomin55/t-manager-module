@@ -2,6 +2,7 @@ package com.tmanager.module.web.app.adapter.foo.cases;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,7 @@ public class UpdateFooController implements FooOperations {
     }
 
     @PutMapping
+    @ResponseBody
     public GetFooWeb createFoo(@RequestBody UpdateFooWeb fooDto) {
         fooService.updateFoo(new FooUpdateCommand(fooDto.getId(), fooDto.getName(), fooDto.getValue()));
         return new GetFooWeb(fooDto.getId(), fooDto.getName(), fooDto.getValue());

@@ -2,6 +2,7 @@ package com.tmanager.module.web.app.adapter.foo.cases;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tmanager.module.application.foo.command.FooGetCommand;
@@ -22,6 +23,7 @@ public class GetFooController implements FooOperations {
     }
 
     @GetMapping
+    @ResponseBody
     public GetFooWeb getFoos(Integer id) {
     	FooDTO foo = getFooService.getFoo(new FooGetCommand(id));
     	
