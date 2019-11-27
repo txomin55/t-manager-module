@@ -25,13 +25,13 @@ public class GetFooServiceAdapterTest {
 	public void getFooServiceAdapter(){
 		
 		List<Foo> list = new ArrayList<Foo>();
-		list.add(new Foo(1, "TEST-1", "1"));
-		list.add(new Foo(2, "TEST-2", "2"));
+		list.add(new Foo("1", "TEST-1", "1"));
+		list.add(new Foo("2", "TEST-2", "2"));
 		
-		when(getFooPersistancePort.getFoo(1)).thenReturn(list.get(0)); 
+		when(getFooPersistancePort.getFoo("1")).thenReturn(list.get(0)); 
 		
-		Foo foo = getFooPersistancePort.getFoo(1);
+		Foo foo = getFooPersistancePort.getFoo("1");
 		
-		assertThat(foo, is(foo.getId() == 1));
+		assertThat(foo, is(foo.getId().equals("1")));
 	}
 }

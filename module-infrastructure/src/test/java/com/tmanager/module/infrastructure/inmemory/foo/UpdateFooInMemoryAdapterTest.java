@@ -18,17 +18,17 @@ import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 public class UpdateFooInMemoryAdapterTest {
 
 	@Mock
-	private Map<Integer, FooEntity> simulatedFooMap;
+	private Map<String, FooEntity> simulatedFooMap;
 	
 	@Test
 	public void updateFooInMemoryAdapter(){
 		
-		simulatedFooMap = new HashMap<Integer, FooEntity>();
+		simulatedFooMap = new HashMap<String, FooEntity>();
 		
-		simulatedFooMap.put(1, new FooEntity(1, "Test 1", "1"));
-		simulatedFooMap.put(2, new FooEntity(2, "Test 2", "2"));
+		simulatedFooMap.put("1", new FooEntity("1", "Test 1", "1"));
+		simulatedFooMap.put("2", new FooEntity("2", "Test 2", "1"));
 		
-		Foo foo = new Foo(1, "UPDATED", "UPDATED");
+		Foo foo = new Foo("1", "UPDATED", "UPDATED");
 		
 		simulatedFooMap.put(foo.getId(), new FooEntity(foo));
 		

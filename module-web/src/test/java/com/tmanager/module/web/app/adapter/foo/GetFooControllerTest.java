@@ -20,7 +20,7 @@ public class GetFooControllerTest {
 	@Test
 	public void getFooController(){
 		
-    	FooDTO foo = getFooService.getFoo(new FooGetCommand(1));
+    	FooDTO foo = getFooService.getFoo(new FooGetCommand("1"));
     	
         GetFooWeb fooWeb = new GetFooWeb(foo.getId(), foo.getName(), foo.getValue());
 		

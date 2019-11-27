@@ -10,10 +10,10 @@ import com.tmanager.module.domain.foo.port.DeleteFooPersistancePort;
 public class DeleteFooInMemoryAdapter implements DeleteFooPersistancePort {
 
 	@Autowired
-	private Map<Integer, FooEntity> simulatedFooMap;
+	private Map<String, FooEntity> simulatedFooMap;
 
 	@Override
-	public void deleteFoo(int id) {
+	public void deleteFoo(String id) {
 		simulatedFooMap.remove(id);
 	}
 }

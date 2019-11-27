@@ -1,5 +1,7 @@
 package com.tmanager.module.web.app.adapter.foo;
 
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -17,6 +19,6 @@ public class UpdateFooControllerTest {
 	@Test
 	public void getFooListController(){
 		
-		updateFooService.updateFoo(new FooUpdateCommand(1, "UPDATED", "UPDATED"));		
+		updateFooService.updateFoo(new FooUpdateCommand(UUID.randomUUID().toString(), "UPDATED", "UPDATED"));		
 	}
 }

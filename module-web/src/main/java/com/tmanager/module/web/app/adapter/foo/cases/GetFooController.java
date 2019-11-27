@@ -24,7 +24,7 @@ public class GetFooController implements FooOperations {
 
     @GetMapping
     @ResponseBody
-    public GetFooWeb getFoos(Integer id) {
+    public GetFooWeb getFoos(String id) {
     	FooDTO foo = getFooService.getFoo(new FooGetCommand(id));
     	
         return new GetFooWeb(foo.getId(), foo.getName(), foo.getValue());

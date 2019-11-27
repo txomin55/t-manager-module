@@ -11,10 +11,10 @@ import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 public class GetFooInMemoryAdapter implements GetFooPersistancePort {
 
 	@Autowired
-	private Map<Integer, FooEntity> simulatedFooMap;
+	private Map<String, FooEntity> simulatedFooMap;
 
 	@Override
-	public Foo getFoo(Integer id) {
+	public Foo getFoo(String id) {
 		FooEntity fooEnt = simulatedFooMap.get(id);
 		return new Foo(fooEnt.getId(), fooEnt.getName(), fooEnt.getValue());
 	}

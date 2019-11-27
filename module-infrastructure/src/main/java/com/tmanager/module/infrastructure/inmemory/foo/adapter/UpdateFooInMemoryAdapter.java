@@ -11,7 +11,7 @@ import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 public class UpdateFooInMemoryAdapter implements UpdateFooPersistancePort {
 
 	@Autowired
-	private Map<Integer, FooEntity> simulatedFooMap;
+	private Map<String, FooEntity> simulatedFooMap;
 
 	@Override
 	public void updateFoo(Foo foo) {

@@ -28,12 +28,12 @@ public class UpdateFooServiceAdapterTest {
 	public void updateFooServiceAdapter(){
 		
 		List<Foo> list = new ArrayList<Foo>();
-		list.add(new Foo(1, "TEST-1", "1"));
-		list.add(new Foo(2, "TEST-2", "2"));
+		list.add(new Foo("1", "TEST-1", "1"));
+		list.add(new Foo("2", "TEST-2", "2"));
 		
 		doNothing().when(updateFooPersistancePort).updateFoo(isA(Foo.class)); 
 		
-		updateFooPersistancePort.updateFoo(new Foo(2, "TEST-2-EDITED", "2-EDITED"));
+		updateFooPersistancePort.updateFoo(new Foo("2", "TEST-2-EDITED", "2-EDITED"));
 		
 		verify(list);
 	}

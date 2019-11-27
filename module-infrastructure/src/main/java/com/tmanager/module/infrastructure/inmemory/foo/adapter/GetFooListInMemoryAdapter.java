@@ -14,7 +14,7 @@ import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 public class GetFooListInMemoryAdapter implements GetFooListPersistancePort {
 
 	@Autowired
-	private Map<Integer, FooEntity> simulatedFooMap;
+	private Map<String, FooEntity> simulatedFooMap;
 
 	@Override
 	public List<Foo> getFoo() {

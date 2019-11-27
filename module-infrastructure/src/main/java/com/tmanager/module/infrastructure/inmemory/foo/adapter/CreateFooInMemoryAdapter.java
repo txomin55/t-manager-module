@@ -11,7 +11,7 @@ import com.tmanager.module.domain.foo.port.CreateFooPersistancePort;
 public class CreateFooInMemoryAdapter implements CreateFooPersistancePort {
 
 	@Autowired
-	private Map<Integer, FooEntity> simulatedFooMap;
+	private Map<String, FooEntity> simulatedFooMap;
 
 	@Override
 	public void createFoo(Foo foo) {

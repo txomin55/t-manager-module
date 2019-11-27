@@ -18,13 +18,13 @@ import com.tmanager.module.domain.foo.model.Foo;
 public class CreateFooInMemoryAdapterTest {
 
 	@Mock
-	private Map<Integer, FooEntity> simulatedFooMap;
+	private Map<String, FooEntity> simulatedFooMap;
 	
 	public void createFooInMemoryAdapter(){
 		
-		simulatedFooMap = new HashMap<Integer, FooEntity>();
+		simulatedFooMap = new HashMap<String, FooEntity>();
 		
-		Integer id = simulatedFooMap.size() + 1;
+		String id = "" + simulatedFooMap.size() + 1;
 		String name = "Soy " + id;
 		Foo foo = new Foo(id, name, "1");
 		

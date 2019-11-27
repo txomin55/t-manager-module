@@ -21,15 +21,15 @@ import com.tmanager.module.domain.foo.model.Foo;
 public class GetFooListInMemoryAdapterTest {
 
 	@Mock
-	private Map<Integer, FooEntity> simulatedFooMap;
+	private Map<String, FooEntity> simulatedFooMap;
 	
 	@Test
 	public void getFooListInMemoryAdapter(){
 		
-		simulatedFooMap = new HashMap<Integer, FooEntity>();
+		simulatedFooMap = new HashMap<String, FooEntity>();
 		
-		simulatedFooMap.put(1, new FooEntity(1, "Test 1", "1"));
-		simulatedFooMap.put(2, new FooEntity(2, "Test 2", "2"));
+		simulatedFooMap.put("1", new FooEntity("1", "Test 1", "1"));
+		simulatedFooMap.put("2", new FooEntity("2", "Test 2", "1"));
 		
 		ArrayList<Foo> foos = new ArrayList<Foo>(simulatedFooMap.values().stream().map(foo -> {
 			return new Foo(foo.getId(), foo.getName(), foo.getValue());

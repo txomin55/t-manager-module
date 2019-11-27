@@ -24,7 +24,7 @@ public class CreateFooController implements FooOperations {
 
     @PostMapping
     public GetFooWeb createFoo(@RequestBody CreateFooWeb fooDto) {
-        int id = fooService.createFoo(new FooCreateCommand(fooDto.getName(), fooDto.getValue()));
+        String id = fooService.createFoo(new FooCreateCommand(fooDto.getName(), fooDto.getValue()));
         return new GetFooWeb(id, fooDto.getName(), fooDto.getValue());
     }
 }

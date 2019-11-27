@@ -21,7 +21,7 @@ public class DeleteFooController implements FooOperations {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteFoo(@PathVariable int id) {
+    public void deleteFoo(@PathVariable String id) {
         deleteFooService.deleteFoo(new FooDeleteCommand(id));
     }
 }

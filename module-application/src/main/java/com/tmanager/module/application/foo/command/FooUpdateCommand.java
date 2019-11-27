@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class FooUpdateCommand {
 
-	private Integer id;
+	private String id;
 	private String name;
 	private String value;
 }

@@ -9,7 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class FooEntity {
 
-    private int id;
+    private String id;
     private String name;
     private String value;
 

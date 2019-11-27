@@ -4,5 +4,5 @@ import com.tmanager.module.application.foo.command.FooCreateCommand;
 
 public interface CreateFooService {
 
-	int createFoo(FooCreateCommand command);
+	String createFoo(FooCreateCommand command);
 }

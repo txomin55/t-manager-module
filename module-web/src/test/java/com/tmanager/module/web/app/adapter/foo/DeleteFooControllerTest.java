@@ -17,7 +17,7 @@ public class DeleteFooControllerTest {
 	@Test
 	public void deleteFooControllerTest(){
 		
-		int id = 1;
+		String id = "1";
 		
 		deleteFooService.deleteFoo(new FooDeleteCommand(id));
 	}

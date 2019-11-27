@@ -4,5 +4,5 @@ import com.tmanager.module.domain.foo.model.Foo;
 
 public interface GetFooPersistancePort {
 
-	Foo getFoo(Integer id);
+	Foo getFoo(String id);
 }

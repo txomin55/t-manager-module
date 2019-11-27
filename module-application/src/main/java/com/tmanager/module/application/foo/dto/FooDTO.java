@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class FooDTO {
 
-	private int id;
+	private String id;
 	private String name;
 	private String value;
 }

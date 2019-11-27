@@ -18,16 +18,16 @@ import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 public class DeleteFooInMemoryAdapterTest {
 
 	@Mock
-	private Map<Integer, FooEntity> simulatedFooMap;
+	private Map<String, FooEntity> simulatedFooMap;
 	
 	public void deleteFooListInMemoryAdapter(){
 		
-		simulatedFooMap = new HashMap<Integer, FooEntity>();
+		simulatedFooMap = new HashMap<String, FooEntity>();
 		
-		simulatedFooMap.put(1, new FooEntity(1, "Test 1", "1"));
-		simulatedFooMap.put(2, new FooEntity(2, "Test 2", "1"));
+		simulatedFooMap.put("1", new FooEntity("1", "Test 1", "1"));
+		simulatedFooMap.put("2", new FooEntity("2", "Test 2", "1"));
 		
-		Integer id = simulatedFooMap.entrySet().stream()
+		String id = simulatedFooMap.entrySet().stream()
 													.findAny()
 													.get()
 													.getKey();

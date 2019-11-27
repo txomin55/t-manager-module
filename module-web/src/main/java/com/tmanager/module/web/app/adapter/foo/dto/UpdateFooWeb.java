@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class UpdateFooWeb {
 
-	private Integer id;
+	private String id;
 	private String name;
 	private String value;
 }

@@ -2,6 +2,7 @@ package com.tmanager.module.configuration.adapters.foo;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,10 +25,13 @@ import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 public class FooInMemoryAdapterConfiguration {
 
     @Bean
-    public Map<Integer, FooEntity> simulatedFooMap() {
-        Map<Integer, FooEntity> fooMap = new HashMap<Integer, FooEntity>();
-        fooMap.put(0, new FooEntity(0, "Soy 0", "1"));
-        fooMap.put(1, new FooEntity(1, "Soy 1", "2"));
+    public Map<String, FooEntity> simulatedFooMap() {
+        Map<String, FooEntity> fooMap = new HashMap<String, FooEntity>();
+        String id1 = UUID.randomUUID().toString();
+		String id2 = UUID.randomUUID().toString();
+		
+        fooMap.put(id1, new FooEntity(id1, "Soy 0", "1"));
+        fooMap.put(id2, new FooEntity(id2, "Soy 1", "2"));
         return fooMap;
     }
 
