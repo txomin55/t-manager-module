@@ -22,7 +22,7 @@ public class GetFooListController implements FooOperations {
         this.getFooListService = getFooListService;
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public List<GetFooWeb> getFoos() {    	
         return getFooListService.getFoo().stream()
             .map(foo -> new GetFooWeb(foo.getId(), foo.getName(), foo.getValue()))
