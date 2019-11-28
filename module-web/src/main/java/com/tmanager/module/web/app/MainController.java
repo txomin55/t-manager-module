@@ -15,4 +15,9 @@ public class MainController {
     public String homePathInit() {
         return "forward:/index.html";
     }
+
+    @GetMapping("/js-file")
+    public String homeJSFile() {
+    	return "forward:/index.html";
+    }
 }
