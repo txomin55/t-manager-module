@@ -87,6 +87,7 @@
                                        <include>static/</include>
                                        <include>index.html</include>
 									   <include>favicon.ico</include>
+									   <include>module.js</include>
                                    </includes>
                                </resource>
                            </resources>
