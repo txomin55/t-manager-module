@@ -3,9 +3,9 @@ import store from "../store";
 
 const ADDRESS = process.env.VUE_APP_ADDRESS;
 
-export function getFoo(cb) {
+export function getFoos(cb) {
   axios
-    .get(`${ADDRESS}/${store.state.module}/foo`)
+    .get(`${ADDRESS}/${store.state.module}/foo/list`)
     .then(result => {
       cb(result.data);
     })

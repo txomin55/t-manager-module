@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
+import Home from "./views/home/Home.vue";
+import About from "./views/about/About.vue";
+import Foo from "./views/foocrud/Foo.vue";
 
 Vue.use(Router);
 
@@ -13,7 +16,7 @@ export default new Router({
     {
       path: "/home",
       name: "home",
-      component: () => import("./views/home/Home.vue"),
+      component: Home,
       meta: {
         requiresAuth: true
       }
@@ -21,7 +24,7 @@ export default new Router({
     {
       path: "/about",
       name: "about",
-      component: () => import("./views/about/About.vue"),
+      component: About,
       meta: {
         requiresAuth: true
       }
@@ -29,7 +32,7 @@ export default new Router({
     {
       path: "/foo",
       name: "foo",
-      component: () => import("./views/foocrud/Foo.vue"),
+      component: Foo,
       meta: {
         requiresAuth: true
       }

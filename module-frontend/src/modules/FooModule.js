@@ -31,7 +31,7 @@ export default {
   },
   actions: {
     initFooData(context) {
-      FooApi.getFoo(foos => {
+      FooApi.getFoos(foos => {
         context.commit("INIT_FOO_DATA", foos);
       });
       FooApi.getFooMsg(msg => {
