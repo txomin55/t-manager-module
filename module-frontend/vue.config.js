@@ -17,6 +17,9 @@ module.exports = {
   configureWebpack: {
     optimization: {
       splitChunks: false
+    },
+    output: {
+      filename: "module.js",
     }
   },
   css: {
