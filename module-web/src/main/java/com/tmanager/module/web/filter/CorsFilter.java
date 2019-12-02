@@ -7,13 +7,12 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile("local-in-memory")
 public class CorsFilter implements Filter {
 
 	@Override
@@ -21,11 +20,17 @@ public class CorsFilter implements Filter {
 			throws IOException, ServletException {
 
 		HttpServletResponse response = (HttpServletResponse) res;
-		response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+		HttpServletRequest request = (HttpServletRequest) req;
+		
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Methods", "*");
 		response.setHeader("Access-Control-Allow-Headers",
 				"Content-Type, Authorization, Content-Length, X-Requested-With");
 
-		chain.doFilter(req, res);
+		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+			response.setStatus(HttpServletResponse.SC_OK);
+		} else {
+			chain.doFilter(req, res);
+		}
 	}
 }
