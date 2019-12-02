@@ -17,7 +17,6 @@ Vue.use(LoadScript);
 window.Vue = Vue;
 Vue.config.productionTip = false;
 
-//"http://3.121.59.80:9999/dist/t_manager_common.js"
 if (!window.t_manager) {
   Vue.loadScript("http://3.121.59.80:9999/dist/t_manager_common.js")
     .then(() => {
