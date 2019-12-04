@@ -14,7 +14,6 @@ const global = window;
 
 Vue.use(LoadScript);
 
-window.Vue = Vue;
 Vue.config.productionTip = false;
 
 //"http://3.121.59.80:9999/dist/t_manager_common.js"
@@ -31,6 +30,9 @@ if (!window.t_manager) {
 }
 
 const loadApp = () => {
+
+  Vue.use(window.t_manager);
+
   ///////////////////////////ROUTER CONFIG///////////////////////////
   router.beforeEach((to, _from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -49,7 +51,7 @@ const loadApp = () => {
   });
 
   ///////////////////////////LANGUAGE CONFIG///////////////////////////
-  const i18n = new window.t_manager.plugins.LanguageUtils({
+  const i18n = new Vue.loadLanguageUtils({
     en: EnMessages,
     es: EsMessages
   });
@@ -58,7 +60,7 @@ const loadApp = () => {
   store.$i18n = i18n;
 
   ///////////////////////////VUETIFY CONFIG///////////////////////////
-  const vuetify = new window.t_manager.plugins.CustomVuetify(Vuetify, i18n);
+  const vuetify = new Vue.loadCustomVuetify(Vuetify, i18n);
 
   ///////////////////////////REQUESTS CONFIG///////////////////////////
   axios.interceptors.request.use(request => {
