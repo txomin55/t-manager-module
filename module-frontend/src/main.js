@@ -12,7 +12,6 @@ if(!Vue.prototype.LoadScript){
   Vue.use(LoadScript);
 }
 
-window.Vue = Vue;
 Vue.config.productionTip = false;
 
 if (!window.t_manager) {

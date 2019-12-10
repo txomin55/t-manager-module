@@ -39,7 +39,7 @@
             <v-list-item-content>
               <v-list-item-title
                 ><router-link to="/home">{{
-                  $t("home")
+                  $t("module.home")
                 }}</router-link></v-list-item-title
               >
             </v-list-item-content>
@@ -63,7 +63,7 @@
             <v-list-item-content>
               <v-list-item-title
                 ><router-link to="/about">{{
-                  $t("about")
+                  $t("module.about")
                 }}</router-link></v-list-item-title
               >
             </v-list-item-content>
@@ -76,7 +76,7 @@
             <v-list-item-content>
               <v-list-item-title @click="logout()"
                 ><a color="primary" class="underline">{{
-                  $t("logout")
+                  $t("module.logout")
                 }}</a></v-list-item-title
               >
             </v-list-item-content>

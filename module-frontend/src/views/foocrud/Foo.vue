@@ -2,20 +2,20 @@
   <v-container>
     <v-row>
       <v-col class="text-center">
-        <h1>{{ $t("fooCrud.welcome") }}</h1>
+        <h1>{{ $t("module.fooCrud.welcome") }}</h1>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col class="text-center">
-        <h3>{{ $t("fooCrud.description") }}</h3>
+        <h3>{{ $t("module.fooCrud.description") }}</h3>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col class="text-center">
         <v-btn @click="getException()">
-          {{ $t("fooCrud.exception") }}
+          {{ $t("module.fooCrud.exception") }}
         </v-btn>
       </v-col>
     </v-row>
@@ -23,7 +23,7 @@
     <v-row>
       <v-col class="text-center">
         <v-btn @click="getServerMsg()">
-          {{ $t("fooCrud.messageFromServer") }}
+          {{ $t("module.fooCrud.messageFromServer") }}
         </v-btn>
       </v-col>
     </v-row>

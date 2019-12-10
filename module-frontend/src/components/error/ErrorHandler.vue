@@ -29,7 +29,7 @@ export default {
         const errorDTO = errorData.response.data;
         this.errors.push({
           showError: true,
-          title: `${this.$i18n.t("errorHandler.error")} ${errorDTO.date}`,
+          title: `${this.$i18n.t("module.errorHandler.error")} ${errorDTO.date}`,
           message: `${errorDTO.id}: ${errorDTO.msg}`,
           id: new Date().getTime(),
           timeout: timeout

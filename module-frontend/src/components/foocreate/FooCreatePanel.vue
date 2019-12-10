@@ -6,7 +6,7 @@
       </v-btn>
     </v-toolbar>
 
-    <v-card-title class="headline">{{ $t("fooCrud.title") }}</v-card-title>
+    <v-card-title class="headline">{{ $t("module.fooCrud.title") }}</v-card-title>
 
     <v-form v-model="valid">
       <v-container>
@@ -41,10 +41,10 @@
 
     <v-card-actions v-if="!disabled">
       <v-btn v-if="!isEdit" color="primary" dark @click="createFoo()">
-        {{ $t("create") }}
+        {{ $t("module.create") }}
       </v-btn>
       <v-btn v-if="isEdit" color="primary" dark @click="editFoo()">
-        {{ $t("edit") }}
+        {{ $t("module.edit") }}
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -68,7 +68,7 @@ export default {
       name: null,
       value: null,
       valid: false,
-      requiredRule: [v => !!v || this.$i18n.t("validation.required")],
+      requiredRule: [v => !!v || this.$i18n.t("module.validation.required")],
       itemData: {}
     };
   },

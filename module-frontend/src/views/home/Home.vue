@@ -12,7 +12,7 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <h1>{{ $t("helloWorld.welcomeMsg") }} (TEMPLATE)</h1>
+        <h1>{{ $t("module.helloWorld.welcomeMsg") }} (TEMPLATE)</h1>
         <h2>{{ msg1 }} (COMPUTED)</h2>
         <h2>{{ msg() }} (METHOD)</h2>
       </v-col>
@@ -25,7 +25,7 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <h4>{{ $t("yourData") }}</h4>
+        <h4>{{ $t("module.yourData") }}</h4>
         {{ userData }}
       </v-col>
     </v-row>
@@ -47,12 +47,12 @@
         <v-combobox
           v-model="selectedTheme"
           :items="themes"
-          :label="$t('selectTheme')"
+          :label="$t('module.selectTheme')"
         >
         </v-combobox>
       </v-col>
       <v-col sm="12" md="1">
-        <v-switch v-model="dark" :label="$t('dark')"> </v-switch>
+        <v-switch v-model="dark" :label="$t('module.dark')"> </v-switch>
       </v-col>
     </v-row>
     <v-row justify="center">
@@ -93,12 +93,12 @@ export default {
       this.colors = Object.keys(theme);
     },
     msg() {
-      return this.$i18n.t("helloWorld.welcomeMsgSub");
+      return this.$i18n.t("module.helloWorld.welcomeMsgSub");
     }
   },
   computed: {
     msg1() {
-      return this.$i18n.t("helloWorld.welcomeMsgSub");
+      return this.$i18n.t("module.helloWorld.welcomeMsgSub");
     },
     ...mapState({
       userData: state => state.userData
