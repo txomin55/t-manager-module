@@ -3,7 +3,9 @@ import Vuex from "vuex";
 import FooModule from "./modules/FooModule";
 import ConfigModule from "./modules/ConfigModule";
 
-Vue.use(Vuex);
+if(!Vue.prototype.dispatch){
+  Vue.use(Vuex);
+}
 
 export default new Vuex.Store({
   state: ConfigModule.state,

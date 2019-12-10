@@ -8,11 +8,9 @@ import EsMessages from "@/messages/es.json";
 import axios from "axios";
 import LoadScript from "vue-plugin-load-script";
 
-//MUST BE SET DUE SHEETS.JS
-// eslint-disable-next-line no-unused-vars
-const global = window;
-
-Vue.use(LoadScript);
+if(!Vue.prototype.loadScript){
+  Vue.use(LoadScript);
+}
 
 Vue.config.productionTip = false;
 
@@ -31,7 +29,8 @@ if (!window.t_manager) {
 
 const loadApp = () => {
 
-  Vue.use(window.t_manager);
+  debugger
+  window.t_manager.installComponents(Vue);
 
   ///////////////////////////ROUTER CONFIG///////////////////////////
   router.beforeEach((to, _from, next) => {
@@ -51,7 +50,7 @@ const loadApp = () => {
   });
 
   ///////////////////////////LANGUAGE CONFIG///////////////////////////
-  const i18n = new Vue.loadLanguageUtils({
+  const i18n = new Vue.loadLanguageUtils(Vue, {
     en: EnMessages,
     es: EsMessages
   });
@@ -60,7 +59,7 @@ const loadApp = () => {
   store.$i18n = i18n;
 
   ///////////////////////////VUETIFY CONFIG///////////////////////////
-  const vuetify = new Vue.loadCustomVuetify(Vuetify, i18n);
+  const vuetify = new Vue.loadCustomVuetify(Vue, Vuetify, i18n);
 
   ///////////////////////////REQUESTS CONFIG///////////////////////////
   axios.interceptors.request.use(request => {

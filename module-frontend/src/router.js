@@ -4,7 +4,9 @@ import Home from "./views/home/Home.vue";
 import About from "./views/about/About.vue";
 import Foo from "./views/foocrud/Foo.vue";
 
-Vue.use(Router);
+if(!Vue.prototype.getCurrentLocation){
+  Vue.use(Router);
+}
 
 export default new Router({
   mode: "history",
