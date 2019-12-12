@@ -4,7 +4,7 @@ import Home from "./views/home/Home.vue";
 import About from "./views/about/About.vue";
 import Foo from "./views/foocrud/Foo.vue";
 
-if(!Vue.prototype.getCurrentLocation){
+if (!Vue.prototype.getCurrentLocation) {
   Vue.use(Router);
 }
 

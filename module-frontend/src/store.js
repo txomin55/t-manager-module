@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import FooModule from "./modules/FooModule";
 import ConfigModule from "./modules/ConfigModule";
 
-if(!Vue.prototype.dispatch){
+if (!Vue.prototype.dispatch) {
   Vue.use(Vuex);
 }
 

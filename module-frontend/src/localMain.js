@@ -6,30 +6,11 @@ import store from "./store";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 import axios from "axios";
-import LoadScript from "vue-plugin-load-script";
-
-if(!Vue.prototype.loadScript){
-  Vue.use(LoadScript);
-}
 
 Vue.config.productionTip = false;
 
-//"http://3.121.59.80:9999/dist/t_manager_common.js"
-if (!window.t_manager) {
-  Vue.loadScript("http://localhost:9999/dist/t_manager_common.js")
-    .then(() => {
-      loadApp();
-    })
-    .catch(() => {
-      console.error("NO COMMONS");
-    });
-} else {
-  loadApp();
-}
-
 const loadApp = () => {
 
-  debugger
   window.t_manager.installComponents(Vue);
 
   ///////////////////////////ROUTER CONFIG///////////////////////////
@@ -103,3 +84,21 @@ const loadApp = () => {
     }
   }, 500);
 };
+
+//"http://3.121.59.80:9999/dist/t_manager_common.js"
+if (!window.t_manager) {
+  axios
+    .get(`http://localhost:9999/dist/t_manager_common.js`)
+    .then(result => {
+      const el = document.createElement("script");
+      el.type = "text/javascript";
+      el.id = `t_manager_common_js`;
+      el.text = result.data;
+      document.head.appendChild(el);
+
+      loadApp();
+    })
+    .catch(() => {});
+} else {
+  loadApp();
+}

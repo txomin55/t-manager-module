@@ -1,4 +1,5 @@
 import Vue from "vue";
+import WindowVue from "vue";
 import App from "./App.vue";
 import Vuetify from "vuetify/lib";
 import router from "./router";
@@ -6,30 +7,14 @@ import store from "./store";
 import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 import axios from "axios";
-import LoadScript from "vue-plugin-load-script";
 
-if(!Vue.prototype.LoadScript){
-  Vue.use(LoadScript);
-}
-
+window.Vue = WindowVue;
 Vue.config.productionTip = false;
 
-if (!window.t_manager) {
-  Vue.loadScript("http://3.121.59.80:9999/dist/t_manager_common.js")
-    .then(() => {
-      loadApp();
-    })
-    .catch(() => {
-      console.error("NO COMMONS");
-    });
-} else {
-  loadApp();
-}
-
 const loadApp = () => {
+  window.Vue = null;
 
   ///////////////////////////INSTALL COMPONENTS//////////////////////
-  debugger
   window.t_manager.installComponents(Vue);
 
   ///////////////////////////ROUTER CONFIG///////////////////////////
@@ -128,3 +113,15 @@ const loadApp = () => {
     }
   }, 500);
 };
+
+if (!window.t_manager) {
+  Vue.loadScript("http://localhost:9999/dist/t_manager_common.js")
+    .then(() => {
+      loadApp();
+    })
+    .catch(() => {
+      console.error("NO COMMONS");
+    });
+} else {
+  loadApp();
+}
