@@ -1,6 +1,7 @@
 import Vue from "vue";
 import WindowVue from "vue";
 import App from "./App.vue";
+import AppEmbebbed from "./AppEmbebbed.vue";
 import Vuetify from "vuetify/lib";
 import router from "./router";
 import store from "./store";
@@ -106,7 +107,7 @@ const loadApp = () => {
         router,
         store,
         vuetify,
-        render: h => h(App)
+        render: h => h( window.isModuleEnsambled && window.isModuleEnsambled[store.state.module] ? AppEmbebbed : App)
       }).$mount(`#${store.state.module}`);
 
       clearInterval(refreshId);
@@ -115,13 +116,18 @@ const loadApp = () => {
 };
 
 if (!window.t_manager) {
-  Vue.loadScript("http://localhost:9999/dist/t_manager_common.js")
-    .then(() => {
+  axios
+    .get(`http://localhost:9999/dist/t_manager_common.js`)
+    .then(result => {
+      const el = document.createElement("script");
+      el.type = "text/javascript";
+      el.id = `t_manager_common_js`;
+      el.text = result.data;
+      document.head.appendChild(el);
+
       loadApp();
     })
-    .catch(() => {
-      console.error("NO COMMONS");
-    });
+    .catch(() => {});
 } else {
   loadApp();
 }
