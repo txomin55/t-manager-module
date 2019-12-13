@@ -19,11 +19,11 @@ module.exports = {
       splitChunks: false
     },
     output: {
-      filename: "module.js",
+      filename: "module.js"
     }
   },
   css: {
-    extract: false,
+    extract: false
   },
   // Change build paths to make them Maven compatible
   // see https://cli.vuejs.org/config/

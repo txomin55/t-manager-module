@@ -6,7 +6,9 @@
       </v-btn>
     </v-toolbar>
 
-    <v-card-title class="headline">{{ $t("module.fooCrud.title") }}</v-card-title>
+    <v-card-title class="headline">{{
+      $t("module.fooCrud.title")
+    }}</v-card-title>
 
     <v-form v-model="valid">
       <v-container>

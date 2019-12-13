@@ -45,7 +45,11 @@ const loadApp = () => {
   store.$i18n = i18n;
 
   ///////////////////////////VUETIFY CONFIG///////////////////////////
-  const vuetify = new window.t_manager.plugins.CustomVuetify(Vue, Vuetify, i18n);
+  const vuetify = new window.t_manager.plugins.CustomVuetify(
+    Vue,
+    Vuetify,
+    i18n
+  );
 
   ///////////////////////////REQUESTS CONFIG///////////////////////////
   axios.interceptors.request.use(request => {
@@ -107,7 +111,13 @@ const loadApp = () => {
         router,
         store,
         vuetify,
-        render: h => h( window.isModuleEnsambled && window.isModuleEnsambled[store.state.module] ? AppEmbebbed : App)
+        render: h =>
+          h(
+            window.isModuleEnsambled &&
+              window.isModuleEnsambled[store.state.module]
+              ? AppEmbebbed
+              : App
+          )
       }).$mount(`#${store.state.module}`);
 
       clearInterval(refreshId);

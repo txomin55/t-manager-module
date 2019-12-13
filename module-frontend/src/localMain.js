@@ -10,7 +10,6 @@ import axios from "axios";
 Vue.config.productionTip = false;
 
 const loadApp = () => {
-
   window.t_manager.installComponents(Vue);
 
   ///////////////////////////ROUTER CONFIG///////////////////////////
