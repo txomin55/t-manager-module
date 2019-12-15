@@ -76,7 +76,7 @@ export default {
     return {
       dark: false,
       selectedTheme: null,
-      themes: Object.keys(this.$loadThemes()),
+      themes: Object.keys(window.t_manager.plugins.Themes),
       languages: [{ flag: "es", id: "es" }, { flag: "gb", id: "en" }],
       colors: [],
       env: process.env.VUE_APP_ENV

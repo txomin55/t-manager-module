@@ -1,7 +1,6 @@
 import Vue from "vue";
 import WindowVue from "vue";
 import App from "./App.vue";
-import AppEmbebbed from "./AppEmbebbed.vue";
 import Vuetify from "vuetify/lib";
 import router from "./router";
 import store from "./store";
@@ -25,7 +24,7 @@ const loadApp = () => {
       // if not, redirect to login page.
       if (!store.state.token) {
         next({
-          path: "/"
+          name: "init"
         });
       } else {
         next();
@@ -83,7 +82,7 @@ const loadApp = () => {
       store.dispatch("updateToken", token);
       if (firstTime) {
         firstTime = false;
-        router.push("/home");
+        router.push({ name: "home" });
       }
     },
     tManagerAccessToken => {
@@ -98,7 +97,7 @@ const loadApp = () => {
   } else if (window.isModuleEnsambled[store.state.module]) {
     store.dispatch("updateToken", window.t_manager_access_token);
     tokenUtils.refreshTManagerToken();
-    router.push("/home");
+    router.push({ name: "home" });
   } else {
     throw alert("NO AUTH TOKEN");
   }
@@ -111,13 +110,7 @@ const loadApp = () => {
         router,
         store,
         vuetify,
-        render: h =>
-          h(
-            window.isModuleEnsambled &&
-              window.isModuleEnsambled[store.state.module]
-              ? AppEmbebbed
-              : App
-          )
+        render: h => h(App)
       }).$mount(`#${store.state.module}`);
 
       clearInterval(refreshId);

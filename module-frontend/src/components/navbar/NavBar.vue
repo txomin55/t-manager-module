@@ -8,13 +8,13 @@
 
     <template v-if="$vuetify.breakpoint.smAndUp">
       <v-btn text>
-        <router-link to="/home">Home</router-link>
+        <router-link :to="{ name: 'home' }">Home</router-link>
       </v-btn>
       <v-btn text>
-        <router-link to="/foo">Foo</router-link>
+        <router-link :to="{ name: 'foo' }">Foo</router-link>
       </v-btn>
       <v-btn text icon>
-        <router-link to="/about" class="no-decoration"
+        <router-link :to="{ name: 'about' }" class="no-decoration"
           ><v-icon>mdi-help-circle-outline</v-icon></router-link
         >
       </v-btn>
@@ -38,7 +38,7 @@
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title
-                ><router-link to="/home">{{
+                ><router-link :to="{ name: 'home' }">{{
                   $t("module.home")
                 }}</router-link></v-list-item-title
               >
@@ -51,7 +51,9 @@
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title
-                ><router-link to="/foo">Foo</router-link></v-list-item-title
+                ><router-link :to="{ name: 'foo' }"
+                  >Foo</router-link
+                ></v-list-item-title
               >
             </v-list-item-content>
           </v-list-item>
@@ -62,7 +64,7 @@
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title
-                ><router-link to="/about">{{
+                ><router-link :to="{ name: 'about' }">{{
                   $t("module.about")
                 }}</router-link></v-list-item-title
               >
@@ -106,7 +108,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
-      this.$router.push("/");
+      this.$router.push({ name: "init" });
     }
   }
 };

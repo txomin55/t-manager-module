@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <app-navbar />
+    <app-navbar v-if="!isEmbebed" />
 
     <v-content>
       <app-loading-handler />
@@ -24,6 +24,13 @@ export default {
     "app-error-handler": ErrorHandler,
     "app-loading-handler": LoadingHandler,
     "app-footer": Footer
+  },
+  data() {
+    return {
+      isEmbebed:
+        window.isModuleEnsambled &&
+        window.isModuleEnsambled[this.$store.state.module]
+    };
   }
 };
 </script>

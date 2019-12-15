@@ -3,17 +3,26 @@ import Router from "vue-router";
 import Home from "./views/home/Home.vue";
 import About from "./views/about/About.vue";
 import Foo from "./views/foocrud/Foo.vue";
+import store from "./store";
 
 if (!Vue.prototype.getCurrentLocation) {
   Vue.use(Router);
 }
 
+const embebed =
+  window.isModuleEnsambled && window.isModuleEnsambled[store.state.module]
+    ? true
+    : false;
+
 export default new Router({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: embebed
+    ? `/${window.launcherNamePath}/${process.env.BASE_URL}`
+    : process.env.BASE_URL,
   routes: [
     {
-      path: "/"
+      path: "/",
+      name: "init"
     },
     {
       path: "/home",
