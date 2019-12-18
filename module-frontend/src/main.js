@@ -96,6 +96,7 @@ const loadApp = () => {
     }
   } else if (window.isModuleEnsambled[store.state.module]) {
     store.dispatch("updateToken", window.t_manager_access_token);
+    console.log("TOKEN DE LAUNCHER => " + store.state.token);
     tokenUtils.refreshTManagerToken();
     router.push({ name: "home" });
   } else {
