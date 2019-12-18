@@ -96,7 +96,7 @@ const loadApp = () => {
     }
   } else if (window.isModuleEnsambled[store.state.module]) {
     store.dispatch("updateToken", window.t_manager_access_token);
-    console.log("TOKEN DE LAUNCHER => " + store.state.token);
+    console.log("TOKEN DE LAUNCHER => " + store.state.token + " " + new Date());
     tokenUtils.refreshTManagerToken();
     router.push({ name: "home" });
   } else {
@@ -104,8 +104,13 @@ const loadApp = () => {
   }
 
   ///////////////////////////VUE CONFIG///////////////////////////
+  let i = 1;
   const refreshId = setInterval(() => {
+    console.log("INTENTO TOKEN " + i + " " + new Date());
+    i++;
     if (store.state.token) {
+
+      console.log("DENTRO TOKEN EN INTENTO " + i + " " + new Date());
       new Vue({
         i18n,
         router,
