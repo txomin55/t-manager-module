@@ -16,6 +16,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				"/actuator/**",
 				"/auth/**",
 				"/favicon.ico",
+				"/static/img/*",
 				"/module.js",
 				"/v2/api-docs",
                 "/configuration/ui",
