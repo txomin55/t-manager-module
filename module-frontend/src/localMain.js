@@ -84,7 +84,7 @@ const loadApp = () => {
   }, 500);
 };
 
-//"http://3.121.59.80:9999/dist/t_manager_common.js"
+//"http://18.194.82.207:9999/dist/t_manager_common.js"
 if (!window.t_manager) {
   axios
     .get(`http://localhost:9999/dist/t_manager_common.js`)
