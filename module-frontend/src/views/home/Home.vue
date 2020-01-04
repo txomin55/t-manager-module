@@ -2,12 +2,7 @@
   <v-container>
     <v-row text-center wrap>
       <v-col>
-        <v-img
-          :src="require('../../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        ></v-img>
+        <v-img :src="logo" class="my-3" contain height="200"></v-img>
       </v-col>
     </v-row>
     <v-row>
@@ -79,7 +74,8 @@ export default {
       themes: Object.keys(window.t_manager.plugins.Themes),
       languages: [{ flag: "es", id: "es" }, { flag: "gb", id: "en" }],
       colors: [],
-      env: process.env.VUE_APP_ENV
+      env: process.env.VUE_APP_ENV,
+      logo: `${process.env.VUE_APP_ADDRESS}/module/static/img/logo.svg`
     };
   },
   methods: {
