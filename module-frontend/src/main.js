@@ -109,7 +109,6 @@ const loadApp = () => {
     console.log("INTENTO TOKEN " + i + " " + new Date());
     i++;
     if (store.state.token) {
-
       console.log("DENTRO TOKEN EN INTENTO " + i + " " + new Date());
       new Vue({
         i18n,

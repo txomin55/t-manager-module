@@ -2,7 +2,7 @@
   <v-container>
     <v-row text-center wrap>
       <v-col>
-        <v-img :src="logo" class="my-3" contain height="200"></v-img>
+        <v-img :src="logo" class="text-center" contain height="200"></v-img>
       </v-col>
     </v-row>
     <v-row>
@@ -75,7 +75,7 @@ export default {
       languages: [{ flag: "es", id: "es" }, { flag: "gb", id: "en" }],
       colors: [],
       env: process.env.VUE_APP_ENV,
-      logo: `${process.env.VUE_APP_ADDRESS}/module/static/img/logo.svg`
+      logo: `${process.env.VUE_APP_ADDRESS}/module/static/img/logo.svg`,
     };
   },
   methods: {
