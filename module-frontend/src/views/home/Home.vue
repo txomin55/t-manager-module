@@ -75,7 +75,7 @@ export default {
       languages: [{ flag: "es", id: "es" }, { flag: "gb", id: "en" }],
       colors: [],
       env: process.env.VUE_APP_ENV,
-      logo: `${process.env.VUE_APP_ADDRESS}/module/static/img/logo.svg`,
+      logo: `${process.env.VUE_APP_ADDRESS}/module/static/logo.svg`,
     };
   },
   methods: {
