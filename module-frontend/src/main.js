@@ -124,6 +124,7 @@ const loadApp = () => {
 };
 
 if (!window.t_manager) {
+  console.log("T-MANAGER SE RECARGA");
   axios
     .get(`http://18.194.82.207:9999/dist/t_manager_common.js`)
     .then(result => {
@@ -137,5 +138,6 @@ if (!window.t_manager) {
     })
     .catch(() => {});
 } else {
+  console.log("T-MANAGER NO SE RECARGA");
   loadApp();
 }
