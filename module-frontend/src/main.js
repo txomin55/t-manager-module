@@ -23,9 +23,7 @@ const loadApp = () => {
       // this route requires auth, check if logged in
       // if not, redirect to login page.
       if (!store.state.token) {
-        next({
-          name: "init"
-        });
+        store.dispatch("logout");
       } else {
         next();
       }
@@ -74,14 +72,14 @@ const loadApp = () => {
   );
 
   ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
-  let firstTime = true;
+  let redirectHome = window.location.search.includes("=") ? true : false;
   const tokenUtils = new window.t_manager.plugins.TokenUtils(
     store.state.module,
     window.location.search.split("=")[1],
     token => {
       store.dispatch("updateToken", token);
-      if (firstTime) {
-        firstTime = false;
+      if (redirectHome) {
+        redirectHome = false;
         router.push({ name: "home" });
       }
     },
@@ -93,6 +91,13 @@ const loadApp = () => {
   if (!window.isModuleEnsambled) {
     if (window.location.search.split("=")[0].includes("code")) {
       tokenUtils.getAuthorizationToken();
+    } else {
+      const refreshToken = localStorage.getItem("refreshToken");
+      if (refreshToken) {
+        tokenUtils.forceRefreshToken(refreshToken);
+      } else {
+        store.dispatch("logout");
+      }
     }
   } else if (window.isModuleEnsambled[store.state.module]) {
     store.dispatch("updateToken", window.t_manager_access_token);
@@ -126,7 +131,7 @@ const loadApp = () => {
 if (!window.t_manager) {
   console.log("T-MANAGER SE RECARGA");
   axios
-    .get(`http://18.194.82.207:9999/dist/t_manager_common.js`)
+    .get(`http://localhost:9999/dist/t_manager_common.js`)
     .then(result => {
       const el = document.createElement("script");
       el.type = "text/javascript";

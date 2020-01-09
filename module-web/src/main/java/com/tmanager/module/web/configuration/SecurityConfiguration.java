@@ -1,6 +1,7 @@
 package com.tmanager.module.web.configuration;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -8,22 +9,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+        http.authorizeRequests().antMatchers("/api/*", "/api/**").authenticated();
+    }
+	
+	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring()
-		.antMatchers(
-				"/", 
-				"/init/**",
-				"/actuator/**",
-				"/auth/**",
-				"/favicon.ico",
-				"/static/*",
-				"/module.js",
-				"/v2/api-docs",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/webjars/**"
-		);
+		.regexMatchers("^((?!\\/api).)*$");
 	}
 }

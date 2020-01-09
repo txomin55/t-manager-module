@@ -57,6 +57,7 @@ export default {
     },
     logout(context) {
       context.commit("UPDATE_TOKEN", null);
+      window.location.href = `/${MODULE_NAME}`;
     }
   }
 };

@@ -5,7 +5,7 @@ const ADDRESS = process.env.VUE_APP_ADDRESS;
 
 export function getFoos(cb) {
   axios
-    .get(`${ADDRESS}/${store.state.module}/foo/list`)
+    .get(`${ADDRESS}/${store.state.module}/api/foo/list`)
     .then(result => {
       cb(result.data);
     })
@@ -14,7 +14,7 @@ export function getFoos(cb) {
 
 export function createFoo(foo, cb) {
   axios
-    .post(`${ADDRESS}/${store.state.module}/foo`, foo)
+    .post(`${ADDRESS}/${store.state.module}/api/foo`, foo)
     .then(result => {
       cb(result.data);
     })
@@ -23,7 +23,7 @@ export function createFoo(foo, cb) {
 
 export function editFoo(foo, cb) {
   axios
-    .put(`${ADDRESS}/${store.state.module}/foo`, foo)
+    .put(`${ADDRESS}/${store.state.module}/api/foo`, foo)
     .then(result => {
       cb(result.data);
     })
@@ -32,7 +32,7 @@ export function editFoo(foo, cb) {
 
 export function deleteFoo(id, cb) {
   axios
-    .delete(`${ADDRESS}/${store.state.module}/foo/${id}`)
+    .delete(`${ADDRESS}/${store.state.module}/api/foo/${id}`)
     .then(() => {
       cb(id);
     })
@@ -41,14 +41,14 @@ export function deleteFoo(id, cb) {
 
 export function launchException() {
   axios
-    .get(`${ADDRESS}/${store.state.module}/foo/exception`)
+    .get(`${ADDRESS}/${store.state.module}/api/foo/exception`)
     .then(() => {})
     .catch(() => {});
 }
 
 export function getFooMsg(cb) {
   axios
-    .get(`${ADDRESS}/${store.state.module}/foo/fooI18nSample`)
+    .get(`${ADDRESS}/${store.state.module}/api/foo/api/fooI18nSample`)
     .then(result => {
       cb(result.data);
     })
