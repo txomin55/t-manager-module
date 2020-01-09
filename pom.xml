@@ -64,6 +64,23 @@
             <npm.build>run production-build</npm.build>
         </properties>
     </profile>
+    <profile>
+        <id>develop-mongo</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <spring.profiles.active>develop-mongo</spring.profiles.active>
+            <npm.build>run build</npm.build>
+        </properties>
+    </profile>
+    <profile>
+        <id>production-mongo</id>
+        <properties>
+            <spring.profiles.active>production-mongo</spring.profiles.active>
+            <npm.build>run production-build</npm.build>
+        </properties>
+    </profile>
   </profiles>
 
 </project>

@@ -1,0 +1,12 @@
+module:
+  oauth:
+    clientRedirectUrl: http://18.194.82.207:8002/module/init
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      username: Admin
+      password: Admin
+      host: 18.194.82.207
+      port: 27017
+      database: t-manager-module
