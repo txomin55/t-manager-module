@@ -94,7 +94,7 @@ const loadApp = () => {
     } else {
       const refreshToken = localStorage.getItem("refreshToken");
       if (refreshToken) {
-        tokenUtils.forceRefreshToken(refreshToken);
+        tokenUtils.forceRefreshToken(refreshToken, () => store.dispatch("logout"));
       } else {
         store.dispatch("logout");
       }
