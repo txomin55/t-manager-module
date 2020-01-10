@@ -6,5 +6,5 @@ import com.tmanager.module.application.foo.dto.FooDTO;
 
 public interface GetFooListService {
 
-	List<FooDTO> getFoo();
+	List<FooDTO> getFoo(String owner);
 }

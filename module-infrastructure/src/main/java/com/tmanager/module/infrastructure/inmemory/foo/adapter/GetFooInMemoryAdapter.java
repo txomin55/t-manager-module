@@ -16,6 +16,6 @@ public class GetFooInMemoryAdapter implements GetFooPersistancePort {
 	@Override
 	public Foo getFoo(String id) {
 		FooEntity fooEnt = simulatedFooMap.get(id);
-		return new Foo(fooEnt.getId(), fooEnt.getName(), fooEnt.getValue());
+		return new Foo(fooEnt.getId(), fooEnt.getName(), fooEnt.getValue(), fooEnt.getOwner());
 	}
 }

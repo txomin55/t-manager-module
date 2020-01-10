@@ -30,8 +30,8 @@ public class FooInMemoryAdapterConfiguration {
         String id1 = UUID.randomUUID().toString();
 		String id2 = UUID.randomUUID().toString();
 		
-        fooMap.put(id1, new FooEntity(id1, "Soy 0", "1"));
-        fooMap.put(id2, new FooEntity(id2, "Soy 1", "2"));
+        fooMap.put(id1, new FooEntity(id1, "Soy 0", "1", "1"));
+        fooMap.put(id2, new FooEntity(id2, "Soy 1", "2", "1"));
         return fooMap;
     }
 

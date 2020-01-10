@@ -2,6 +2,7 @@ package com.tmanager.module.application.foo;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -25,12 +26,14 @@ public class GetFooListServiceAdapterTest {
 	public void getFooListServiceAdapter(){
 		
 		List<Foo> list = new ArrayList<Foo>();
-		list.add(new Foo("1", "TEST-1", "1"));
-		list.add(new Foo("2", "TEST-2", "2"));
+		list.add(new Foo("1", "TEST-1", "1", "1"));
+		list.add(new Foo("2", "TEST-2", "2", "1"));
 		
-		when(getFooListPersistancePort.getFoo()).thenReturn(list); 
+		String owner = "1";
 		
-		List<Foo> myList = getFooListPersistancePort.getFoo();
+		when(getFooListPersistancePort.getFoo(isA(String.class))).thenReturn(list); 
+		
+		List<Foo> myList = getFooListPersistancePort.getFoo(owner);
 		
 		assertThat(myList, is(myList.size() == 2));
 	}

@@ -9,4 +9,5 @@ public class FooCreateCommand {
 
 	private String name;
 	private String value;
+	private String owner; 
 }

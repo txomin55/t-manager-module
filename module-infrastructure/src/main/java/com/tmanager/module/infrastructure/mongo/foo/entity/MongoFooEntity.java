@@ -21,10 +21,12 @@ public class MongoFooEntity implements Serializable{
     private String id;
     private String name;
     private String value;
+    private String owner;
 
     public MongoFooEntity(Foo foo) {
         this.id = foo.getId();
         this.name = foo.getName();
         this.value = foo.getValue();
+        this.owner = foo.getOwner();
     }
 }

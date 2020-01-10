@@ -22,7 +22,7 @@ public class CreateFooServiceAdapter implements CreateFooService {
     public String createFoo(FooCreateCommand command) {
     	
     	String randomNum = UUID.randomUUID().toString();
-        Foo foo = new Foo(randomNum, command.getName(), command.getValue());
+        Foo foo = new Foo(randomNum, command.getName(), command.getValue(), command.getOwner());
         fooPersistancePort.createFoo(foo);
         
         return randomNum;

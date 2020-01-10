@@ -19,7 +19,13 @@ public class GetFooServiceAdapter implements GetFooService {
 
 	@Override
 	public FooDTO getFoo(FooGetCommand command) {
+				
 		Foo foo = getFooPersistancePort.getFoo(command.getId());
-		return new FooDTO(foo.getId(), foo.getName(), foo.getValue()); 
+		
+		if(!foo.getOwner().equals(command.getOwner())) {
+			
+		}
+		
+		return new FooDTO(foo.getId(), foo.getName(), foo.getValue(), foo.getOwner()); 
 	}
 }

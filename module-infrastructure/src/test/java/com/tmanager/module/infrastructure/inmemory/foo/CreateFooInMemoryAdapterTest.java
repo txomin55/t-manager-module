@@ -26,7 +26,7 @@ public class CreateFooInMemoryAdapterTest {
 		
 		String id = "" + simulatedFooMap.size() + 1;
 		String name = "Soy " + id;
-		Foo foo = new Foo(id, name, "1");
+		Foo foo = new Foo(id, name, "1", "1");
 		
 		int initalNFoo = simulatedFooMap.size();
 		

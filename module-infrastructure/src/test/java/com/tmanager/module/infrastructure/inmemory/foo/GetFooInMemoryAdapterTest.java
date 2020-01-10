@@ -25,11 +25,11 @@ public class GetFooInMemoryAdapterTest {
 		
 		simulatedFooMap = new HashMap<String, FooEntity>();
 		
-		simulatedFooMap.put("1", new FooEntity("1", "Test 1", "1"));
-		simulatedFooMap.put("2", new FooEntity("2", "Test 2", "1"));
+		simulatedFooMap.put("1", new FooEntity("1", "Test 1", "1", "1"));
+		simulatedFooMap.put("2", new FooEntity("2", "Test 2", "1", "1"));
 		
 		FooEntity fooEnt = simulatedFooMap.get("1");
-		Foo foo = new Foo(fooEnt.getId(), fooEnt.getName(), fooEnt.getValue());
+		Foo foo = new Foo(fooEnt.getId(), fooEnt.getName(), fooEnt.getValue(), fooEnt.getOwner());
 		
 		assertThat(foo, is(foo.getId().equals("1")));
 	}

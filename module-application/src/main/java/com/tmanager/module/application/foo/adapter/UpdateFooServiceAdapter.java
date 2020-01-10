@@ -24,6 +24,11 @@ public class UpdateFooServiceAdapter implements UpdateFooService {
     public void updateFoo(FooUpdateCommand command) {
     	
     	Foo foo = getFooPersistancePort.getFoo(command.getId());
+    	
+    	if(!foo.getOwner().equals(command.getOwner())) {
+    		
+    	}
+    	
     	foo.setName(command.getName());
     	foo.setValue(command.getValue());
     	

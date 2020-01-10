@@ -12,10 +12,12 @@ public class FooEntity {
     private String id;
     private String name;
     private String value;
+    private String owner;
 
     public FooEntity(Foo foo) {
         this.id = foo.getId();
         this.name = foo.getName();
         this.value = foo.getValue();
+        this.value = foo.getOwner();
     }
 }

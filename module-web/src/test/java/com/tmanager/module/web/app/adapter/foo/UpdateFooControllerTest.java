@@ -19,6 +19,6 @@ public class UpdateFooControllerTest {
 	@Test
 	public void getFooListController(){
 		
-		updateFooService.updateFoo(new FooUpdateCommand(UUID.randomUUID().toString(), "UPDATED", "UPDATED"));		
+		updateFooService.updateFoo(new FooUpdateCommand(UUID.randomUUID().toString(), "UPDATED", "UPDATED", "1"));		
 	}
 }

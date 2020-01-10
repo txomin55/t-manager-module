@@ -18,7 +18,8 @@ public class DeleteFooControllerTest {
 	public void deleteFooControllerTest(){
 		
 		String id = "1";
+		String owner = "1";
 		
-		deleteFooService.deleteFoo(new FooDeleteCommand(id));
+		deleteFooService.deleteFoo(new FooDeleteCommand(id, owner));
 	}
 }

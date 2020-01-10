@@ -25,8 +25,8 @@ public class GetFooServiceAdapterTest {
 	public void getFooServiceAdapter(){
 		
 		List<Foo> list = new ArrayList<Foo>();
-		list.add(new Foo("1", "TEST-1", "1"));
-		list.add(new Foo("2", "TEST-2", "2"));
+		list.add(new Foo("1", "TEST-1", "1", "1"));
+		list.add(new Foo("2", "TEST-2", "2", "1"));
 		
 		when(getFooPersistancePort.getFoo("1")).thenReturn(list.get(0)); 
 		

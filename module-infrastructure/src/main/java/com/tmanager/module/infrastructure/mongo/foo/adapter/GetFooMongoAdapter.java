@@ -17,6 +17,6 @@ public class GetFooMongoAdapter implements GetFooPersistancePort {
 		
 		MongoFooEntity fooEnt = mongoTemplate.findById(id, MongoFooEntity.class);
 		
-		return new Foo(fooEnt.getId(), fooEnt.getName(), fooEnt.getValue());
+		return new Foo(fooEnt.getId(), fooEnt.getName(), fooEnt.getValue(), fooEnt.getOwner());
 	}
 }

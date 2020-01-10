@@ -20,10 +20,10 @@ public class GetFooListServiceAdapter implements GetFooListService {
 	}
 
 	@Override
-	public List<FooDTO> getFoo() {
-		List<Foo> foos = getFooListPersistancePort.getFoo();
+	public List<FooDTO> getFoo(String owner) {
+		List<Foo> foos = getFooListPersistancePort.getFoo(owner);
 
-		return foos.stream().map(foo -> new FooDTO(foo.getId(), foo.getName(), foo.getValue()))
+		return foos.stream().filter(foo -> foo.getOwner().equals(owner)).map(foo -> new FooDTO(foo.getId(), foo.getName(), foo.getValue(), foo.getOwner()))
 				.collect(Collectors.toList());
 	}
 }

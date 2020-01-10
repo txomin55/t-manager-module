@@ -21,7 +21,7 @@ public class GetFooListControllerTest {
 	@Test
 	public void getFooListController(){
 		
-		List<GetFooWeb> foos = getFooListService.getFoo().stream()
+		List<GetFooWeb> foos = getFooListService.getFoo("1").stream()
 					            .map(foo -> new GetFooWeb(foo.getId(), foo.getName(), foo.getValue()))
 					            .collect(Collectors.toList());
 		

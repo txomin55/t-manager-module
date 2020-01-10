@@ -6,5 +6,5 @@ import com.tmanager.module.domain.foo.model.Foo;
 
 public interface GetFooListPersistancePort {
 
-	List<Foo> getFoo();
+	List<Foo> getFoo(String owner);
 }

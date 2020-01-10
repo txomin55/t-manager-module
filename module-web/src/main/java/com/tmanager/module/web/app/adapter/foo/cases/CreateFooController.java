@@ -1,6 +1,7 @@
 package com.tmanager.module.web.app.adapter.foo.cases;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,8 @@ import com.tmanager.module.application.foo.port.CreateFooService;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 import com.tmanager.module.web.app.adapter.foo.dto.CreateFooWeb;
 import com.tmanager.module.web.app.adapter.foo.dto.GetFooWeb;
+import com.tmanager.module.web.util.Oauth2DetailDecoder;
+import com.tmanager.module.web.util.RequestUserDetails;
 
 @RestController
 public class CreateFooController implements FooOperations {
@@ -23,8 +26,11 @@ public class CreateFooController implements FooOperations {
     }
 
     @PostMapping
-    public GetFooWeb createFoo(@RequestBody CreateFooWeb fooDto) {
-        String id = fooService.createFoo(new FooCreateCommand(fooDto.getName(), fooDto.getValue()));
+    public GetFooWeb createFoo(@RequestBody CreateFooWeb fooDto, OAuth2Authentication auth) {
+
+        RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);
+        
+        String id = fooService.createFoo(new FooCreateCommand(fooDto.getName(), fooDto.getValue(), details.getOrganization()));
         return new GetFooWeb(id, fooDto.getName(), fooDto.getValue());
     }
 }

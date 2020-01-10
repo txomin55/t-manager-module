@@ -12,4 +12,5 @@ public class Foo {
 	private String id;
 	private String name;
 	private String value;
+	private String owner;
 }

@@ -18,7 +18,7 @@ public class CreateFooControllerTest {
 	@Test
 	public void createFooController(){
 		
-		String fooId = fooService.createFoo(new FooCreateCommand("TEST-FOO", "1"));
+		String fooId = fooService.createFoo(new FooCreateCommand("TEST-FOO", "1", "1"));
 		
 		Assert.isTrue(fooId != null, "Foo successfully created");
 	}
