@@ -33,8 +33,8 @@ public class FooApplicationConfiguration {
     }
 
     @Bean
-    public DeleteFooService deleteFooService(DeleteFooPersistancePort deleteFooPersistancePort) {
-        return new DeleteFooServiceAdapter(deleteFooPersistancePort);
+    public DeleteFooService deleteFooService(DeleteFooPersistancePort deleteFooPersistancePort, GetFooPersistancePort getFooPersistancePort) {
+        return new DeleteFooServiceAdapter(deleteFooPersistancePort, getFooPersistancePort);
     }
     
     @Bean
