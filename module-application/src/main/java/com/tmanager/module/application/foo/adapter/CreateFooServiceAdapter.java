@@ -21,10 +21,10 @@ public class CreateFooServiceAdapter implements CreateFooService {
     @Override
     public String createFoo(FooCreateCommand command) {
     	
-    	String randomNum = UUID.randomUUID().toString();
-        Foo foo = new Foo(randomNum, command.getName(), command.getValue(), command.getOwner());
+    	String id = UUID.randomUUID().toString();
+        Foo foo = new Foo(id, command.getName(), command.getValue(), command.getOwner());
         fooPersistancePort.createFoo(foo);
         
-        return randomNum;
+        return id;
     }
 }
