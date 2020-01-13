@@ -1,6 +1,8 @@
 package com.tmanager.module.web.configuration;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +14,7 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.GrantType;
+import springfox.documentation.service.ResourceOwnerPasswordCredentialsGrant;
 import springfox.documentation.service.SecurityReference;
 import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.service.TokenEndpoint;
@@ -39,6 +42,9 @@ public class SwaggerConfiguration {
 
 	@Value("${module.oauth.server.address}")
 	private String serverAddress;
+
+	@Value("${module.oauth.clientRedirectUrl}")
+	private String clientRedirectUrl;
 	
 	@Bean
 	public Docket api() {
@@ -49,18 +55,25 @@ public class SwaggerConfiguration {
 	        .securitySchemes(Arrays.asList(securityScheme()))
 	        .securityContexts(Arrays.asList(securityContext()));
 	}
-	    
-    private SecurityScheme securityScheme() {
-        String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
 
-        GrantType grantType = new AuthorizationCodeGrantBuilder()
+    private SecurityScheme securityScheme() {
+    	String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
+
+        List<GrantType> grantTypes = new ArrayList<GrantType>();
+
+        GrantType grantTypeCode = new AuthorizationCodeGrantBuilder()
             .tokenEndpoint(new TokenEndpoint(AUTH_SERVER + "/token", "oauthtoken"))
             .tokenRequestEndpoint(
               new TokenRequestEndpoint(AUTH_SERVER + "/authorize", clientId, clientSecret))
             .build();
+        
+        GrantType grantTypePassword = new ResourceOwnerPasswordCredentialsGrant(AUTH_SERVER + "/token?grant_type=password&username=user-open-source&password=password-open-source");
+
+        grantTypes.add(grantTypeCode);
+        grantTypes.add(grantTypePassword);
      
         SecurityScheme oauth = new OAuthBuilder().name("swagger_oauth")
-            .grantTypes(Arrays.asList(grantType))
+            .grantTypes(grantTypes)
             .scopes(Arrays.asList(scopes()))
             .build();
         
@@ -69,7 +82,7 @@ public class SwaggerConfiguration {
     
     private AuthorizationScope[] scopes() {
         AuthorizationScope[] scopes = { 
-          new AuthorizationScope("foo", "Access foo API") };
+          new AuthorizationScope("read-foo", "Access foo API") };
         return scopes;
     }
     

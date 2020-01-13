@@ -9,7 +9,7 @@ public class MainController {
 
     @GetMapping("/")
     public String homePathRedirection() {
-        return "redirect:auth/authorizeApp";
+        return "redirect:auth/authorize";
     }
 
     @GetMapping("/init")
@@ -17,7 +17,21 @@ public class MainController {
         return "forward:/index.html";
     }
     
-    @RequestMapping("{?:(?:(?!api|static|\\.).)*}/**")
+    /*
+    "/init/**",
+    "/actuator/**",
+    "/auth/**",
+    "/favicon.ico",
+    "/static/*",
+    "/module.js",
+    "/v2/api-docs",
+    "/configuration/ui",
+    "/swagger-resources/**",
+    "/configuration/security",
+    "/swagger-ui.html",
+    "/webjars/**"
+    */
+    @RequestMapping("^(?!.*api)(?!.*swagger)(?!.*static)(?!.*v2)(?!.*configuration)(?!.*webjars)(?!.*actuator).*$")
     public String redirectApi() {     
         return "forward:/index.html";
     } 

@@ -33,8 +33,8 @@ public class AuthController {
 	@Value("${module.oauth.clientRedirectUrl}")
 	private String clientRedirectUrl;
 	
-	@GetMapping("/authorizeApp")
-	public String authorizeApp() {
+	@GetMapping("/authorize")
+	public String authorize() {
 
 		String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
 		
