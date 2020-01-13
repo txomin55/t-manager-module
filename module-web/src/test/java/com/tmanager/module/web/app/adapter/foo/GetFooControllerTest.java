@@ -9,6 +9,7 @@ import org.springframework.util.Assert;
 import com.tmanager.module.application.foo.command.FooGetCommand;
 import com.tmanager.module.application.foo.dto.FooDTO;
 import com.tmanager.module.application.foo.port.GetFooService;
+import com.tmanager.module.exception.CustomException;
 import com.tmanager.module.web.app.adapter.foo.dto.GetFooWeb;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -18,7 +19,7 @@ public class GetFooControllerTest {
     private GetFooService getFooService;
     
 	@Test
-	public void getFooController(){
+	public void getFooController() throws CustomException{
 		
     	FooDTO foo = getFooService.getFoo(new FooGetCommand("1", "1")); 
     	

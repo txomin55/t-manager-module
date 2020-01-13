@@ -1,8 +1,9 @@
-package com.tmanager.module.web.app.exception.error;
+package com.tmanager.module.exception.error;
 
 public enum ErrorEnum {
 
-	TEST_ERROR("error.test");
+	TEST_ERROR("error.test"),
+	UNAUTHORIZED_RESOURCE_ERROR("error.unauthorized_resource");
 
 	private String id;
 

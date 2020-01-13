@@ -7,6 +7,8 @@ import com.tmanager.module.application.foo.dto.FooDTO;
 import com.tmanager.module.application.foo.port.GetFooService;
 import com.tmanager.module.domain.foo.model.Foo;
 import com.tmanager.module.domain.foo.port.GetFooPersistancePort;
+import com.tmanager.module.exception.CustomException;
+import com.tmanager.module.exception.error.ErrorEnum;
 
 public class GetFooServiceAdapter implements GetFooService {
 
@@ -18,12 +20,12 @@ public class GetFooServiceAdapter implements GetFooService {
 	}
 
 	@Override
-	public FooDTO getFoo(FooGetCommand command) {
+	public FooDTO getFoo(FooGetCommand command) throws CustomException {
 				
 		Foo foo = getFooPersistancePort.getFoo(command.getId());
 		
 		if(!foo.getOwner().equals(command.getOwner())) {
-			
+			throw new CustomException(ErrorEnum.UNAUTHORIZED_RESOURCE_ERROR);
 		}
 		
 		return new FooDTO(foo.getId(), foo.getName(), foo.getValue(), foo.getOwner()); 

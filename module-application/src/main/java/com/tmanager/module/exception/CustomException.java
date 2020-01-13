@@ -1,6 +1,8 @@
-package com.tmanager.module.web.app.exception.error;
+package com.tmanager.module.exception;
 
 import java.util.Date;
+
+import com.tmanager.module.exception.error.ErrorEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

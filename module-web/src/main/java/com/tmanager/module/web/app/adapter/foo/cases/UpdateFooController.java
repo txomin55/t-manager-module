@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tmanager.module.application.foo.command.FooUpdateCommand;
 import com.tmanager.module.application.foo.port.UpdateFooService;
+import com.tmanager.module.exception.CustomException;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 import com.tmanager.module.web.app.adapter.foo.dto.GetFooWeb;
 import com.tmanager.module.web.app.adapter.foo.dto.UpdateFooWeb;
@@ -28,7 +29,7 @@ public class UpdateFooController implements FooOperations {
 
     @PutMapping
     @ResponseBody
-    public GetFooWeb createFoo(@RequestBody UpdateFooWeb fooDto, OAuth2Authentication auth) {
+    public GetFooWeb createFoo(@RequestBody UpdateFooWeb fooDto, OAuth2Authentication auth) throws CustomException {
 
     	RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);
         

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tmanager.module.application.foo.command.FooUpdateCommand;
 import com.tmanager.module.application.foo.port.UpdateFooService;
+import com.tmanager.module.exception.CustomException;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UpdateFooControllerTest {
@@ -17,7 +18,7 @@ public class UpdateFooControllerTest {
     private UpdateFooService updateFooService;
     
 	@Test
-	public void getFooListController(){
+	public void getFooListController() throws CustomException{
 		
 		updateFooService.updateFoo(new FooUpdateCommand(UUID.randomUUID().toString(), "UPDATED", "UPDATED", "1"));		
 	}

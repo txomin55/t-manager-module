@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tmanager.module.application.foo.command.FooGetCommand;
 import com.tmanager.module.application.foo.dto.FooDTO;
 import com.tmanager.module.application.foo.port.GetFooService;
+import com.tmanager.module.exception.CustomException;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 import com.tmanager.module.web.app.adapter.foo.dto.GetFooWeb;
 import com.tmanager.module.web.util.Oauth2DetailDecoder;
@@ -27,7 +28,7 @@ public class GetFooController implements FooOperations {
 
     @GetMapping
     @ResponseBody
-    public GetFooWeb getFoos(String id, OAuth2Authentication auth) {
+    public GetFooWeb getFoos(String id, OAuth2Authentication auth) throws CustomException {
         
     	RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);
     	

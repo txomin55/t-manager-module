@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tmanager.module.application.foo.command.FooDeleteCommand;
 import com.tmanager.module.application.foo.port.DeleteFooService;
+import com.tmanager.module.exception.CustomException;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 import com.tmanager.module.web.util.Oauth2DetailDecoder;
 import com.tmanager.module.web.util.RequestUserDetails;
@@ -24,7 +25,7 @@ public class DeleteFooController implements FooOperations {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteFoo(@PathVariable String id, OAuth2Authentication auth) {
+    public void deleteFoo(@PathVariable String id, OAuth2Authentication auth) throws CustomException {
 
     	RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);
 

@@ -3,9 +3,9 @@ package com.tmanager.module.web.app.adapter.foo.cases;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tmanager.module.exception.CustomException;
+import com.tmanager.module.exception.error.ErrorEnum;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
-import com.tmanager.module.web.app.exception.error.CustomException;
-import com.tmanager.module.web.app.exception.error.ErrorEnum;
 
 @RestController
 public class GetExcepcionController implements FooOperations {
