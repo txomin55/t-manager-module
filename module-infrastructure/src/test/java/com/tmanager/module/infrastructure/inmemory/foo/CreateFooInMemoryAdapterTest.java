@@ -6,13 +6,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 import com.tmanager.module.domain.foo.model.Foo;
+import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CreateFooInMemoryAdapterTest {
@@ -20,6 +21,7 @@ public class CreateFooInMemoryAdapterTest {
 	@Mock
 	private Map<String, FooEntity> simulatedFooMap;
 	
+	@Test
 	public void createFooInMemoryAdapter(){
 		
 		simulatedFooMap = new HashMap<String, FooEntity>();

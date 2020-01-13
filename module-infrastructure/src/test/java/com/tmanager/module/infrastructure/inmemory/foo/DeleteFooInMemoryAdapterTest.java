@@ -7,6 +7,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -20,6 +21,7 @@ public class DeleteFooInMemoryAdapterTest {
 	@Mock
 	private Map<String, FooEntity> simulatedFooMap;
 	
+	@Test
 	public void deleteFooListInMemoryAdapter(){
 		
 		simulatedFooMap = new HashMap<String, FooEntity>();
