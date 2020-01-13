@@ -48,7 +48,7 @@ export function launchException() {
 
 export function getFooMsg(cb) {
   axios
-    .get(`${ADDRESS}/${store.state.module}/api/foo/api/fooI18nSample`)
+    .get(`${ADDRESS}/${store.state.module}/api/foo/fooI18nSample`)
     .then(result => {
       cb(result.data);
     })
