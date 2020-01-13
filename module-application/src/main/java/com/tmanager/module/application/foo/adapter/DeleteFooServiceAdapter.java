@@ -14,8 +14,9 @@ public class DeleteFooServiceAdapter implements DeleteFooService {
     private GetFooPersistancePort getFooPersistancePort;
 
     @Autowired
-    public DeleteFooServiceAdapter(DeleteFooPersistancePort deleteFooPersistancePort) {
+    public DeleteFooServiceAdapter(DeleteFooPersistancePort deleteFooPersistancePort, GetFooPersistancePort getFooPersistancePort) {
         this.deleteFooPersistancePort = deleteFooPersistancePort;
+        this.getFooPersistancePort = getFooPersistancePort;
     }
 
     @Override

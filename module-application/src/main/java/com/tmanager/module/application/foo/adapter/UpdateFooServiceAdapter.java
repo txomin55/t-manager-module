@@ -11,7 +11,6 @@ import com.tmanager.module.domain.foo.port.UpdateFooPersistancePort;
 public class UpdateFooServiceAdapter implements UpdateFooService {
 	
 	private GetFooPersistancePort getFooPersistancePort;
-	
 	private UpdateFooPersistancePort fooPersistancePort;
 
     @Autowired
