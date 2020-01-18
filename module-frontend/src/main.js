@@ -94,27 +94,23 @@ const loadApp = () => {
     } else {
       const refreshToken = localStorage.getItem("refreshToken");
       if (refreshToken) {
-        tokenUtils.forceRefreshToken(refreshToken, () => store.dispatch("logout"));
+        tokenUtils.forceRefreshToken(refreshToken, () =>
+          store.dispatch("logout")
+        );
       } else {
         store.dispatch("logout");
       }
     }
   } else if (window.isModuleEnsambled[store.state.module]) {
     store.dispatch("updateToken", window.t_manager_access_token);
-    console.log("TOKEN DE LAUNCHER => " + store.state.token + " " + new Date());
     tokenUtils.refreshTManagerToken();
-    router.push({ name: "home" });
   } else {
     throw alert("NO AUTH TOKEN");
   }
 
   ///////////////////////////VUE CONFIG///////////////////////////
-  let i = 1;
   const refreshId = setInterval(() => {
-    console.log("INTENTO TOKEN " + i + " " + new Date());
-    i++;
     if (store.state.token) {
-      console.log("DENTRO TOKEN EN INTENTO " + i + " " + new Date());
       new Vue({
         i18n,
         router,
@@ -129,7 +125,6 @@ const loadApp = () => {
 };
 
 if (!window.t_manager) {
-  console.log("T-MANAGER SE RECARGA");
   axios
     .get(`http://18.194.82.207:9999/dist/t_manager_common.js`)
     .then(result => {
@@ -143,6 +138,5 @@ if (!window.t_manager) {
     })
     .catch(() => {});
 } else {
-  console.log("T-MANAGER NO SE RECARGA");
   loadApp();
 }

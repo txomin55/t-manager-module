@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <app-navbar v-if="!isEmbebed" />
+    <module-navbar v-if="!isEmbebed" />
 
     <v-content>
-      <app-loading-handler />
-      <app-error-handler />
+      <module-loading-handler />
+      <module-error-handler />
       <router-view />
     </v-content>
 
-    <app-footer />
+    <module-footer v-if="!isEmbebed" />
   </v-app>
 </template>
 
@@ -20,10 +20,10 @@ import NavBar from "@/components/navbar/NavBar";
 
 export default {
   components: {
-    "app-navbar": NavBar,
-    "app-error-handler": ErrorHandler,
-    "app-loading-handler": LoadingHandler,
-    "app-footer": Footer
+    "module-navbar": NavBar,
+    "module-error-handler": ErrorHandler,
+    "module-loading-handler": LoadingHandler,
+    "module-footer": Footer
   },
   data() {
     return {
@@ -31,6 +31,11 @@ export default {
         window.isModuleEnsambled &&
         window.isModuleEnsambled[this.$store.state.module]
     };
+  },
+  mounted(){
+    if (window.isModuleEnsambled[this.$store.state.module]) {
+      this.$router.push({ name: "home" });
+    }
   }
 };
 </script>
