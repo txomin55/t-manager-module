@@ -1,5 +1,12 @@
 <template>
   <v-container>
+
+    <router-link :to="{ name: 'home' }">{{$t("module.home")}}</router-link>
+    |
+    <router-link :to="{ name: 'foo' }">Foo</router-link>
+    |
+    <router-link :to="{ name: 'about' }">{{$t("module.about")}}</router-link>
+
     <v-row text-center wrap>
       <v-col>
         <v-img :src="logo" class="text-center" contain height="200"></v-img>
