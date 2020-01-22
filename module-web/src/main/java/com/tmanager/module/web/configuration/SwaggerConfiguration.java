@@ -1,8 +1,6 @@
 package com.tmanager.module.web.configuration;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +12,6 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.GrantType;
-import springfox.documentation.service.ResourceOwnerPasswordCredentialsGrant;
 import springfox.documentation.service.SecurityReference;
 import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.service.TokenEndpoint;
@@ -28,52 +25,42 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {                                    
 
-	@Value("${module.oauth.clientId}")
+	@Value("${launcher.oauth.clientId}")
 	private String clientId;
 
-	@Value("${module.oauth.clientSecret}")
+	@Value("${launcher.oauth.clientSecret}")
 	private String clientSecret;
 
-	@Value("${module.oauth.server.path}")
+	@Value("${launcher.oauth.server.path}")
 	private String serverPath;
 
-	@Value("${module.oauth.server.port}")
+	@Value("${launcher.oauth.server.port}")
 	private String serverPort;
 
-	@Value("${module.oauth.server.address}")
+	@Value("${launcher.oauth.server.address}")
 	private String serverAddress;
-
-	@Value("${module.oauth.clientRedirectUrl}")
-	private String clientRedirectUrl;
-	
+		
 	@Bean
 	public Docket api() {
 	    return new Docket(DocumentationType.SWAGGER_2).select()
 	        .apis(RequestHandlerSelectors.any())
-	        .paths(PathSelectors.regex("\\/api\\/.*"))
+	        .paths(PathSelectors.any())
 	        .build()
 	        .securitySchemes(Arrays.asList(securityScheme()))
 	        .securityContexts(Arrays.asList(securityContext()));
 	}
-
+	    
     private SecurityScheme securityScheme() {
-    	String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
+        String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
 
-        List<GrantType> grantTypes = new ArrayList<GrantType>();
-
-        GrantType grantTypeCode = new AuthorizationCodeGrantBuilder()
+        GrantType grantType = new AuthorizationCodeGrantBuilder()
             .tokenEndpoint(new TokenEndpoint(AUTH_SERVER + "/token", "oauthtoken"))
             .tokenRequestEndpoint(
               new TokenRequestEndpoint(AUTH_SERVER + "/authorize", clientId, clientSecret))
             .build();
-        
-        GrantType grantTypePassword = new ResourceOwnerPasswordCredentialsGrant(AUTH_SERVER + "/token?grant_type=password&username=user-open-source&password=password-open-source");
-
-        grantTypes.add(grantTypeCode);
-        grantTypes.add(grantTypePassword);
      
         SecurityScheme oauth = new OAuthBuilder().name("swagger_oauth")
-            .grantTypes(grantTypes)
+            .grantTypes(Arrays.asList(grantType))
             .scopes(Arrays.asList(scopes()))
             .build();
         
@@ -82,7 +69,7 @@ public class SwaggerConfiguration {
     
     private AuthorizationScope[] scopes() {
         AuthorizationScope[] scopes = { 
-          new AuthorizationScope("read-foo", "Access foo API") };
+          new AuthorizationScope("foo", "Access foo API") };
         return scopes;
     }
     
