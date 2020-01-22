@@ -1,6 +1,6 @@
 import * as ConfigApi from "../api/ConfigApi";
-const DEFAULT_LOCALE = "es"; //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
-const MODULE_NAME = "module"; //FIXME: ESTO LO TENDRIA QUE RECUPERAR DE ALGUN PROPERTIES
+const DEFAULT_LOCALE = process.env.VUE_APP_DEFAULT_LOCALE;
+const MODULE_NAME = process.env.VUE_APP_MODULE_NAME;
 
 export default {
   state: {
