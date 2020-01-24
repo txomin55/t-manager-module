@@ -5,8 +5,8 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      username: Admin
-      password: Admin
+      username: t-manager-module-user
+      password: t-manager-module-password
       host: 18.194.82.207
       port: 27017
       database: t-manager-module

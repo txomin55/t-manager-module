@@ -25,19 +25,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {                                    
 
-	@Value("${launcher.oauth.clientId}")
+	@Value("${module.oauth.clientId}")
 	private String clientId;
 
-	@Value("${launcher.oauth.clientSecret}")
+	@Value("${module.oauth.clientSecret}")
 	private String clientSecret;
 
-	@Value("${launcher.oauth.server.path}")
+	@Value("${module.oauth.server.path}")
 	private String serverPath;
 
-	@Value("${launcher.oauth.server.port}")
+	@Value("${module.oauth.server.port}")
 	private String serverPort;
 
-	@Value("${launcher.oauth.server.address}")
+	@Value("${module.oauth.server.address}")
 	private String serverAddress;
 		
 	@Bean
