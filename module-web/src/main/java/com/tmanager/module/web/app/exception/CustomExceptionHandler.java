@@ -1,5 +1,6 @@
 package com.tmanager.module.web.app.exception;
 
+import java.util.Date;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,15 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         CustomError error = new CustomError(ex.getId(),
                 messageSource.getMessage(ex.getId(), null, locale), ex.getDate());
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(InterruptedException.class)
+    @ResponseBody
+    final ResponseEntity<CustomError> handleInterruptedException(InterruptedException ex, Locale locale,
+    		WebRequest request) {
+    	
+    	CustomError error = new CustomError(String.valueOf(HttpStatus.REQUEST_TIMEOUT.value()),
+    			messageSource.getMessage("request_timeout", null, locale), new Date().getTime());
+    	return new ResponseEntity<>(error, HttpStatus.REQUEST_TIMEOUT);
     }
 }
