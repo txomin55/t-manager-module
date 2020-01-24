@@ -9,7 +9,6 @@ server:
   servlet:
     context-path: /module
   port: 8002
-  connection-timeout: 5s
   
 module:
   oauth:
