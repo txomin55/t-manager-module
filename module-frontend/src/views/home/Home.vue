@@ -1,11 +1,10 @@
 <template>
   <v-container>
-
-    <router-link :to="{ name: 'home' }">{{$t("module.home")}}</router-link>
+    <router-link :to="{ name: 'home' }">{{ $t("module.home") }}</router-link>
     |
     <router-link :to="{ name: 'foo' }">Foo</router-link>
     |
-    <router-link :to="{ name: 'about' }">{{$t("module.about")}}</router-link>
+    <router-link :to="{ name: 'about' }">{{ $t("module.about") }}</router-link>
 
     <v-row text-center wrap>
       <v-col>
@@ -82,7 +81,7 @@ export default {
       languages: [{ flag: "es", id: "es" }, { flag: "gb", id: "en" }],
       colors: [],
       env: process.env.VUE_APP_ENV,
-      logo: `${process.env.VUE_APP_ADDRESS}/module/static/logo.svg`,
+      logo: `${process.env.VUE_APP_ADDRESS}/module/static/logo.svg`
     };
   },
   methods: {

@@ -1,4 +1,5 @@
 import Vue from "vue";
+import WindowVue from "vue";
 import App from "./App.vue";
 import Vuetify from "vuetify/lib";
 import router from "./router";
@@ -7,9 +8,13 @@ import EnMessages from "@/messages/en.json";
 import EsMessages from "@/messages/es.json";
 import axios from "axios";
 
+window.Vue = WindowVue;
 Vue.config.productionTip = false;
 
 const loadApp = () => {
+  window.Vue = null;
+
+  ///////////////////////////INSTALL COMPONENTS//////////////////////
   window.t_manager.installComponents(Vue);
 
   ///////////////////////////ROUTER CONFIG///////////////////////////
@@ -18,9 +23,7 @@ const loadApp = () => {
       // this route requires auth, check if logged in
       // if not, redirect to login page.
       if (!store.state.token) {
-        next({
-          path: "/"
-        });
+        store.dispatch("logout");
       } else {
         next();
       }
@@ -30,7 +33,7 @@ const loadApp = () => {
   });
 
   ///////////////////////////LANGUAGE CONFIG///////////////////////////
-  const i18n = new Vue.loadLanguageUtils(Vue, {
+  const i18n = new window.t_manager.plugins.LanguageUtils(Vue, {
     en: EnMessages,
     es: EsMessages
   });
@@ -39,7 +42,11 @@ const loadApp = () => {
   store.$i18n = i18n;
 
   ///////////////////////////VUETIFY CONFIG///////////////////////////
-  const vuetify = new Vue.loadCustomVuetify(Vue, Vuetify, i18n);
+  const vuetify = new window.t_manager.plugins.CustomVuetify(
+    Vue,
+    Vuetify,
+    i18n
+  );
 
   ///////////////////////////REQUESTS CONFIG///////////////////////////
   axios.interceptors.request.use(request => {
@@ -66,11 +73,11 @@ const loadApp = () => {
 
   ///////////////////////////AUTHENTICATION CONFIG///////////////////////////
   store.dispatch("updateToken", "token falso");
-  router.push({ name: "home" });
 
   ///////////////////////////VUE CONFIG///////////////////////////
   const refreshId = setInterval(() => {
     if (store.state.token) {
+      debugger;
       new Vue({
         i18n,
         router,
@@ -86,7 +93,7 @@ const loadApp = () => {
 
 if (!window.t_manager) {
   axios
-    .get(`http://18.194.82.207:9999/dist/t_manager_common.js`)
+    .get(`http://localhost:9999/dist/t_manager_common.js`)
     .then(result => {
       const el = document.createElement("script");
       el.type = "text/javascript";

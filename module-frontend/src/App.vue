@@ -32,8 +32,11 @@ export default {
         window.isModuleEnsambled[this.$store.state.module]
     };
   },
-  mounted(){
-    if (window.isModuleEnsambled[this.$store.state.module]) {
+  mounted() {
+    if (
+      window.isModuleEnsambled &&
+      window.isModuleEnsambled[this.$store.state.module]
+    ) {
       this.$router.push({ name: "home" });
     }
   }
