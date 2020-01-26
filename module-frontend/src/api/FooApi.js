@@ -54,3 +54,10 @@ export function getFooMsg(cb) {
     })
     .catch(() => {});
 }
+
+export function launchExceptionTimeout() {
+  axios
+    .get(`${ADDRESS}/${store.state.module}/api/foo//timeout-exception`)
+    .then(() => {})
+    .catch(() => {});
+}

@@ -55,6 +55,9 @@ export default {
     },
     launchException() {
       FooApi.launchException();
+    },
+    launchExceptionTimeout() {
+      FooApi.launchExceptionTimeout();
     }
   }
 };

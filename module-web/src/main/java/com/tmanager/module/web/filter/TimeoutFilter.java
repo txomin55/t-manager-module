@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -24,11 +23,16 @@ public class TimeoutFilter extends OncePerRequestFilter{
 	@Value("${module.timeoutValue}")
 	private Integer timeoutValue;
 	
+	@Value("${module.timeoutValue}")
+	private Integer threadPool;
+		
 	private Boolean completed = false;
-	
+
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
+		
+		initCompletedFlag();
 		
 		ScheduledExecutorService timeoutsPool = Executors.newScheduledThreadPool(10);
 		
@@ -39,7 +43,7 @@ public class TimeoutFilter extends OncePerRequestFilter{
 				completed = true;
                 requestHandlingThread.interrupt();
             }
-		}, timeoutValue, TimeUnit.SECONDS);
+		}, timeoutValue, TimeUnit.MILLISECONDS);
 				
 		try {
 			filterChain.doFilter(request, response);
@@ -47,5 +51,9 @@ public class TimeoutFilter extends OncePerRequestFilter{
         } finally {
             completed = true;
         }
+	}
+	
+	private void initCompletedFlag() {
+		completed = false;
 	}
 }

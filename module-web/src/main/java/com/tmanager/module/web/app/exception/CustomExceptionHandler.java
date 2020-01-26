@@ -42,7 +42,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     		WebRequest request) {
     	
     	CustomError error = new CustomError(String.valueOf(HttpStatus.REQUEST_TIMEOUT.value()),
-    			messageSource.getMessage("request_timeout", new String[] {timeoutValue}, locale), new Date().getTime());
+    			messageSource.getMessage("error.request_timeout", new String[] {timeoutValue}, locale), new Date().getTime());
     	return new ResponseEntity<>(error, HttpStatus.REQUEST_TIMEOUT);
     }
 }

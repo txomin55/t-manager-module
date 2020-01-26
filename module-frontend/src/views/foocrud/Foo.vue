@@ -22,6 +22,14 @@
 
     <v-row>
       <v-col class="text-center">
+        <v-btn @click="getExceptionTimeout()">
+          {{ $t("module.fooCrud.exceptionTimeout") }}
+        </v-btn>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col class="text-center">
         <v-btn @click="getServerMsg()">
           {{ $t("module.fooCrud.messageFromServer") }}
         </v-btn>
@@ -97,6 +105,9 @@ export default {
     },
     getServerMsg() {
       alert(this.serverMsg);
+    },    
+    getExceptionTimeout() {
+      this.$store.dispatch("fooModule/launchExceptionTimeout");
     }
   },
   computed: {
