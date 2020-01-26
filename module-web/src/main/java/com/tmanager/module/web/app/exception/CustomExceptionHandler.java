@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,9 @@ import com.tmanager.module.web.app.exception.error.CustomError;
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
+	@Value("${module.timeoutValue}")
+	private String timeoutValue;
+	
     @Autowired
     private MessageSource messageSource;
 
@@ -38,7 +42,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     		WebRequest request) {
     	
     	CustomError error = new CustomError(String.valueOf(HttpStatus.REQUEST_TIMEOUT.value()),
-    			messageSource.getMessage("request_timeout", null, locale), new Date().getTime());
+    			messageSource.getMessage("request_timeout", new String[] {timeoutValue}, locale), new Date().getTime());
     	return new ResponseEntity<>(error, HttpStatus.REQUEST_TIMEOUT);
     }
 }
