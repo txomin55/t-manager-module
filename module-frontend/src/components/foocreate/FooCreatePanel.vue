@@ -13,9 +13,8 @@
     <v-form v-model="valid">
       <v-container>
         <v-row>
-          <v-col cols="12" sm="3">
+          <v-col cols="12" sm="3" v-show="disabled">
             <v-text-field
-              v-show="disabled"
               label="ID"
               v-model="id"
               :disabled="disabled"

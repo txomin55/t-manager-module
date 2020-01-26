@@ -77,7 +77,6 @@ const loadApp = () => {
   ///////////////////////////VUE CONFIG///////////////////////////
   const refreshId = setInterval(() => {
     if (store.state.token) {
-      debugger;
       new Vue({
         i18n,
         router,
