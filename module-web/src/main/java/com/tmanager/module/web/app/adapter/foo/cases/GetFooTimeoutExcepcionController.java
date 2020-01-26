@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
 
 @RestController
-public class GetTimeoutExcepcionController implements FooOperations {
+public class GetFooTimeoutExcepcionController implements FooOperations {
 
 	@Value("${module.timeoutValue}")
 	private Integer timeoutValue;
