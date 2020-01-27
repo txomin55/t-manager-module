@@ -1,8 +1,11 @@
 package com.tmanager.module.web.app.adapter.foo.cases;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,9 +29,9 @@ public class GetFooController implements FooOperations {
         this.getFooService = getFooService;
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     @ResponseBody
-    public GetFooWeb getFoos(String id, OAuth2Authentication auth) throws CustomException {
+    public GetFooWeb getFoo(@PathVariable @NotNull(message = "error.validation_not_null") String id, OAuth2Authentication auth) throws CustomException {
         
     	RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);
     	

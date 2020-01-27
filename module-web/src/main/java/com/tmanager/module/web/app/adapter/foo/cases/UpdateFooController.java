@@ -1,5 +1,7 @@
 package com.tmanager.module.web.app.adapter.foo.cases;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -29,7 +31,7 @@ public class UpdateFooController implements FooOperations {
 
     @PutMapping
     @ResponseBody
-    public GetFooWeb createFoo(@RequestBody UpdateFooWeb fooDto, OAuth2Authentication auth) throws CustomException {
+    public GetFooWeb createFoo(@Valid @RequestBody UpdateFooWeb fooDto, OAuth2Authentication auth) throws CustomException {
 
     	RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);
         
