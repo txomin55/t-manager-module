@@ -19,6 +19,7 @@ module:
     clientId: app-open-source
     clientSecret: password-open-source   
   timeoutValue: 5000
+  threadPool: 10
     
 management:
   endpoints:

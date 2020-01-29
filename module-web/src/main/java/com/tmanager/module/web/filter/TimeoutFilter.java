@@ -23,7 +23,7 @@ public class TimeoutFilter extends OncePerRequestFilter{
 	@Value("${module.timeoutValue}")
 	private Integer timeoutValue;
 	
-	@Value("${module.timeoutValue}")
+	@Value("${module.threadPool}")
 	private Integer threadPool;
 		
 	private Boolean completed = false;
@@ -34,7 +34,7 @@ public class TimeoutFilter extends OncePerRequestFilter{
 		
 		initCompletedFlag();
 		
-		ScheduledExecutorService timeoutsPool = Executors.newScheduledThreadPool(10);
+		ScheduledExecutorService timeoutsPool = Executors.newScheduledThreadPool(threadPool);
 		
 		Thread requestHandlingThread = Thread.currentThread();
 		
