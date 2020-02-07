@@ -82,9 +82,6 @@ const loadApp = () => {
         redirectHome = false;
         router.push({ name: "home" });
       }
-    },
-    tManagerAccessToken => {
-      store.dispatch("updateToken", tManagerAccessToken);
     }
   );
 
