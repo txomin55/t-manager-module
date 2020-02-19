@@ -2,9 +2,16 @@
 # Build stage
 #
 FROM maven:3.6.2-jdk-8-openj9 AS build  
-COPY src /usr/src/module/src  
-COPY pom.xml /usr/src/module  
-RUN mvn -f /usr/src/module/pom.xml clean package -Pproduction-in-memory
+COPY pom.xml /usr/tmanager/module/pom.xml
+COPY lombok.config /usr/tmanager/module/lombok.config
+COPY module-domain/ /usr/tmanager/module/module-domain/  
+COPY module-application/ /usr/tmanager/module/module-application/
+COPY module-infrastructure/ /usr/tmanager/module/module-infrastructure/
+COPY module-frontend/ /usr/tmanager/module/module-frontend/
+COPY module-web/ /usr/tmanager/module/module-web/
+COPY module-loader/ /usr/tmanager/module/module-loader/
+
+RUN mvn -f /usr/tmanager/module/pom.xml clean install -Pproduction-in-memory -DskipTests
 
 #
 # Package stage
@@ -12,7 +19,7 @@ RUN mvn -f /usr/src/module/pom.xml clean package -Pproduction-in-memory
 FROM gcr.io/distroless/java:8  
 LABEL maintainer="txomin.sirera@gmail.com"
 LABEL version="1.0"
-VOLUME /tmp/module
-COPY --from=build /usr/src/module/target/*.jar /usr/module/app.jar  
+VOLUME /tmp/tmanager/module
+COPY --from=build /usr/tmanager/module/module-loader/target/*.jar /usr/tmanager/module/compiled/app.jar  
 EXPOSE 8002  
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=production-in-memory", "/usr/module/app.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=production-in-memory", "/usr/tmanager/module/compiled/app.jar"]
