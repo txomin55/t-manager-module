@@ -7,6 +7,7 @@
     "module.fooCrud.exception": "Excepción",
     "module.fooCrud.title": "PANEL CREA/EDITAR FOO",
     "module.fooCrud.messageFromServer" : "Msg de servidor",
+    "module.fooCrud.exceptionTimeout" : "Excepción timeout",
     "module.error.close" : "Cerrar",
     "module.validation.required" : "El valor es requerido",
     "module.validation.integer" : "El valor tiene que ser númerico",
