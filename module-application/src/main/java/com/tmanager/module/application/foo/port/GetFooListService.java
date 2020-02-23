@@ -2,9 +2,9 @@ package com.tmanager.module.application.foo.port;
 
 import java.util.List;
 
-import com.tmanager.module.application.foo.dto.FooDTO;
+import com.tmanager.module.application.foo.dto.FooListDTO;
 
 public interface GetFooListService {
 
-	List<FooDTO> getFoo(String owner);
+	List<FooListDTO> getFoo(String owner);
 }

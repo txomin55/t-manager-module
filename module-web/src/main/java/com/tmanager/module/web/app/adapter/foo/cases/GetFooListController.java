@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tmanager.module.application.foo.port.GetFooListService;
 import com.tmanager.module.web.app.adapter.foo.FooOperations;
-import com.tmanager.module.web.app.adapter.foo.dto.GetFooWeb;
+import com.tmanager.module.web.app.adapter.foo.dto.GetFooListWeb;
 import com.tmanager.module.web.util.Oauth2DetailDecoder;
 import com.tmanager.module.web.util.RequestUserDetails;
 
@@ -26,12 +26,12 @@ public class GetFooListController implements FooOperations {
     }
 
     @GetMapping("/list")
-    public List<GetFooWeb> getFoos(OAuth2Authentication auth) {   
+    public List<GetFooListWeb> getFoos(OAuth2Authentication auth) {   
         
     	RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);
         
         return getFooListService.getFoo(details.getOrganization()).stream()
-            .map(foo -> new GetFooWeb(foo.getId(), foo.getName(), foo.getValue()))
+            .map(foo -> new GetFooListWeb(foo.getId(), foo.getName(), foo.getValue()))
             .collect(Collectors.toList());
     }
 }

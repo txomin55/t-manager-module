@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.tmanager.module.domain.foo.model.Foo;
+import com.tmanager.module.domain.foo.model.FooList;
 import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -25,15 +25,15 @@ public class GetFooListServiceAdapterTest {
 	@Test
 	public void getFooListServiceAdapter(){
 		
-		List<Foo> list = new ArrayList<Foo>();
-		list.add(new Foo("1", "TEST-1", "1", "1"));
-		list.add(new Foo("2", "TEST-2", "2", "1"));
+		List<FooList> list = new ArrayList<FooList>();
+		list.add(new FooList("1", "TEST-1", "1", "1"));
+		list.add(new FooList("2", "TEST-2", "2", "1"));
 		
 		String owner = "1";
 		
 		when(getFooListPersistancePort.getFoo(isA(String.class))).thenReturn(list); 
 		
-		List<Foo> myList = getFooListPersistancePort.getFoo(owner);
+		List<FooList> myList = getFooListPersistancePort.getFoo(owner);
 		
 		assertThat(myList, is(myList.size() == 2));
 	}
