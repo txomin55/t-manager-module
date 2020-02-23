@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: t-manager-module 
+spec:
+  selector: 
+    matchLabels:
+      mylabelname: module-webapp
+  replicas: 2
+  template: 
+    metadata:
+      labels:
+        mylabelname: module-webapp
+    spec:
+      containers:
+      - name: module-image
+        image: tmanager-module
+        imagePullPolicy: "Never"
+
+#kubectl port-forward deployment/t-manager-module 8002:8002
