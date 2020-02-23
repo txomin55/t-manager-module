@@ -3,6 +3,7 @@ package com.tmanager.module.web.app.adapter.foo.cases;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,7 @@ public class UpdateFooController implements FooOperations {
 
     @PutMapping
     @ResponseBody
+    @PreAuthorize("#oauth2.hasScope('update-foo')")
     public GetFooWeb createFoo(@Valid @RequestBody UpdateFooWeb fooDto, OAuth2Authentication auth) throws CustomException {
 
     	RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);

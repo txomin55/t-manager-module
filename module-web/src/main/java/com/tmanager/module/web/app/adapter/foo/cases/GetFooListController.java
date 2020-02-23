@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ public class GetFooListController implements FooOperations {
     }
 
     @GetMapping("/list")
+    @PreAuthorize("#oauth2.hasScope('get-foo')")
     public List<GetFooListWeb> getFoos(OAuth2Authentication auth) {   
         
     	RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);

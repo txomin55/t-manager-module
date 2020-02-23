@@ -9,6 +9,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.common.exceptions.InsufficientScopeException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -46,6 +47,16 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     	CustomError error = new CustomError(String.valueOf(HttpStatus.REQUEST_TIMEOUT.value()),
     			messageSource.getMessage("error.request_timeout", new String[] {timeoutValue}, locale), new Date().getTime());
     	return new ResponseEntity<>(error, HttpStatus.REQUEST_TIMEOUT);
+    }
+
+    @ExceptionHandler(InsufficientScopeException.class)
+    @ResponseBody
+    final ResponseEntity<CustomError> handleInsufficientScopeException(InsufficientScopeException ex, Locale locale,
+    		WebRequest request) {
+    	    	
+    	CustomError error = new CustomError(String.valueOf(HttpStatus.FORBIDDEN.value()),
+    			messageSource.getMessage("error.insufficient_scope", new String[] {ex.getAdditionalInformation().get("scope")}, locale), new Date().getTime());
+    	return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
     }
     
     @Override

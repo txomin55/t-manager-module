@@ -3,6 +3,7 @@ package com.tmanager.module.web.app.adapter.foo.cases;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ public class GetFooController implements FooOperations {
 
     @GetMapping("/{id}")
     @ResponseBody
+    @PreAuthorize("#oauth2.hasScope('get-foo')")
     public GetFooWeb getFoo(@PathVariable @NotNull(message = "error.validation_not_null") String id, OAuth2Authentication auth) throws CustomException {
         
     	RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);

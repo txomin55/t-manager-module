@@ -3,6 +3,7 @@ package com.tmanager.module.web.app.adapter.foo.cases;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +29,7 @@ public class CreateFooController implements FooOperations {
     }
 
     @PostMapping
+    @PreAuthorize("#oauth2.hasScope('create-foo')")
     public GetFooWeb createFoo(@Valid @RequestBody CreateFooWeb fooDto, OAuth2Authentication auth) {
 
         RequestUserDetails details = Oauth2DetailDecoder.getUserDecodedDetails(auth);
