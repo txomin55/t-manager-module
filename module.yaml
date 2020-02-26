@@ -5,16 +5,30 @@ metadata:
 spec:
   selector: 
     matchLabels:
-      mylabelname: module-webapp
+      appname: module-webapp
   replicas: 2
   template: 
     metadata:
       labels:
-        mylabelname: module-webapp
+        appname: module-webapp
     spec:
       containers:
       - name: module-image
-        image: tmanager-module
+        image: tmanager-module:latest
         imagePullPolicy: "Never"
+        ports:
+            - containerPort: 8002
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: tmanager-module-webapp
+spec:
+  selector:
+    appname: module-webapp
+  ports:
+    - name: http
+      port: 8002
 
 #kubectl port-forward deployment/t-manager-module 8002:8002
