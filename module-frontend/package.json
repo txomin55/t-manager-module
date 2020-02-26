@@ -7,6 +7,7 @@
     "serve-local": "vue-cli-service serve ./src/localMain.js --mode development",
     "build": "vue-cli-service build --mode development",
     "production-build": "vue-cli-service build --mode production",
+    "kubernetes-build": "vue-cli-service build --mode kubernetes",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
