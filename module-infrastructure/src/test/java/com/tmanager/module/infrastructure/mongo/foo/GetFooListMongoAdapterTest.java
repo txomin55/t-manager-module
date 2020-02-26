@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
-import com.tmanager.module.domain.foo.model.FooList;
+import com.tmanager.module.domain.foo.model.Foo;
 import com.tmanager.module.infrastructure.mongo.foo.entity.MongoFooEntity;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -32,8 +32,8 @@ public class GetFooListMongoAdapterTest {
 		MongoFooEntity fooEnt = new MongoFooEntity("1", "name", "value", owner);
 		mongoTemplate.save(fooEnt);
 		
-		ArrayList<FooList> foos = new ArrayList<FooList>(mongoTemplate.find(new Query(Criteria.where("owner").is(owner)), MongoFooEntity.class).stream().map(foo -> {
-			return new FooList(foo.getId(), foo.getName(), foo.getValue(), foo.getOwner());
+		ArrayList<Foo> foos = new ArrayList<Foo>(mongoTemplate.find(new Query(Criteria.where("owner").is(owner)), MongoFooEntity.class).stream().map(foo -> {
+			return new Foo(foo.getId(), foo.getName(), foo.getValue(), foo.getOwner());
 		}).collect(Collectors.toList()));
 		
 		assertThat(foos, not(IsEmptyCollection.empty()));

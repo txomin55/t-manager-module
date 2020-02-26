@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tmanager.module.application.foo.dto.FooListDTO;
 import com.tmanager.module.application.foo.port.GetFooListService;
-import com.tmanager.module.domain.foo.model.FooList;
+import com.tmanager.module.domain.foo.model.Foo;
 import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 
 public class GetFooListServiceAdapter implements GetFooListService {
@@ -21,7 +21,7 @@ public class GetFooListServiceAdapter implements GetFooListService {
 
 	@Override
 	public List<FooListDTO> getFoo(String owner) {
-		List<FooList> foos = getFooListPersistancePort.getFoo(owner);
+		List<Foo> foos = getFooListPersistancePort.getFoo(owner);
 
 		return foos.stream().filter(foo -> foo.getOwner().equals(owner)).map(foo -> new FooListDTO(foo.getId(), foo.getName(), foo.getValue(), foo.getOwner()))
 				.collect(Collectors.toList());

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tmanager.module.domain.foo.model.FooList;
+import com.tmanager.module.domain.foo.model.Foo;
 import com.tmanager.module.domain.foo.port.GetFooListPersistancePort;
 import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 
@@ -17,9 +17,9 @@ public class GetFooListInMemoryAdapter implements GetFooListPersistancePort {
 	private Map<String, FooEntity> simulatedFooMap;
 
 	@Override
-	public List<FooList> getFoo(String owner) {
-		return new ArrayList<FooList>(simulatedFooMap.values().stream().map(foo -> {
-			return new FooList(foo.getId(), foo.getName(), foo.getValue(), owner);
+	public List<Foo> getFoo(String owner) {
+		return new ArrayList<Foo>(simulatedFooMap.values().stream().map(foo -> {
+			return new Foo(foo.getId(), foo.getName(), foo.getValue(), owner);
 		}).collect(Collectors.toList()));
 	}
 }
