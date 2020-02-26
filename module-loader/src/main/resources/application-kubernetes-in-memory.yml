@@ -1,0 +1,3 @@
+module:
+  oauth:
+    clientRedirectUrl: http://localhost:8002/module/init

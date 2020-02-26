@@ -79,6 +79,13 @@
             <npm.build>run production-build</npm.build>
         </properties>
     </profile>
+    <profile>
+        <id>kubernetes-in-memory</id>
+        <properties>
+            <spring.profiles.active>kubernetes-in-memory</spring.profiles.active>
+            <npm.build>run kubernetes-build</npm.build>
+        </properties>
+    </profile>
   </profiles>
 
 </project>

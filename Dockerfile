@@ -11,7 +11,7 @@ COPY module-frontend/ /usr/tmanager/module/module-frontend/
 COPY module-web/ /usr/tmanager/module/module-web/
 COPY module-loader/ /usr/tmanager/module/module-loader/
 
-RUN mvn -f /usr/tmanager/module/pom.xml clean install -Pproduction-in-memory -DskipTests
+RUN mvn -f /usr/tmanager/module/pom.xml clean install -Pkubernetes-in-memory -DskipTests
 
 #
 # Package stage
@@ -22,4 +22,4 @@ LABEL version="1.0"
 VOLUME /tmp/tmanager/module
 COPY --from=build /usr/tmanager/module/module-loader/target/*.jar /usr/tmanager/module/compiled/app.jar  
 EXPOSE 8002  
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=production-in-memory", "/usr/tmanager/module/compiled/app.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=kubernetes-in-memory", "/usr/tmanager/module/compiled/app.jar"]

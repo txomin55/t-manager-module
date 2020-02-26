@@ -36,7 +36,7 @@
 
     </springProfile>
 
-    <springProfile name="kubernetes">
+    <springProfile name="kubernetes-in-memory">
         <root level="INFO">
             <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" additivity="false">
 		        <encoder>

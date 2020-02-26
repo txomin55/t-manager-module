@@ -21,7 +21,7 @@ import com.tmanager.module.infrastructure.inmemory.foo.adapter.UpdateFooInMemory
 import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 
 @Configuration
-@Profile({"develop-in-memory", "production-in-memory"})
+@Profile({"develop-in-memory", "production-in-memory", "kubernetes-in-memory"})
 public class FooInMemoryAdapterConfiguration {
 
     @Bean
