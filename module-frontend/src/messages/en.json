@@ -16,5 +16,6 @@
     "module.yourData" : "Your data",
     "module.logout" : "Logout",
     "module.home" : "Home",
-    "module.about" : "About"
+    "module.about" : "About",
+    "module.create" : "Create"
 }
