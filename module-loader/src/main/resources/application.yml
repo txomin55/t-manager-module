@@ -21,6 +21,9 @@ module:
     clientSecret: password-open-source   
   timeoutValue: 5000
   threadPool: 10
+  external:
+    bar:
+      url: http://18.194.82.207:8003/bar
     
 management:
   endpoints:

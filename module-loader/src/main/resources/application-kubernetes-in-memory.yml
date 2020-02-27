@@ -1,3 +1,6 @@
 module:
   oauth:
     clientRedirectUrl: http://localhost:8002/module/init
+  external: 
+    bar:
+      url: http://bar:8003/bar

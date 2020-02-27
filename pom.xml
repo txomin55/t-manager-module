@@ -29,6 +29,13 @@
 	  <oauth.version>2.3.6.RELEASE</oauth.version>
 	  <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
 	  <swagger.version>2.9.2</swagger.version>
+	  <boost.maven.plugin.version>0.1.2</boost.maven.plugin.version>
+	  <spring.cloud.openfeign.core.version>2.1.1.RELEASE</spring.cloud.openfeign.core.version>
+	  
+	  <module.web.version>0.0.1-SNAPSHOT</module.web.version>
+	  <module.infrastructure.version>0.0.1-SNAPSHOT</module.infrastructure.version>
+	  <module.domain.version>0.0.1-SNAPSHOT</module.domain.version>
+	  <module.application.version>0.0.1-SNAPSHOT</module.application.version>
   </properties>
   
   <dependencies>
@@ -85,6 +92,24 @@
             <spring.profiles.active>kubernetes-in-memory</spring.profiles.active>
             <npm.build>run kubernetes-build</npm.build>
         </properties>
+        <build>
+        	<plugins>
+	       		<plugin>
+		            <groupId>io.openliberty.boost</groupId>
+		            <artifactId>boost-maven-plugin</artifactId>
+		            <version>${boost.maven.plugin.version}</version>
+		            <configuration>
+		            </configuration>
+		            <executions>
+		              <execution>
+		                <goals>
+		                  <goal>docker-build</goal>
+		                </goals>
+		              </execution>
+		            </executions>
+		          </plugin>
+	          </plugins>
+        </build>
     </profile>
   </profiles>
 

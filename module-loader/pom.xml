@@ -15,21 +15,16 @@
       <dependency>
           <groupId>com.tmanager.module</groupId>
           <artifactId>module-web</artifactId>
-          <version>0.0.1-SNAPSHOT</version>
+          <version>${module.web.version}</version>
       </dependency>
       <dependency>
          <groupId>com.tmanager.module</groupId>
          <artifactId>module-infrastructure</artifactId>
-         <version>0.0.1-SNAPSHOT</version>
+         <version>${module.infrastructure.version}</version>
      </dependency>
     <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-kubernetes</artifactId>
-        <version>1.1.1.RELEASE</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
   </dependencies>
   
@@ -57,21 +52,6 @@
 	            </profiles>
             </configuration>
         </plugin>
-        
-        <plugin>
-            <groupId>io.openliberty.boost</groupId>
-            <artifactId>boost-maven-plugin</artifactId>
-            <version>0.1</version>
-            <configuration>
-            </configuration>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>docker-build</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
     </plugins>
     
    	<resources>
