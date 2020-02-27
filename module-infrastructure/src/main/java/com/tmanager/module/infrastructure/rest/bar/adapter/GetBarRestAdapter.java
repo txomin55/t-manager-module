@@ -1,6 +1,14 @@
 package com.tmanager.module.infrastructure.rest.bar.adapter;
 
+import java.util.Arrays;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.tmanager.module.domain.bar.model.Bar;
@@ -12,12 +20,20 @@ public class GetBarRestAdapter implements GetBarPersistancePort{
 	private String barPath;
 	
 	@Override
-	public Bar getBar(String id) {
+	public Bar getBar(String id, Map<String, String> aux) {
 		
 		final String uri = barPath + "/" + id;
 
 	    RestTemplate restTemplate = new RestTemplate();
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+	    headers.set("Authorization", aux.get("Authorization"));
+	    headers.set("Accept-language", aux.get("Accept-language"));
+	    
+	    HttpEntity<String> entity = new HttpEntity<String>("paramters", headers);
 
-	    return restTemplate.getForObject(uri, Bar.class);
+	    ResponseEntity<Bar> bar = restTemplate.exchange(uri, HttpMethod.GET, entity, Bar.class);
+	    
+	    return bar.getBody();
 	}
 }

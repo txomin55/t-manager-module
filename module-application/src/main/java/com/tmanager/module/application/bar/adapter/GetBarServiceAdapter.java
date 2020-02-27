@@ -22,7 +22,7 @@ public class GetBarServiceAdapter implements GetBarService {
 	@Override
 	public BarDTO getBar(BarGetCommand command) throws CustomException {
 				
-		Bar bar = getBarPersistancePort.getBar(command.getId());
+		Bar bar = getBarPersistancePort.getBar(command.getId(), command.getAux());
 		
 		if(bar == null) {
 			throw new CustomException(ErrorEnum.UNAUTHORIZED_RESOURCE_ERROR);
