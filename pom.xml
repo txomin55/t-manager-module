@@ -87,25 +87,6 @@
         </properties>
     </profile>
     <profile>
-        <id>kubernetes-compilation</id>
-        <build>
-        	<plugins>
-	       		<plugin>
-		            <groupId>io.openliberty.boost</groupId>
-		            <artifactId>boost-maven-plugin</artifactId>
-		            <version>${boost.maven.plugin.version}</version>
-		            <executions>
-		              <execution>
-		                <goals>
-		                  <goal>docker-build</goal>
-		                </goals>
-		              </execution>
-		            </executions>
-		          </plugin>
-	          </plugins>
-        </build>
-    </profile>
-    <profile>
         <id>kubernetes-in-memory</id>
         <properties>
             <spring.profiles.active>kubernetes-in-memory</spring.profiles.active>
