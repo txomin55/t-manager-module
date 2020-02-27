@@ -37,7 +37,7 @@
     </springProfile>
 
     <springProfile name="kubernetes-in-memory">
-        <root level="INFO">
+        <root level="TRACE">
             <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" additivity="false">
 		        <encoder>
 		            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
