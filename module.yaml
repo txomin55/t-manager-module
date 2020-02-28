@@ -30,5 +30,6 @@ spec:
   ports:
     - name: http
       port: 8002
+  type: NodePort
 
-#kubectl port-forward deployment/t-manager-module 8002:8002
+#kubectl port-forward svc/tmanager-module-webapp 8002:8002
