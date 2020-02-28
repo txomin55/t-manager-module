@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-
+    
     @GetMapping("/")
     public String homePathRedirection() {
         return "redirect:auth/authorize";
@@ -30,8 +30,8 @@ public class MainController {
     "/swagger-ui.html",
     "/webjars/**"
     */
-    @GetMapping("^(?!\\/api\\/)(?!\\/swagger)(?!\\/static)(?!\\/v2)(?!\\/configuration)(?!\\/webjars)(?!\\/actuator).*$")
-    public String redirectApi() {     
+    @GetMapping(value = {"/{path:^(?!init|actuator|auth|favicon|static|module.js|v2|configuration|swagger|webjars|index).*}"})
+    public String forward() {
         return "forward:/index.html";
-    } 
+    }
 }
