@@ -3,4 +3,4 @@ module:
     clientRedirectUrl: http://localhost:8002/module/init
   external: 
     bar:
-      url: http://bar-webapp:8003/bar
+      url: http://localhost:8003/bar
