@@ -1,3 +1,6 @@
+import '@mdi/font/css/materialdesignicons.css';
+import '../public/static/roboto.css';
+
 import Vue from "vue";
 import WindowVue from "vue";
 import App from "./App.vue";
