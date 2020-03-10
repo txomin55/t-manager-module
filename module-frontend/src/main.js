@@ -1,5 +1,5 @@
-import '@mdi/font/css/materialdesignicons.css';
-import '../public/static/roboto.css';
+import "@mdi/font/css/materialdesignicons.css";
+import "../public/static/roboto.css";
 
 import Vue from "vue";
 import WindowVue from "vue";

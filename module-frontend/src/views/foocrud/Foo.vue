@@ -105,7 +105,7 @@ export default {
     },
     getServerMsg() {
       alert(this.serverMsg);
-    },    
+    },
     getExceptionTimeout() {
       this.$store.dispatch("fooModule/launchExceptionTimeout");
     }
