@@ -36,6 +36,6 @@ public class DeleteFooServiceAdapterTest {
 		
 		deleteFooPersistancePort.deleteFoo(id);
 		
-		verify(list);
+		verify(deleteFooPersistancePort).deleteFoo(id);
 	}
 }

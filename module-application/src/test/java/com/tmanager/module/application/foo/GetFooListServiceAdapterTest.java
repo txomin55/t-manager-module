@@ -1,6 +1,5 @@
 package com.tmanager.module.application.foo;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.when;
@@ -35,6 +34,6 @@ public class GetFooListServiceAdapterTest {
 		
 		List<Foo> myList = getFooListPersistancePort.getFoo(owner);
 		
-		assertThat(myList, is(myList.size() == 2));
+		assertThat("No elements returned", myList.size() == 2);
 	}
 }

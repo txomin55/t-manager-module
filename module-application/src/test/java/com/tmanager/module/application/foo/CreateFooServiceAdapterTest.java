@@ -2,7 +2,7 @@ package com.tmanager.module.application.foo;
 
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +35,6 @@ public class CreateFooServiceAdapterTest {
 		
 		createFooPersistancePort.createFoo(new Foo("2", "TEST-2", "2", "1"));
 		
-		verify(list);
+		assertTrue("Element not added", list.size() == 1);
 	}
 }

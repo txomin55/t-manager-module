@@ -1,30 +1,25 @@
 package com.tmanager.module.web.app.adapter.foo;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 
 import com.tmanager.module.application.foo.port.GetFooListService;
-import com.tmanager.module.web.app.adapter.foo.dto.GetFooWeb;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GetFooListControllerTest {
 
-    @Autowired
+    @Mock
     private GetFooListService getFooListService;
     
 	@Test
 	public void getFooListController(){
 		
-		List<GetFooWeb> foos = getFooListService.getFoo("1").stream()
-					            .map(foo -> new GetFooWeb(foo.getId(), foo.getName(), foo.getValue()))
-					            .collect(Collectors.toList());
+		getFooListService.getFoo("1");
 		
-		Assert.notEmpty(foos, "Empty foos list");
+		verify(getFooListService).getFoo("1");
 	}
 }

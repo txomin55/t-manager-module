@@ -1,6 +1,5 @@
 package com.tmanager.module.application.foo;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.when;
 
@@ -32,6 +31,6 @@ public class GetFooServiceAdapterTest {
 		
 		Foo foo = getFooPersistancePort.getFoo("1");
 		
-		assertThat(foo, is(foo.getId().equals("1")));
+		assertThat("No element returned", foo.getId().equals("1"));
 	}
 }

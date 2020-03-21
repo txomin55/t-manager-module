@@ -33,8 +33,10 @@ public class UpdateFooServiceAdapterTest {
 		
 		doNothing().when(updateFooPersistancePort).updateFoo(isA(Foo.class)); 
 		
-		updateFooPersistancePort.updateFoo(new Foo("2", "TEST-2-EDITED", "2-EDITED", "1"));
+		Foo foo = new Foo("2", "TEST-2-EDITED", "2-EDITED", "1");
 		
-		verify(list);
+		updateFooPersistancePort.updateFoo(foo);
+		
+		verify(updateFooPersistancePort).updateFoo(foo);
 	}
 }

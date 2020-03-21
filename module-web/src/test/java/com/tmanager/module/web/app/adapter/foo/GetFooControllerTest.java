@@ -1,30 +1,29 @@
 package com.tmanager.module.web.app.adapter.foo;
 
+import static org.mockito.Mockito.verify;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 
 import com.tmanager.module.application.foo.command.FooGetCommand;
-import com.tmanager.module.application.foo.dto.FooDTO;
 import com.tmanager.module.application.foo.port.GetFooService;
 import com.tmanager.module.exception.CustomException;
-import com.tmanager.module.web.app.adapter.foo.dto.GetFooWeb;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GetFooControllerTest {
 
-    @Autowired
+    @Mock
     private GetFooService getFooService;
     
 	@Test
 	public void getFooController() throws CustomException{
 		
-    	FooDTO foo = getFooService.getFoo(new FooGetCommand("1", "1")); 
-    	
-        GetFooWeb fooWeb = new GetFooWeb(foo.getId(), foo.getName(), foo.getValue());
+		FooGetCommand command = new FooGetCommand("1", "1");
 		
-		Assert.notNull(fooWeb, "Null fooWeb");
+		getFooService.getFoo(command); 
+
+		verify(getFooService).getFoo(command); 
 	}
 }

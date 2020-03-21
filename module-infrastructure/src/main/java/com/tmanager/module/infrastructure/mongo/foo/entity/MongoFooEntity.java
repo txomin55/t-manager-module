@@ -8,12 +8,14 @@ import com.tmanager.module.domain.foo.model.Foo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Document(collection = "foo")
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class MongoFooEntity implements Serializable{
 	
 	private static final long serialVersionUID = -7595011183671841430L;

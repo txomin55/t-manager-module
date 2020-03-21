@@ -1,6 +1,5 @@
 package com.tmanager.module.infrastructure.inmemory.foo;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.HashMap;
@@ -8,35 +7,25 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.tmanager.module.domain.foo.model.Foo;
 import com.tmanager.module.infrastructure.inmemory.foo.entity.FooEntity;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
 public class CreateFooInMemoryAdapterTest {
-
-	@Mock
-	private Map<String, FooEntity> simulatedFooMap;
 	
 	@Test
 	public void createFooInMemoryAdapter(){
 		
-		simulatedFooMap = new HashMap<String, FooEntity>();
+		Map<String, FooEntity> simulatedFooMap = new HashMap<String, FooEntity>();
 		
-		String id = "" + simulatedFooMap.size() + 1;
+		String id = "1";
 		String name = "Soy " + id;
 		Foo foo = new Foo(id, name, "1", "1");
-		
-		int initalNFoo = simulatedFooMap.size();
-		
-		Mockito.verify(simulatedFooMap.put(foo.getId(), new FooEntity(foo)));
-		
-		int finalNFoo = simulatedFooMap.size();
-		
-		assertThat(simulatedFooMap, is(simulatedFooMap.containsKey(id)));
-		assertThat(finalNFoo, is(initalNFoo + 1));  
+				
+		simulatedFooMap.put(foo.getId(), new FooEntity(foo));
+				
+		assertThat("Map does not contain id", simulatedFooMap.containsKey(id));  
 	}
 }

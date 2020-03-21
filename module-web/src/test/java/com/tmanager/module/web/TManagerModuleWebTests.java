@@ -5,24 +5,36 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.ConfigFileApplicationContextInitializer;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.tmanager.module.web.configuration.CustomAccessTokenConverter;
+import com.tmanager.module.web.configuration.OAuth2ResourceServerConfigJwt;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
+@Ignore
+@EnableWebSecurity
 @RunWith(SpringRunner.class)
+@TestPropertySource(locations={"classpath:application.yml", "classpath:application-develop-in-memory.yml"})
+@ContextConfiguration(initializers={ConfigFileApplicationContextInitializer.class}, classes= {CustomAccessTokenConverter.class, OAuth2ResourceServerConfigJwt.class})
 @SpringBootTest
 public class TManagerModuleWebTests {
-
+ 
     @Autowired
-    private JwtTokenStore tokenStore;
+	private TokenStore tokenStore;
 
 	@Value("${module.oauth.clientId}")
 	private String clientId;
@@ -45,15 +57,11 @@ public class TManagerModuleWebTests {
     @Test
     public void whenTokenDontContainIssuer() {
         final String tokenValue = obtainAccessToken();
-        final OAuth2Authentication auth = tokenStore.readAuthentication(tokenValue);
-        System.out.println(tokenValue);
-        System.out.println(auth);
+		final OAuth2Authentication auth = tokenStore.readAuthentication(tokenValue);
         assertTrue(auth.isAuthenticated());
-        System.out.println(auth.getDetails());
 
         Map<String, Object> details = (Map<String, Object>) auth.getDetails();
         assertTrue(details.containsKey("organization"));
-        System.out.println(details.get("organization"));
     }
 
     private String obtainAccessToken() {
@@ -63,13 +71,10 @@ public class TManagerModuleWebTests {
     	
         params.put("grant_type", "password");
         params.put("client_id", clientId);
+        params.put("client_secret", clientSecret);
         params.put("username", "user-open-source");
         params.put("password", "password-open-source");
         final Response response = RestAssured.given()
-        		.auth()
-        		.preemptive()
-        		.basic(clientId, clientSecret)
-        		.and()
         		.with()
         		.params(params)
         		.when()

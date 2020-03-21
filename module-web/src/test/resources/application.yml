@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: module
+  profiles:
+    active: develop-in-memory
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration, org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
+     
+server:
+  servlet:
+    context-path: /module
+  port: 8002
+  
+module:
+  oauth:
+    server:
+       port: 8001
+       path: auth-service
+       address: http://18.194.82.207
+    clientId: app-open-source
+    clientSecret: password-open-source   
+  timeoutValue: 5000
+  threadPool: 10
+  external:
+    bar:
+      url: http://18.194.82.207:8003/bar
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" 
