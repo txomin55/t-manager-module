@@ -17,5 +17,6 @@
     "module.logout" : "Salir",
     "module.home" : "Inicio",
     "module.about" : "Acerca de",
-    "module.create" : "Crear"
+    "module.create" : "Crear",
+    "diary.date.format": "DD/MM/YYYY" 
 }
