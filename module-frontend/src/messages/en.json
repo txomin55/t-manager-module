@@ -18,5 +18,6 @@
     "module.home" : "Home",
     "module.about" : "About",
     "module.create" : "Create",
-    "diary.date.format": "MM/DD/YYYY" 
+    "module.date.format": "MM/DD/YYYY", 
+    "module.date.formatWithTime": "MM/DD/YYYY HH:mm:ss"
 }

@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import Moment from 'moment';
 import { mapState } from "vuex";
 
 export default {
@@ -30,11 +31,11 @@ export default {
         this.errors.push({
           showError: true,
           title: `${this.$i18n.t("module.errorHandler.error")} ${
-            errorDTO.date
+            Moment(errorDTO.date).format(this.$i18n.t("module.date.formatWithTime"))
           }`,
           message: `${errorDTO.id}: ${errorDTO.msg}`,
           id: new Date().getTime(),
-          timeout: timeout
+          timeout
         });
       } else {
         this.errors.push({
@@ -42,7 +43,7 @@ export default {
           title: `ERROR`,
           message: `${errorData.message}`,
           id: new Date().getTime(),
-          timeout: timeout
+          timeout
         });
       }
 
