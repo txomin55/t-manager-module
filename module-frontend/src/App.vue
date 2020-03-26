@@ -38,6 +38,11 @@ export default {
       window.isModuleEnsambled[this.$store.state.module]
     ) {
       this.$router.push({ name: "home" });
+
+      this.$vuetify.theme.themes.light = window.t_manager.plugins.Themes[window.t_manager_theme].light;
+      this.$vuetify.theme.themes.dark = window.t_manager.plugins.Themes[window.t_manager_theme].dark;
+      this.$vuetify.theme.dark = window.t_manager_dark;
+      this.$store.dispatch("updateLanguage", window.t_manager_language);
     }
 
     this.$store.dispatch("initUserData");
