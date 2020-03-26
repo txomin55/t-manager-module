@@ -39,6 +39,8 @@ export default {
     ) {
       this.$router.push({ name: "home" });
     }
+
+    this.$store.dispatch("initUserData");
   }
 };
 </script>
