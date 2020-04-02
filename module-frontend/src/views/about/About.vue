@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col class="text-center">
-        <h2>{{ module }}</h2>
+        <h2>{{ module }} {{version}}</h2>
       </v-col>
     </v-row>
     <v-row>
@@ -34,7 +34,8 @@ export default {
   name: "About",
   data() {
     return {
-      module: this.$store.state.module
+      module: this.$store.state.module,
+      version: JSON.stringify(require('../../../package.json').version)
     };
   }
 };
