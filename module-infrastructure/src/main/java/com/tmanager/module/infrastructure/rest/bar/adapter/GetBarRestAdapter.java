@@ -27,8 +27,8 @@ public class GetBarRestAdapter implements GetBarPersistancePort{
 	    RestTemplate restTemplate = new RestTemplate();
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-	    headers.set("Authorization", aux.get("Authorization"));
-	    headers.set("Accept-language", aux.get("Accept-language"));
+		
+		aux.keySet().stream().forEach(k -> headers.set(k, aux.get(k)));
 	    
 	    HttpEntity<String> entity = new HttpEntity<String>("paramters", headers);
 
