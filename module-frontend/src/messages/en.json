@@ -2,6 +2,7 @@
     "module.helloWorld.welcomeMsg": "Welcome to T-MANAGER module",
     "module.helloWorld.welcomeMsgSub": "This is your module",
     "module.errorHandler.error": "Error",
+    "module.errorHandler.contactDeveloper": "Contact developer",
     "module.fooCrud.welcome": "This is the FOO CRUD page",
     "module.fooCrud.description": "This provides GET, POST and DELETE requests from your modules FooController",
     "module.fooCrud.exception": "Exception",

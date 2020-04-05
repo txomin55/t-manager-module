@@ -26,25 +26,23 @@ export default {
   watch: {
     error(errorData) {
       const timeout = 5000;
-      if (errorData.response && errorData.response.data) {
+      if(errorData && errorData.response && errorData.response.data && errorData.response.data.id){
         const errorDTO = errorData.response.data;
+          this.errors.push({
+            showError: true,
+            title: `${this.$i18n.t("module.errorHandler.error")} ${Moment(errorDTO.date).format(this.$i18n.t("module.date.formatWithTime"))}`,
+            message: `${errorDTO.id}: ${errorDTO.msg}`,
+            id: new Date().getTime(),
+            timeout: timeout
+          });
+      }else{
         this.errors.push({
-          showError: true,
-          title: `${this.$i18n.t("module.errorHandler.error")} ${
-            Moment(errorDTO.date).format(this.$i18n.t("module.date.formatWithTime"))
-          }`,
-          message: `${errorDTO.id}: ${errorDTO.msg}`,
-          id: new Date().getTime(),
-          timeout
-        });
-      } else {
-        this.errors.push({
-          showError: true,
-          title: `ERROR`,
-          message: `${errorData.message}`,
-          id: new Date().getTime(),
-          timeout
-        });
+            showError: true,
+            title: `ERROR`,
+            message: `${this.$i18n.t("module.errorHandler.contactDeveloper")}`,
+            id: new Date().getTime(),
+            timeout: timeout
+          });
       }
 
       const timeoutId = setTimeout(() => {
