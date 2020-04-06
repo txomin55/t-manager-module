@@ -22,6 +22,7 @@ La motivación de este proyecto es meramente personal, aunque creo que tiene bas
     - [CORS](#cors)
   - [Swagger](#swagger)
   - [Compilación](#compilaci%c3%b3n)
+  - [Ejecución](#ejecuci%c3%b3n)
 
 ## Estructura del proyecto
 
@@ -44,7 +45,7 @@ Fuente: <https://medium.com/@edusalguero/arquitectura-hexagonal-59834bb44b7f>
 El proyecto se define por diferentes submodulos de Maven:
 
 - **Loader:**
-Es el encargado de cargar la aplicación, solo contiene la clase que arranca la aplicación de SpringBoot, los yml de variables de entorno por perfil y las configuraciones de los adaptadores de los puertos. Para esto último se usan las clases de configuración FooApplicationConfiguration y FooInMemoryAdapterConfiguration o FooMongoAdapterConfiguration dependiendo del perfil con el que se lance la aplicación (por defecto "develop-in-memory"). Para gestionar el tema de los perfiles (tanto el de Maven como el Spring) hay que mirar el pom.xml del módulo padre, donde se definen los perfiles de Maven y lo asocian al perfil Spring seteando los parámetros spring.profiles.active (usado para seleccionar el yml adecuado al perfil) y npm.build (usado en el proyecto frontend para compilar). Antes de seleccionar el el fichero según el perfil, se carga el application.yml que a su vez coge el valor de spring.profile.active y se lo setea a Spring, así pudiendo coger el fichero correspondiente al perfil (application-develop-in-memory por defecto).
+Es el encargado de cargar la aplicación, solo contiene la clase que arranca la aplicación de SpringBoot, los yml de variables de entorno por perfil y las configuraciones de los adaptadores de los puertos. Para esto último se usan las clases de configuración FooApplicationConfiguration y FooInMemoryAdapterConfiguration o FooMongoAdapterConfiguration dependiendo de la variable de entorno "module.deploy.tech" definida a la hora de arrancar la aplicación (por defecto "in-memory"), también existe otra variable con nombre "module.deploy.external-communication-tech" que por defecto es "rest" y sirve para usar los beans de configuración de comunicación entre microproyectos por REST (esto está pensado para implementar kafka, rabbit...). Para gestionar el tema de los perfiles (tanto el de Maven como el Spring) hay que mirar el pom.xml del módulo padre, donde se definen los perfiles de Maven y lo asocian al perfil Spring seteando los parámetros spring.profiles.active (usado para seleccionar el yml adecuado al perfil) y npm.build (usado en el proyecto frontend para compilar). Antes de seleccionar el el fichero según el perfil, se carga el application.yml que a su vez coge el valor de spring.profile.active y se lo setea a Spring, así pudiendo coger el fichero correspondiente al perfil (application-develop por defecto).
 
 - **Web:**
 El submódulo Web es el encargado de copiar en su carpeta resources el proyecto del Frontend y a también de definir todas las politicas de seguridad, beans, traducciones, controladores (API) etc. Se puede decir que es el módulo más complejo de todos. Gracias a Springboot y sus dependencias el proyecto web está configurado para coger lo que tenga en resources, pero en este caso, antes de mostrar el index.html ubicado en la carpeta public (junto con el js y css compilado del Frontend) se tiene que realizar el logueo con el servidor OAuth. Para ello se define en el MainController.java que cuando vayamos al classpath "/" redireccionemos a "auth/authorize" en vez de enseñar el index (implementaciones en AuthController.java); para realizar esta acción se usan los certificados ubicados en la carpeta "publicKey", toda la configuración relacionada con OAuth está en el OAuth2ResourceServerConfigJwt.java. Una vez nos logueamos de forma satisfactoria, la ruta de redirección definida por el cliente de OAuth será la de "/init" que ese nos mostrará el index.html y ejecutará el js compilado (module.js) cuando se cargue.
@@ -175,19 +176,29 @@ http://localhost:8002/module/swagger-ui.html
 
 Los perfiles de compilado y ejecución de la aplicación son los siguientes:
 
-- **develop-in-memory** (adaptadores en memoria en local)
-- **develop-mongo** (adaptadores en mongo en local)
-- **production-in-memory** (adaptadores en memoria en producción)
-- **production-mongo** (adaptadores en mongo en producción)
+- **develop** (servidor en local)
+- **production** (sevidor en IP especificada en el fichero application-production.yml)
+- **kubernetes** (servidor kubernetes)
   
-Para compilar este proyecto hay que situarse en el proyecto raíz y ejecutar el siguiente comando, por defecto el perfil que se usa es el "develop-in-memory" pero existen otros 3 (explicados anteriormente):
+Para compilar este proyecto hay que situarse en el proyecto raíz y ejecutar el siguiente comando, por defecto el perfil que se usa es el "develop" pero existen otros 2 (explicados anteriormente):
 
 ``` bash
-mvn clean install -Pproduction-in-memory
+mvn clean install -Pproduction
 ```
 
-Para ejecutar este proyecto hay que situarse en el proyecto loader y ejecutar:
+## Ejecución
+
+La aplicación dispone de 2 tipos de implementación en lo que a persistencia se refiere, esta variable se setea con el nombre de module.build.tech:
+
+- **in-memory** (implementación de bbdd en memoria)
+- **mongo** (implementación de bbdd de mongo)
+
+Para la comunicación entre modulos, solo dispone de la siguiente implementación, pero aquí se pueden configurar otros como Kafka, Rabbit... , esta variable se setea con el nombre de module.build.external-communication-tech:
+
+- **rest** (servidor kubernetes)
+
+Para ejecutar este proyecto hay que situarse en el proyecto loader y ejecutar (así usariamos la implementación de persistencia en mongo en vez de la de por defecto de en memoria):
 
 ``` bash
-mvn spring-boot:run -Dspring.profiles.active=production-in-memory
+mvn spring-boot:run -Dspring.profiles.active=production -Dmodule.build.tech=mongo
 ```
