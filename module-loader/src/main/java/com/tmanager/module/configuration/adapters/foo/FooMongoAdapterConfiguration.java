@@ -1,9 +1,11 @@
 package com.tmanager.module.configuration.adapters.foo;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 
 import com.mongodb.MongoClient;
@@ -22,11 +24,11 @@ import com.tmanager.module.infrastructure.mongo.foo.adapter.GetFooMongoAdapter;
 import com.tmanager.module.infrastructure.mongo.foo.adapter.UpdateFooMongoAdapter;
 
 @Configuration
-@Profile({ "develop-mongo", "production-mongo" })
+@ConditionalOnProperty(value = "module.deploy.tech", havingValue = "mongo")
 public class FooMongoAdapterConfiguration extends AbstractMongoConfiguration {
 
-	@Value("${spring.data.mongodb.authentication-database}")
-	private String authenticationDatabase;
+	@Value("${spring.data.mongodb.authentication-database:#{null}}")
+	private Optional<String> authenticationDatabase;
 
 	@Value("${spring.data.mongodb.host}")
 	private String mongoHost;
@@ -37,11 +39,11 @@ public class FooMongoAdapterConfiguration extends AbstractMongoConfiguration {
 	@Value("${spring.data.mongodb.database}")
 	private String mongoDatabaseName;
 
-	@Value("${spring.data.mongodb.username}")
-	private String username;
+	@Value("${spring.data.mongodb.username:#{null}}")
+	private Optional<String> username;
 
-	@Value("${spring.data.mongodb.password}")
-	private String password;
+	@Value("${spring.data.mongodb.password:#{null}}")
+	private Optional<String> password;
 
 	@Bean
 	public CreateFooPersistancePort fooPersistancePort() {
@@ -70,8 +72,14 @@ public class FooMongoAdapterConfiguration extends AbstractMongoConfiguration {
 
 	@Override
 	public MongoClient mongoClient() {
+		if (authenticationDatabase.isPresent()) {
+			return new MongoClient(new ServerAddress(mongoHost, mongoPort),
+					MongoCredential.createCredential(username.toString(), authenticationDatabase.toString(),
+							password.toString().toCharArray()),
+					MongoClientOptions.builder().applicationName(mongoDatabaseName).build());
+		}
+
 		return new MongoClient(new ServerAddress(mongoHost, mongoPort),
-				MongoCredential.createCredential(username, authenticationDatabase, password.toCharArray()),
 				MongoClientOptions.builder().applicationName(mongoDatabaseName).build());
 	}
 

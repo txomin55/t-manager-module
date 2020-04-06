@@ -24,6 +24,9 @@ module:
   external:
     bar:
       url: http://18.194.82.207:8003/bar
+  deploy:
+    tech: in-memory
+    external-communication-tech: rest
     
 management:
   endpoints:

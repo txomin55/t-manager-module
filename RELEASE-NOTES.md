@@ -1,6 +1,6 @@
 <!-- generic, reusable header between releases -->
 
-RELEASE NOTES MODULE 0.0.1
+RELEASE NOTES MODULE 0.0.1 (semantic versioning => MAJOR version when you make incompatible API changes, MINOR version when you add functionality in a backward-compatible manner, and PATCH version when you make backward-compatible bug fixes.)
 ---------
 
 <div align="center">

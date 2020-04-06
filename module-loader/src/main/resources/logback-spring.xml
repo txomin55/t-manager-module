@@ -7,7 +7,7 @@
     <property name="LOG_FILE" value="LogFile" />
 	<property name="LOG_DIR" value="/var/logs/module" />
 
-    <springProfile name="develop-in-memory,develop-mongo">
+    <springProfile name="develop">
         <root level="INFO">
             <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" additivity="false">
 		        <encoder>
@@ -18,7 +18,7 @@
 		
     </springProfile>
 
-    <springProfile name="production-in-memory,production-mongo">
+    <springProfile name="production">
         <root level="ERROR">
             <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
 		        <file>${LOG_DIR}/${LOG_FILE}.log</file>
@@ -36,8 +36,8 @@
 
     </springProfile>
 
-    <springProfile name="kubernetes-in-memory">
-        <root level="TRACE">
+    <springProfile name="kubernetes">
+        <root level="ERROR">
             <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" additivity="false">
 		        <encoder>
 		            <pattern>${CONSOLE_LOG_PATTERN}</pattern>

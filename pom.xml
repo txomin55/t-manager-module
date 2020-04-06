@@ -56,40 +56,26 @@
   
   <profiles>
     <profile>
-        <id>develop-in-memory</id>
+        <id>develop</id>
         <activation>
             <activeByDefault>true</activeByDefault>
         </activation>
         <properties>
-            <spring.profiles.active>develop-in-memory</spring.profiles.active>
+            <spring.profiles.active>develop</spring.profiles.active>
             <npm.build>run build</npm.build>
         </properties>
     </profile>
     <profile>
-        <id>production-in-memory</id>
+        <id>production</id>
         <properties>
-            <spring.profiles.active>production-in-memory</spring.profiles.active>
+            <spring.profiles.active>production</spring.profiles.active>
             <npm.build>run production-build</npm.build>
         </properties>
     </profile>
     <profile>
-        <id>develop-mongo</id>
+        <id>kubernetes</id>
         <properties>
-            <spring.profiles.active>develop-mongo</spring.profiles.active>
-            <npm.build>run build</npm.build>
-        </properties>
-    </profile>
-    <profile>
-        <id>production-mongo</id>
-        <properties>
-            <spring.profiles.active>production-mongo</spring.profiles.active>
-            <npm.build>run production-build</npm.build>
-        </properties>
-    </profile>
-    <profile>
-        <id>kubernetes-in-memory</id>
-        <properties>
-            <spring.profiles.active>kubernetes-in-memory</spring.profiles.active>
+            <spring.profiles.active>kubernetes</spring.profiles.active>
             <npm.build>run kubernetes-build</npm.build>
         </properties>
     </profile>
