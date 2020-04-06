@@ -45,7 +45,9 @@ export default {
       this.$store.dispatch("updateLanguage", window.t_manager_language);
     }
 
-    this.$store.dispatch("initUserData");
+    this.$store.dispatch("initUserData", () => {
+      this.$store.dispatch("updateLanguage", this.$store.getters.getUserLocale);
+    });
   }
 };
 </script>

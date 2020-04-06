@@ -50,14 +50,20 @@ export default {
     loadingAction(context) {
       context.commit("LOADING");
     },
-    initUserData(context) {
+    initUserData(context, cb) {
       ConfigApi.getUserData(user => {
         context.commit("INIT_USER_DATA", user);
+        cb();
       });
     },
     logout(context) {
       context.commit("UPDATE_TOKEN", null);
       window.location.href = `/${MODULE_NAME}`;
+    }
+  },
+  getters: {
+    getUserLocale(state){
+      return state.userData.locale ? state.userData.locale : DEFAULT_LOCALE;
     }
   }
 };

@@ -10,4 +10,5 @@ public class RequestUserDetails {
 	private String id;
 	private String fullName;
 	private String organization;
+	private String locale;
 }
