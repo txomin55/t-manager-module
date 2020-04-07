@@ -1,6 +1,7 @@
 module:
   oauth:
-    clientRedirectUrl: http://18.194.82.207:8002/module/init
+    clientRedirectUrl: https://18.194.82.207:8002/module/init
+    
 spring:
   data:
     mongodb:
@@ -10,3 +11,10 @@ spring:
       host: 18.194.82.207
       port: 27017
       database: t-manager-module
+
+server:
+  ssl:
+    key-store-type: pkcs12
+    key-store: classpath:keystore/t-manager.p12
+    key-store-password: t-manager
+    key-alias: t-manager

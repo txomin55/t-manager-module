@@ -1,6 +1,7 @@
 module:
   oauth:
     clientRedirectUrl: http://localhost:8081/module/init
+    
 spring:
   data:
     mongodb:

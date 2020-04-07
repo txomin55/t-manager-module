@@ -1,6 +1,7 @@
 package com.tmanager.module.web.app.adapter.auth;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,12 @@ public class AuthController {
 	@Value("${module.oauth.clientRedirectUrl}")
 	private String clientRedirectUrl;
 	
+	private RestTemplate restTemplate;
+
+	public AuthController(RestTemplateBuilder builder) {
+		this.restTemplate = builder.build();
+	}
+	
 	@GetMapping("/authorize")
 	public String authorize() {
 
@@ -51,8 +58,6 @@ public class AuthController {
 
 		String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
 		
-		RestTemplate restTemplate = new RestTemplate();
-
 		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/token")
 				.queryParam("grant_type", "authorization_code").queryParam("client_id", clientId)
 				.queryParam("client_secret", clientSecret)
@@ -70,8 +75,6 @@ public class AuthController {
 
 		String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
 		
-		RestTemplate restTemplate = new RestTemplate();
-
 		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/token")
 				.queryParam("grant_type", "refresh_token").queryParam("client_id", clientId)
 				.queryParam("client_secret", clientSecret)

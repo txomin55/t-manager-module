@@ -10,24 +10,29 @@ server:
   servlet:
     context-path: /module
   port: 8002
-  
+
+trust:
+  store: 
+    classpath: classpath:keystore/t-manager.p12
+    password: t-manager
+    
 module:
   oauth:
     server:
        port: 8001
        path: auth-service
-       address: http://18.194.82.207
+       address: https://18.194.82.207
     clientId: app-open-source
     clientSecret: password-open-source   
   timeoutValue: 5000
   threadPool: 10
   external:
     bar:
-      url: http://18.194.82.207:8003/bar
+      url: https://18.194.82.207:8003/bar
   deploy:
     tech: in-memory
     external-communication-tech: rest
-    
+
 management:
   endpoints:
     web:
