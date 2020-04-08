@@ -216,3 +216,5 @@ En caso de lanzar la aplicación en el entorno de "production", la aplicación s
 ``` bash
 keytool -genkeypair -alias t-manager -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore t-manager.p12 -validity 9999 -ext san=dns:localhost,ip:18.194.82.207
 ```
+
+NOTA: Existe un pequeño truco en el pom del modulo web donde se dice que no se use el filtrado con el fichero .p12, sino Maven de forma automática lo modifica y da errores al lanzar el JAR.
