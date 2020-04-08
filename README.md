@@ -20,9 +20,11 @@ La motivación de este proyecto es meramente personal, aunque creo que tiene bas
       - [Datos de keystore](#datos-de-keystore)
       - [A tener en cuenta con OAUTH2](#a-tener-en-cuenta-con-oauth2)
     - [CORS](#cors)
+    - [LLAMADAS A API REST](#llamadas-a-api-rest)
   - [Swagger](#swagger)
   - [Compilación](#compilaci%c3%b3n)
   - [Ejecución](#ejecuci%c3%b3n)
+    - [HTTPS](#https)
 
 ## Estructura del proyecto
 
@@ -80,6 +82,8 @@ Credenciales de login para usuarios open-source son los siguientes.
 user : user-open-source
 password : password-open-source
 ```
+
+Para ejecutar la autenticación, se usa una modificación del restTemplate para añadir el certificado SSL, ya que el servidor de autenticación y autorización tiene el mismo .p12 que todos los módulos, es este el que se incluye. La configuración se hace gracias a la clase de configuración RestTemplateConfiguration en el module-web.
 
 ## Frontend
 
@@ -164,6 +168,9 @@ El resourceId dado de alta en users de mongo tiene que tener el mismo que la apl
 
 Al tratarse de una SPA con intención de ser usada como microservicio y microfrontend, el CORS debe permitir absolutamente todo, ya que en caso de que un usuario no identificado quiera acceder a un recurso del api no podrá por no tener el token de autenticación.
 
+### LLAMADAS A API REST
+Para poder consumir el api rest que generan los módulos te t-manager, hay que añadir en ellos el certificado SSL para poder hacer llamadas a rutas con HTTPS, por ello se usa la utilidad CustomRestTemplate que se define en el paquete "rest" del módulo de infrastructure, para luego usarlo como ejemplo en la implementación para la obtención de Bar (en GetBarRestAdapter).
+
 ## Swagger
 
 El swagger está montado para soportar Oauth2, por lo que en caso de querer llamar al API hay que loguearse en el icono de candado y luego añadir los parametros necesarios a la petición, su configuración se encuentra en SwaggerConfiguration.java (en el proyecto Web).
@@ -201,4 +208,11 @@ Para ejecutar este proyecto hay que situarse en el proyecto loader y ejecutar (a
 
 ``` bash
 mvn spring-boot:run -Dspring.profiles.active=production -Dmodule.build.tech=mongo
+```
+
+### HTTPS
+En caso de lanzar la aplicación en el entorno de "production", la aplicación se lanzará en con el protocolo HTTPS. Para ello usa el .p12 ubicado en la carpeta keystore en los resources del module-loader. Además, se añaden las configuraciones necesarias en el applicacion-production.yml para que el tomcat que se despliga tenga los datos necesarios. Este certificado es autofirmado y tiene el SAN de localhost y la ip 18.194.82.207 (la del servidor de Amazon). En caso de querer crear uno nuevo para otro servidor, en la carpeta de JAVA_HOME:
+
+``` bash
+keytool -genkeypair -alias t-manager -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore t-manager.p12 -validity 9999 -ext san=dns:localhost,ip:18.194.82.207
 ```
