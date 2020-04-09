@@ -10,7 +10,7 @@
 	
   <groupId>com.tmanager.module</groupId>
   <artifactId>t-manager-module</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
   <name>t-manager-module</name>
   <description>T Managers module sample</description>
@@ -25,6 +25,7 @@
   </modules>
   
   <properties>
+  	  <revision>0.0.1</revision>
 	  <jwt.version>1.0.10.RELEASE</jwt.version>
 	  <oauth.version>2.3.6.RELEASE</oauth.version>
 	  <spring-cloud.version>Greenwich.SR1</spring-cloud.version>

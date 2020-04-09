@@ -3,7 +3,7 @@
   <parent>
     <groupId>com.tmanager.module</groupId>
     <artifactId>t-manager-module</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
   </parent>
   <artifactId>module-web</artifactId>
   
