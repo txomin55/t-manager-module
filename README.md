@@ -193,6 +193,8 @@ Para compilar este proyecto hay que situarse en el proyecto raíz y ejecutar el 
 mvn clean install -Pproduction
 ```
 
+NOTA: Al tratarse un proyecto multimodulo de Maven, la compilación de los hijos del proyecto (web, application, loader...) dependen de la versión definida en el padre, esto se hace con la propiedad "revision" y para que a la hora de ejecución, el módulo de loader tenga la versión del padre, hace falta usar el plugin de "flatten-maven-plugin" para pasar los datos del padre a los hijos, esta configuración se ubica en el pom del proyecto padre.
+
 ## Ejecución
 
 La aplicación dispone de 2 tipos de implementación en lo que a persistencia se refiere, esta variable se setea con el nombre de module.build.tech:
