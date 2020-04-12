@@ -69,7 +69,7 @@ public class SwaggerConfiguration {
     
     private AuthorizationScope[] scopes() {
         AuthorizationScope[] scopes = { 
-          new AuthorizationScope("foo", "Access foo API") };
+          new AuthorizationScope("login", "Access foo API") };
         return scopes;
     }
     
