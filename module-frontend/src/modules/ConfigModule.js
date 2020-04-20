@@ -62,6 +62,9 @@ export default {
     }
   },
   getters: {
+    getUserData(state){
+      return state.userData;
+    },
     getUserLocale(state){
       return state.userData.locale ? state.userData.locale : DEFAULT_LOCALE;
     }

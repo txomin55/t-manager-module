@@ -5,7 +5,7 @@
     <v-content>
       <module-loading-handler />
       <module-error-handler />
-      <router-view />
+      <router-view v-if="userData"/>
     </v-content>
 
     <module-footer v-if="!isEmbebed" />
@@ -17,6 +17,7 @@ import ErrorHandler from "@/components/error/ErrorHandler";
 import LoadingHandler from "@/components/loading/LoadingHandler";
 import Footer from "@/components/footer/Footer";
 import NavBar from "@/components/navbar/NavBar";
+import {mapGetters} from "vuex";
 
 export default {
   components: {
@@ -31,6 +32,11 @@ export default {
         window.isModuleEnsambled &&
         window.isModuleEnsambled[this.$store.state.module]
     };
+  },
+  computed: {
+    ...mapGetters({
+      userData : "getUserData"
+    })
   },
   mounted() {
     if (
