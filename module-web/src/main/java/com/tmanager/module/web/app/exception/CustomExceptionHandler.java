@@ -1,5 +1,6 @@
 package com.tmanager.module.web.app.exception;
 
+import java.net.ConnectException;
 import java.util.Date;
 import java.util.Locale;
 
@@ -48,6 +49,17 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     			messageSource.getMessage("error.request_timeout", new String[] {timeoutValue}, locale), new Date().getTime());
     	return new ResponseEntity<>(error, HttpStatus.REQUEST_TIMEOUT);
     }
+    
+	@ExceptionHandler(ConnectException.class)
+	@ResponseBody
+	final ResponseEntity<CustomError> handleConnectException(ConnectException ex, Locale locale,
+			WebRequest request) {
+		
+		CustomError error = new CustomError(String.valueOf(HttpStatus.NO_CONTENT.value()),
+				messageSource.getMessage("error.module_not_available", new String[] { request.getContextPath() }, locale),
+				new Date().getTime());
+		return new ResponseEntity<>(error, HttpStatus.NO_CONTENT);
+	}
 
     @ExceptionHandler(InsufficientScopeException.class)
     @ResponseBody
