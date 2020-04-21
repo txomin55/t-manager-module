@@ -20,5 +20,7 @@
     "module.about" : "About",
     "module.create" : "Create",
     "module.date.format": "MM/DD/YYYY", 
-    "module.date.formatWithTime": "MM/DD/YYYY HH:mm:ss"
+    "module.date.formatWithTime": "MM/DD/YYYY HH:mm:ss",
+    "module.success.action" : "Action",
+    "module.success.actionDescription" : "The requested action was performed successfully!"
 }

@@ -66,6 +66,9 @@ const loadApp = () => {
   axios.interceptors.response.use(
     response => {
       store.dispatch("successAction");
+      if(response.config.method != "get" && response.request.responseURL.includes("/api/")){
+        store.dispatch("successApiAction");
+      }
       return response;
     },
     error => {

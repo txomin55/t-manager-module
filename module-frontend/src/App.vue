@@ -2,9 +2,10 @@
   <v-app>
     <module-navbar v-if="!isEmbebed" />
 
+    <module-notification-handler />
+
     <v-content>
       <module-loading-handler />
-      <module-error-handler />
       <router-view v-if="userData"/>
     </v-content>
 
@@ -13,7 +14,7 @@
 </template>
 
 <script>
-import ErrorHandler from "@/components/error/ErrorHandler";
+import NotificationHandler from "@/components/notification/NotificationHandler";
 import LoadingHandler from "@/components/loading/LoadingHandler";
 import Footer from "@/components/footer/Footer";
 import NavBar from "@/components/navbar/NavBar";
@@ -22,7 +23,7 @@ import {mapGetters} from "vuex";
 export default {
   components: {
     "module-navbar": NavBar,
-    "module-error-handler": ErrorHandler,
+    "module-notification-handler": NotificationHandler,
     "module-loading-handler": LoadingHandler,
     "module-footer": Footer
   },

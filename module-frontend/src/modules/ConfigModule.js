@@ -7,6 +7,7 @@ export default {
     language: DEFAULT_LOCALE,
     token: null,
     status: null,
+    statusApiCall: null,
     error: null,
     module: MODULE_NAME,
     userData: null
@@ -21,7 +22,13 @@ export default {
     },
     SUCCESS(state) {
       state.status = "success";
-      state.error = null;
+      state.error = "no_error";
+    },
+    SUCCESS_API(state) {
+      state.statusApiCall = "success";
+    },
+    INIT_SUCCESS_API(state) {
+      state.statusApiCall = null;
     },
     UPDATE_TOKEN(state, newToken) {
       state.token = newToken;
@@ -44,6 +51,12 @@ export default {
     successAction(context) {
       context.commit("SUCCESS");
     },
+    successApiAction(context) {
+      context.commit("SUCCESS_API");
+    },
+    initSuccessApiAction(context) {
+      context.commit("INIT_SUCCESS_API");
+    },
     errorAction(context, response) {
       context.commit("ERROR", response);
     },
@@ -65,6 +78,15 @@ export default {
   getters: {
     getUserData(state){
       return state.userData;
+    },
+    getUserCanCreateFoo(state){
+      return state.userData.scope.includes("create-foo");
+    },
+    getUserCanEditFoo(state){
+      return state.userData.scope.includes("update-foo");
+    },
+    getUserCanDeleteFoo(state){
+      return state.userData.scope.includes("delete-foo");
     },
     getUserLocale(state){
       return state.userData.locale ? state.userData.locale : DEFAULT_LOCALE;
