@@ -18,6 +18,6 @@ public class FooEntity {
         this.id = foo.getId();
         this.name = foo.getName();
         this.value = foo.getValue();
-        this.value = foo.getOwner();
+        this.owner = foo.getOwner();
     }
 }
