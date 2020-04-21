@@ -1,7 +1,13 @@
 package com.tmanager.module.web.app.adapter.auth;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +39,16 @@ public class AuthController {
 
 	@Value("${module.oauth.clientRedirectUrl}")
 	private String clientRedirectUrl;
-	
+
+	@Value("${server.port}")
+	private String port;
+
+	@Value("${spring.application.name}")
+	private String applicationName;
+
+	@Autowired
+	private Environment environment;
+
 	private RestTemplate restTemplate;
 
 	public AuthController(RestTemplateBuilder builder) {
@@ -57,14 +72,13 @@ public class AuthController {
 	public OAuth2TokenDTO getToken(@RequestParam String code) {
 
 		String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
-		
+
 		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/token")
 				.queryParam("grant_type", "authorization_code").queryParam("client_id", clientId)
-				.queryParam("client_secret", clientSecret)
-				.queryParam("redirect_uri", clientRedirectUrl).queryParam("code", code);
+				.queryParam("client_secret", clientSecret).queryParam("redirect_uri", clientRedirectUrl)
+				.queryParam("code", code);
 
-		OAuth2TokenDTO oauthObj =
-				restTemplate.postForObject(builder.toUriString(), null, OAuth2TokenDTO.class);
+		OAuth2TokenDTO oauthObj = restTemplate.postForObject(builder.toUriString(), null, OAuth2TokenDTO.class);
 
 		return oauthObj;
 	}
@@ -74,15 +88,31 @@ public class AuthController {
 	public OAuth2TokenDTO refreshToken(@RequestParam String refresh_token) {
 
 		String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
-		
+
 		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/token")
 				.queryParam("grant_type", "refresh_token").queryParam("client_id", clientId)
-				.queryParam("client_secret", clientSecret)
-				.queryParam("refresh_token", refresh_token);
+				.queryParam("client_secret", clientSecret).queryParam("refresh_token", refresh_token);
 
-		OAuth2TokenDTO oauthObj =
-				restTemplate.getForObject(builder.toUriString(), OAuth2TokenDTO.class);
+		OAuth2TokenDTO oauthObj = restTemplate.getForObject(builder.toUriString(), OAuth2TokenDTO.class);
 
 		return oauthObj;
+	}
+
+	@GetMapping("/logout")
+	@ResponseBody
+	public String exitApp(@RequestParam String refresh_token) throws UnknownHostException {
+
+		String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
+
+		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(AUTH_SERVER + "/my-logout")
+				.queryParam("refresh_token", refresh_token);
+
+		restTemplate.exchange(builder.toUriString(), HttpMethod.GET, null, Void.class);
+
+		InetAddress inetAddress = InetAddress.getLocalHost();
+		String[] profiles = this.environment.getActiveProfiles();
+		String protocol = profiles[0].equals("production") ? "https" : "http";
+
+		return protocol + "://" + inetAddress.getHostAddress() + ":" + port + "/" + applicationName;
 	}
 }
