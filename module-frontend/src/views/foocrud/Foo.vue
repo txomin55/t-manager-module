@@ -123,11 +123,14 @@ export default {
     ...mapGetters({
       userCanCreateFoo: "getUserCanCreateFoo",
       userCanEditFoo: "getUserCanEditFoo",
-      userCanDeleteFoo: "getUserCanDeleteFoo"
+      userCanDeleteFoo: "getUserCanDeleteFoo",
+      userCanGetFoo: "getUserCanGetFoo"
     })
   },
   mounted() {
-    this.$store.dispatch("fooModule/initFooData");
+    if(this.userCanGetFoo){
+      this.$store.dispatch("fooModule/initFooData");
+    }
   }
 };
 </script>

@@ -88,6 +88,9 @@ export default {
     getUserCanDeleteFoo(state){
       return state.userData.scope.includes("delete-foo");
     },
+    getUserCanGetFoo(state){
+      return state.userData.scope.includes("delete-get");
+    },
     getUserLocale(state){
       return state.userData.locale ? state.userData.locale : DEFAULT_LOCALE;
     }
