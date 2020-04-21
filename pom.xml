@@ -32,11 +32,6 @@
 	  <swagger.version>2.9.2</swagger.version>
 	  <boost.maven.plugin.version>0.1.2</boost.maven.plugin.version>
 	  <spring.cloud.openfeign.core.version>2.1.1.RELEASE</spring.cloud.openfeign.core.version>
-	  
-	  <module.web.version>0.0.1-SNAPSHOT</module.web.version>
-	  <module.infrastructure.version>0.0.1-SNAPSHOT</module.infrastructure.version>
-	  <module.domain.version>0.0.1-SNAPSHOT</module.domain.version>
-	  <module.application.version>0.0.1-SNAPSHOT</module.application.version>
   </properties>
   
   <dependencies>
