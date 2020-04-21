@@ -42,10 +42,10 @@
 
     <v-card-actions v-if="!disabled">
       <v-btn v-if="!isEdit" color="primary" dark @click="createFoo()">
-        {{ $t("module.create") }}
+        {{ $t("create") }}
       </v-btn>
       <v-btn v-if="isEdit" color="primary" dark @click="editFoo()">
-        {{ $t("module.edit") }}
+        {{ $t("edit") }}
       </v-btn>
     </v-card-actions>
   </v-card>
