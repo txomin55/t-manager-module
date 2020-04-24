@@ -10,7 +10,7 @@
       <v-btn text>
         <router-link :to="{ name: 'home' }">Home</router-link>
       </v-btn>
-      <v-btn text>
+      <v-btn text v-if="userCanGetFoo">
         <router-link :to="{ name: 'foo' }">Foo</router-link>
       </v-btn>
       <v-btn text icon>
@@ -45,7 +45,7 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item v-if="userCanGetFoo">
             <v-list-item-action>
               <v-icon>mdi-creation</v-icon>
             </v-list-item-action>
@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -103,6 +103,9 @@ export default {
   computed: {
     ...mapState({
       module: state => state.module
+    }),
+    ...mapGetters({
+      userCanGetFoo: "getUserCanGetFoo"
     })
   },
   methods: {

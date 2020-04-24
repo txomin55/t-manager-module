@@ -14,13 +14,9 @@ export function getUserData(cb) {
 
 export function logout() {
   axios
-    .get(`${ADDRESS}/${store.state.module}/auth/logout`, {
-      params : {
-        refresh_token : localStorage.getItem('refreshToken')
-      }
-    })
-    .then(loginUrl => {
-      window.location.replace(loginUrl.data);
-    })
-    .catch(() => {});
+  .get(`${ADDRESS}/${store.state.module}/api/exit`)
+  .then(result => {
+    window.location.href = result.data;
+  })
+  .catch(() => {});
 }

@@ -83,11 +83,18 @@ const loadApp = () => {
     store.state.module,
     window.location.search.split("=")[1],
     token => {
-      store.dispatch("updateToken", token);
-      if (redirectHome) {
-        redirectHome = false;
-        router.push({ name: "home" });
+      if(token){
+        store.dispatch("updateToken", token);
+        if (redirectHome) {
+          redirectHome = false;
+          router.push({ name: "home" });
+        }
+      }else{
+        store.dispatch("logout")
       }
+    },
+    () => {
+      store.dispatch("logout");
     }
   );
 
@@ -95,14 +102,7 @@ const loadApp = () => {
     if (window.location.search.split("=")[0].includes("code")) {
       tokenUtils.getAuthorizationToken();
     } else {
-      const refreshToken = localStorage.getItem("refreshToken");
-      if (refreshToken) {
-        tokenUtils.forceRefreshToken(refreshToken, () =>
-          store.dispatch("logout")
-        );
-      } else {
-        store.dispatch("logout");
-      }
+      tokenUtils.forceRefreshToken();
     }
   } else if (window.isModuleEnsambled[store.state.module]) {
     store.dispatch("updateToken", window.t_manager_access_token);

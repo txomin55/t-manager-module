@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <module-navbar v-if="!isEmbebed" />
+    <module-navbar v-if="userData && !isEmbebed" />
 
     <module-notification-handler />
 
