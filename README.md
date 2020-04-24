@@ -85,6 +85,8 @@ password : password-open-source
 
 Para ejecutar la autenticación, se usa una modificación del restTemplate para añadir el certificado SSL, ya que el servidor de autenticación y autorización tiene el mismo .p12 que todos los módulos, es este el que se incluye. La configuración se hace gracias a la clase de configuración RestTemplateConfiguration en el module-web.
 
+En cambio, el caso del logout es diferente. Desde la aplicación module-frontend se envia una petición post al controlador de LogoutController.java y este devuelve la ruta de logout del servidor de OAUTH2 y la ruta de redirección al homepath del módulo, haciendo asi el efecto de volver a la pantalla de login pero con el formulario limpio, ya que el servidor se ocupa de eliminar la cookie de JSESSIONID por el camino.
+
 ## Frontend
 
 La parte visual de la aplicación se ha desarrollado con Vue gracias a la facilidad y rapidez del framework a la hora de desarollar.
