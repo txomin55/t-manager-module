@@ -21,6 +21,8 @@ import com.tmanager.module.web.app.adapter.auth.dto.OAuth2TokenDTO;
 @RequestMapping("/auth")
 public class AuthController {
 
+	private static final int REFRESH_TOKEN_EXPIRATION = 14400;
+
 	@Value("${module.oauth.clientId}")
 	private String clientId;
 
@@ -72,6 +74,8 @@ public class AuthController {
 
 		Cookie cookie = new Cookie("refresh_token", oauthObj.getRefresh_token());
 		cookie.setHttpOnly(true);
+		cookie.setPath("/");
+		cookie.setMaxAge(REFRESH_TOKEN_EXPIRATION);
 		response.addCookie(cookie);
 
 		return new LimitedOAuth2TokenDTO(oauthObj.getAccess_token(), oauthObj.getExpires_in());
@@ -98,6 +102,8 @@ public class AuthController {
 
 		Cookie cookie = new Cookie("refresh_token", oauthObj.getRefresh_token());
 		cookie.setHttpOnly(true);
+		cookie.setPath("/");
+		cookie.setMaxAge(REFRESH_TOKEN_EXPIRATION);
 		response.addCookie(cookie);
 
 		return new LimitedOAuth2TokenDTO(oauthObj.getAccess_token(), oauthObj.getExpires_in());

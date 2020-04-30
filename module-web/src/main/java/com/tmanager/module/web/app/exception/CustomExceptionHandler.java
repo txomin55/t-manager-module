@@ -36,7 +36,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             WebRequest request) {
 
         CustomError error = new CustomError(ex.getId(),
-                messageSource.getMessage(ex.getId(), null, locale), ex.getDate());
+                messageSource.getMessage(ex.getId(), ex.getArgs(), locale), ex.getDate());
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

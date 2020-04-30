@@ -7,6 +7,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -45,11 +46,18 @@ public class OAuth2Filter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) res;
 		HttpServletRequest request = (HttpServletRequest) req;
 
+		String refreshToken = null;
+		for (Cookie c : request.getCookies()) {
+			if (c.getName().equals("refresh_token")) {
+				refreshToken = c.getValue();
+			}
+		}
+		
 		if (!request.getRequestURI().contains("/api/") && !request.getRequestURI().contains("/actuator")
 				&& !request.getRequestURI().contains("/v2/") && !request.getRequestURI().contains("swagger")
 				&& !request.getRequestURI().contains("/csrf") && !request.getRequestURI().contains(".js")
 				&& !request.getRequestURI().contains("/init") && !request.getRequestURI().contains("/auth")
-				&& request.getHeader("Authorization") == null) {
+				&& request.getHeader("Authorization") == null && refreshToken == null) {
 
 			String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath;
 
