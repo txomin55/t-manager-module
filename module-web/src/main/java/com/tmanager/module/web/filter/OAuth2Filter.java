@@ -47,9 +47,11 @@ public class OAuth2Filter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 
 		String refreshToken = null;
-		for (Cookie c : request.getCookies()) {
-			if (c.getName().equals("refresh_token")) {
-				refreshToken = c.getValue();
+		if(request.getCookies() != null) {			
+			for (Cookie c : request.getCookies()) {
+				if (c.getName().equals("refresh_token")) {
+					refreshToken = c.getValue();
+				}
 			}
 		}
 		

@@ -88,9 +88,11 @@ public class AuthController {
 		String AUTH_SERVER = serverAddress + ":" + serverPort + "/" + serverPath + "/oauth";
 
 		String refreshToken = null;
-		for (Cookie c : request.getCookies()) {
-			if (c.getName().equals("refresh_token")) {
-				refreshToken = c.getValue();
+		if(request.getCookies() != null) {			
+			for (Cookie c : request.getCookies()) {
+				if (c.getName().equals("refresh_token")) {
+					refreshToken = c.getValue();
+				}
 			}
 		}
 
