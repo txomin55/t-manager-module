@@ -1,5 +1,6 @@
 .vscode
 /.history/
+.flattened-pom.xml
 
 module-application/target/**
 module-application/.settings/

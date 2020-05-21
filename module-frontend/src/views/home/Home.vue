@@ -45,12 +45,12 @@
     </v-row>
     <v-row justify="center">
       <v-col sm="12" md="1">
-        <v-combobox
+        <v-autocomplete
           v-model="selectedTheme"
           :items="themes"
           :label="$t('module.selectTheme')"
         >
-        </v-combobox>
+        </v-autocomplete>
       </v-col>
       <v-col sm="12" md="1">
         <v-switch v-model="dark" :label="$t('module.dark')"> </v-switch>

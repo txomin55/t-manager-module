@@ -33,7 +33,7 @@ public class OAuth2ResourceServerConfigJwt extends ResourceServerConfigurerAdapt
     @Override
     public void configure(final ResourceServerSecurityConfigurer config) {
         config.tokenServices(tokenServices());
-        config.resourceId("foo");
+        config.resourceId("module");
     }
 
     @Bean

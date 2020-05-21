@@ -85,6 +85,8 @@ password : password-open-source
 
 Para ejecutar la autenticación, se usa una modificación del restTemplate para añadir el certificado SSL, ya que el servidor de autenticación y autorización tiene el mismo .p12 que todos los módulos, es este el que se incluye. La configuración se hace gracias a la clase de configuración RestTemplateConfiguration en el module-web.
 
+En cambio, el caso del logout es diferente. Desde la aplicación module-frontend se envia una petición post al controlador de LogoutController.java y este devuelve la ruta de logout del servidor de OAUTH2 y la ruta de redirección al homepath del módulo, haciendo asi el efecto de volver a la pantalla de login pero con el formulario limpio, ya que el servidor se ocupa de eliminar la cookie de JSESSIONID por el camino.
+
 ## Frontend
 
 La parte visual de la aplicación se ha desarrollado con Vue gracias a la facilidad y rapidez del framework a la hora de desarollar.
@@ -192,6 +194,8 @@ Para compilar este proyecto hay que situarse en el proyecto raíz y ejecutar el 
 ``` bash
 mvn clean install -Pproduction
 ```
+
+NOTA: Al tratarse un proyecto multimodulo de Maven, la compilación de los hijos del proyecto (web, application, loader...) dependen de la versión definida en el padre, esto se hace con la propiedad "revision" y para que a la hora de ejecución, el módulo de loader tenga la versión del padre, hace falta usar el plugin de "flatten-maven-plugin" para pasar los datos del padre a los hijos, esta configuración se ubica en el pom del proyecto padre.
 
 ## Ejecución
 

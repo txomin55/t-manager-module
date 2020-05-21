@@ -20,5 +20,7 @@
     "module.about" : "Acerca de",
     "module.create" : "Crear",
     "module.date.format": "DD/MM/YYYY", 
-    "module.date.formatWithTime": "DD/MM/YYYY HH:mm:ss"
+    "module.date.formatWithTime": "DD/MM/YYYY HH:mm:ss",
+    "module.success.action" : "Acción",
+    "module.success.actionDescription" : "¡La acción se ha ejecutado satisfactoriamente!"
 }

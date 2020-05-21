@@ -46,7 +46,7 @@
 
 <script>
 import FooCreatePanel from "@/components/foocreate/FooCreatePanel.vue";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 export default {
   name: "Foo",
   data() {
@@ -80,6 +80,11 @@ export default {
         showCrud: this.showCrud
       };
       config.crud = {
+        createPermission : this.userCanCreateFoo,
+        editPermission : this.userCanEditFoo,
+        deletePermission : this.userCanDeleteFoo,
+        orderDesc: true,
+        orderColumn: 'id',
         data: this.foos,
         headers: this.headers,
         columnData: this.columnData,
@@ -114,10 +119,18 @@ export default {
     ...mapState({
       foos: state => state.fooModule.foos,
       serverMsg: state => state.fooModule.msg
+    }),
+    ...mapGetters({
+      userCanCreateFoo: "getUserCanCreateFoo",
+      userCanEditFoo: "getUserCanEditFoo",
+      userCanDeleteFoo: "getUserCanDeleteFoo",
+      userCanGetFoo: "getUserCanGetFoo"
     })
   },
   mounted() {
-    this.$store.dispatch("fooModule/initFooData");
+    if(this.userCanGetFoo){
+      this.$store.dispatch("fooModule/initFooData");
+    }
   }
 };
 </script>

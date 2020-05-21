@@ -11,7 +11,7 @@
      <dependency>
          <groupId>com.tmanager.module</groupId>
          <artifactId>module-application</artifactId>
-         <version>${module.application.version}</version>
+         <version>${revision}</version>
      </dependency>
 	  <dependency>
 		  <groupId>org.springframework.boot</groupId>

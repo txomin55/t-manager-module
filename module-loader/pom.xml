@@ -15,12 +15,12 @@
       <dependency>
           <groupId>com.tmanager.module</groupId>
           <artifactId>module-web</artifactId>
-          <version>${module.web.version}</version>
+          <version>${revision}</version>
       </dependency>
       <dependency>
          <groupId>com.tmanager.module</groupId>
          <artifactId>module-infrastructure</artifactId>
-         <version>${module.infrastructure.version}</version>
+         <version>${revision}</version>
      </dependency>
     <dependency>
         <groupId>org.springframework.cloud</groupId>

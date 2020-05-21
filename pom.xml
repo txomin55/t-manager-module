@@ -31,12 +31,6 @@
 	  <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
 	  <swagger.version>2.9.2</swagger.version>
 	  <boost.maven.plugin.version>0.1.2</boost.maven.plugin.version>
-	  <spring.cloud.openfeign.core.version>2.1.1.RELEASE</spring.cloud.openfeign.core.version>
-	  
-	  <module.web.version>0.0.1-SNAPSHOT</module.web.version>
-	  <module.infrastructure.version>0.0.1-SNAPSHOT</module.infrastructure.version>
-	  <module.domain.version>0.0.1-SNAPSHOT</module.domain.version>
-	  <module.application.version>0.0.1-SNAPSHOT</module.application.version>
   </properties>
   
   <dependencies>
@@ -81,5 +75,33 @@
         </properties>
     </profile>
   </profiles>
+
+    <build>
+	  <plugins>
+	    <plugin>
+	      <groupId>org.codehaus.mojo</groupId>
+	      <artifactId>flatten-maven-plugin</artifactId>
+	      <configuration>
+	        <updatePomFile>true</updatePomFile>
+	      </configuration>
+	      <executions>
+	        <execution>
+	          <id>flatten</id>
+	          <phase>process-resources</phase>
+	          <goals>
+	            <goal>flatten</goal>
+	          </goals>
+	        </execution>
+	        <execution>
+	          <id>flatten.clean</id>
+	          <phase>clean</phase>
+	          <goals>
+	            <goal>clean</goal>
+	          </goals>
+	        </execution>
+	      </executions>
+	    </plugin>
+	  </plugins>
+  </build>
 
 </project>

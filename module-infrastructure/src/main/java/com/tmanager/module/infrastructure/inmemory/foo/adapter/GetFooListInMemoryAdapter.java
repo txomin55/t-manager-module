@@ -18,7 +18,7 @@ public class GetFooListInMemoryAdapter implements GetFooListPersistancePort {
 
 	@Override
 	public List<Foo> getFoo(String owner) {
-		return new ArrayList<Foo>(simulatedFooMap.values().stream().map(foo -> {
+		return new ArrayList<Foo>(simulatedFooMap.values().stream().filter(it -> it.getOwner().equals(owner)).map(foo -> {
 			return new Foo(foo.getId(), foo.getName(), foo.getValue(), owner);
 		}).collect(Collectors.toList()));
 	}

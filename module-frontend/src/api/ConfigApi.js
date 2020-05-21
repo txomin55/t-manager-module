@@ -11,3 +11,12 @@ export function getUserData(cb) {
     })
     .catch(() => {});
 }
+
+export function logout() {
+  axios
+  .get(`${ADDRESS}/${store.state.module}/api/exit`)
+  .then(result => {
+    window.location.href = result.data;
+  })
+  .catch(() => {});
+}
