@@ -50,3 +50,4 @@ module-web/.project
 module-frontend/.history/
 module-frontend/dist/
 module-infrastructure/.factorypath
+*.iml
