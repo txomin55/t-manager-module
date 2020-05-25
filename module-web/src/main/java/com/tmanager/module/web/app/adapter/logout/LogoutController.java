@@ -1,5 +1,6 @@
 package com.tmanager.module.web.app.adapter.logout;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -36,7 +37,18 @@ public class LogoutController {
 	public String logout(HttpServletRequest request) {
 		String[] urlParts = request.getHeader("referer").split("/");
 		String homePath = urlParts[0] + "//" + urlParts[2] + "/" + applicationName;
-		
-		return serverAddress + ":" + serverPort + "/" + serverPath + "/exit?redirection=" + homePath;
+
+		String refreshToken = null;
+		if (request.getCookies() != null) {
+			for (Cookie c : request.getCookies()) {
+				if (c.getName().equals("refresh_token")) {
+					refreshToken = c.getValue();
+					c.setMaxAge(0);
+				}
+			}
+		}
+
+		return serverAddress + ":" + serverPort + "/" + serverPath + "/exit?redirection=" + homePath + "&refreshToken="
+				+ refreshToken;
 	}
 }
