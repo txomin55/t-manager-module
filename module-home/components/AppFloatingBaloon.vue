@@ -1,14 +1,17 @@
 <template>
     <v-card
         outlined
-        :color="appColors.blue.base"
         dark
         height="100%"
         max-width="90%"
         class="flexy_card"
+        :style="cardStyle"
     >
         <div class="floating_pricing_baloon">
-            <v-img src="baloon-three.svg" class="floating_pricing_baloon__image"></v-img>
+            <v-img
+                    src="baloon-three.svg"
+                    class="floating_pricing_baloon__image"
+            ></v-img>
         </div>
 
         <v-card-text>
@@ -39,18 +42,12 @@
             </v-row>
         </v-card-actions>
 
-        <AppWaves />
     </v-card>
 </template>
 <script>
     import colors from 'vuetify/es5/util/colors'
-    import AppWaves from './AppWaves'
-
     export default {
       name: 'AppFloatingBaloon',
-      components: {
-        AppWaves
-      },
       props: {
         title: {
           type: String,
@@ -72,6 +69,13 @@
       data () {
         return {
           appColors: colors
+        }
+      },
+      computed: {
+        cardStyle () {
+          return {
+            'background': `linear-gradient(${this.appColors.blue.base}, ${this.appColors.blue.darken4})`
+          }
         }
       }
     }
