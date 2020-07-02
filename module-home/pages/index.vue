@@ -78,10 +78,10 @@
             <AppFloatingBaloon title="--Refuerzo" price="--199$" description="--Aprende a programar" :items="['asdfsdfsd', 'fasdfasdf']"/>
           </v-col>
           <v-col cols="12" sm="4">
-            <AppFloatingBaloon title="--Presentación" price="--299$" description="--¿Necesitas alguna demostración?" :items="['asdfsdfsd', 'fasdfasdf']"/>
+            <AppFloatingBaloon title="--POC" price="--299$" description="--¿Necesitas alguna prueba de concepto?" :items="['asdfsdfsd', 'fasdfasdf']"/>
           </v-col>
           <v-col cols="12" sm="4">
-            <AppFloatingBaloon title="--Más" price="--399$" description="--Crea algo a medida" :items="['asdfsdfsd', 'fasdfasdf', 'fasdfasdf']"/>
+            <AppFloatingBaloon title="--Webs" price="--399$" description="--Creación de páginas web" :items="['asdfsdfsd', 'fasdfasdf', 'fasdfasdf']"/>
           </v-col>
         </v-row>
       </v-container>
