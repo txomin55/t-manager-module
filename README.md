@@ -21,7 +21,7 @@ La motivación de este proyecto es meramente personal, aunque creo que tiene bas
       - [A tener en cuenta con OAUTH2](#a-tener-en-cuenta-con-oauth2)
     - [CORS](#cors)
     - [LLAMADAS A API REST](#llamadas-a-api-rest)
-  - [Swagger](#swagger)
+    - [Swagger](#swagger)
   - [Compilación](#compilaci%c3%b3n)
   - [Ejecución](#ejecuci%c3%b3n)
     - [HTTPS](#https)
@@ -173,7 +173,7 @@ Al tratarse de una SPA con intención de ser usada como microservicio y microfro
 ### LLAMADAS A API REST
 Para poder consumir el api rest que generan los módulos te t-manager, hay que añadir en ellos el certificado SSL para poder hacer llamadas a rutas con HTTPS, por ello se usa la utilidad CustomRestTemplate que se define en el paquete "rest" del módulo de infrastructure, para luego usarlo como ejemplo en la implementación para la obtención de Bar (en GetBarRestAdapter).
 
-## Swagger
+### Swagger
 
 El swagger está montado para soportar Oauth2, por lo que en caso de querer llamar al API hay que loguearse en el icono de candado y luego añadir los parametros necesarios a la petición, su configuración se encuentra en SwaggerConfiguration.java (en el proyecto Web).
 
