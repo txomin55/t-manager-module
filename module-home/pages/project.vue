@@ -34,7 +34,7 @@
     export default {
       data () {
         return {
-          tab: null,
+          tab: 0,
           items: [
             {
               tab: '--Motivación',
