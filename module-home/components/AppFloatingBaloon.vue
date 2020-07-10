@@ -128,6 +128,7 @@
     .floating_baloon_content{
         position: relative;
         width: 100%;
+        height: 80%;
     }
     .floating_baloon_content_button{
         position: relative;
