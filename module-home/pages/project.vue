@@ -12,7 +12,7 @@
                               v-for="item in items"
                               :key="item.tab"
                       >
-                          {{ item.tab }}
+                          {{ $t(item.tab) }}
                       </v-tab>
 
                       <v-tab-item
@@ -20,7 +20,7 @@
                               :key="item.tab"
                       >
                           <v-card flat>
-                              <v-card-text>{{ item.content }}</v-card-text>
+                              <v-card-text>{{ $t(item.content) }}</v-card-text>
                           </v-card>
                       </v-tab-item>
                   </v-tabs>
@@ -37,9 +37,9 @@
           tab: 0,
           items: [
             {
-              tab: '--Motivación',
-              content: '--La motivación de este proyecto es meramente personal, aunque creo que tiene bastantes usos tanto didácticos como profesionales. Basado en el framework SpringBoot para todo el backend y Vue para el frontend. El propósito es tener un ejemplo de una arquitectura limpia y preparada para poder empezar a desarrollar sin tener que lidiar con temas como la autenticación, manejo de excepciones, internacionalización etc. El proyecto está pensado para ser usado como microservicio y microfrontend, gracias a Vue, la aplicación web es una SPA que expone todo el js compilado (webpack) en una ruta accesible por una petición get, así pudiendo cargar el js del proyecto y pintarlo en un div en concreto de una aplicación mayor (ej: un dashboard).'
-            },
+              tab: 'project.motivation.title',
+              content: 'project.motivation.description'
+            }/*,
             {
               tab: '--Estructura del proyecto',
               content: '--La Arquitectura Hexagonal, dada a conocer por Alistair Cockburn — y también conocida como arquitectura de puertos y adaptadores — , tiene como principal motivación separar nuestra aplicación en distintas capas o regiones con su propia responsabilidad. De esta manera consigue desacoplar capas de nuestra aplicación permitiendo que evolucionen de manera aislada. Además, tener el sistema separado por responsabilidades nos facilitará la reutilización. ' +
@@ -163,7 +163,7 @@
                   'keytool -genkeypair -alias t-manager -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore t-manager.p12 -validity 9999 -ext san=dns:localhost,ip:18.194.82.207' +
                   '```' +
                   'NOTA: Existe un pequeño truco en el pom del modulo web donde se dice que no se use el filtrado con el fichero .p12, sino Maven de forma automática lo modifica y da errores al lanzar el JAR.'
-            }
+            } */
 
           ]
         }

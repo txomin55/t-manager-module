@@ -11,7 +11,13 @@
             <v-img src="/about2.svg"></v-img>
           </v-col>
           <v-col cols="12" sm="6">
-            --ESCRIBIR LA MOTIVACION DE LA PAGINA
+            <h2>{{$t('home.projectMotivation')}}</h2>
+            <p>
+              {{$t('home.projectMotivation.p1')}}
+            </p>
+            <p>
+              {{$t('home.projectMotivation.p2')}}
+            </p>
           </v-col>
         </v-row>
       </v-container>
@@ -21,27 +27,27 @@
       <v-container>
         <v-row>
           <v-col class="text-center">
-            <h2>--Project features</h2>
+            <h2>{{$t('home.projectFeatures')}}</h2>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs title="--Arquitectura limpia" text="Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.architecture')" text="--Short description for the ones who look for something new. Awesome!"/>
           </v-col>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs title="--Internacionalización" text="Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.internationalization')" text="--Short description for the ones who look for something new. Awesome!"/>
           </v-col>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs title="--Manejo de excepciones" text="Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.exceptionHandling')" text="--Short description for the ones who look for something new. Awesome!"/>
           </v-col>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs title="--Autenticación" text="Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.authentication')" text="--Short description for the ones who look for something new. Awesome!"/>
           </v-col>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs title="--Seguridad" text="Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.security')" text="--Short description for the ones who look for something new. Awesome!"/>
           </v-col>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs title="--Documentación" text="Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.documentation')" text="--Short description for the ones who look for something new. Awesome!"/>
           </v-col>
         </v-row>
       </v-container>
@@ -50,20 +56,20 @@
     <section :style="{background:appColors.grey.lighten3}">
       <v-container>
         <v-row>
-          <v-col>
-            <h2>--Pricing Plan</h2>
+          <v-col class="text-center">
+            <h2>{{$t('home.pricingPlans')}}</h2>
             <p>--Stop wasting time and money designing...</p>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" sm="4">
-            <AppFloatingBaloon title="--Refuerzo" price="--199$" description="--Aprende a programar" :items="['asdfsdfsd', 'fasdfasdf']"/>
+            <AppFloatingBaloon :title="$t('home.pricingPlans.reinforcement')" price="10€/h" description="--Aprende a programar" :items="['asdfsdfsd', 'fasdfasdf']"/>
           </v-col>
           <v-col cols="12" sm="4">
-            <AppFloatingBaloon title="--POC" price="--299$" description="--¿Necesitas alguna prueba de concepto?" :items="['asdfsdfsd', 'fasdfasdf']"/>
+            <AppFloatingBaloon :title="$t('home.pricingPlans.poc')" price="1000€" description="--¿Necesitas alguna prueba de concepto?" :items="['asdfsdfsd', 'fasdfasdf']"/>
           </v-col>
           <v-col cols="12" sm="4">
-            <AppFloatingBaloon title="--Webs" price="--399$" description="--Creación de páginas web" :items="['asdfsdfsd', 'fasdfasdf', 'fasdfasdf']"/>
+            <AppFloatingBaloon :title="$t('home.pricingPlans.web')" price="500€" description="--Creación de páginas web" :items="['asdfsdfsd', 'fasdfasdf', 'fasdfasdf']"/>
           </v-col>
         </v-row>
       </v-container>
@@ -73,10 +79,13 @@
       <v-container>
         <v-row>
           <v-col cols="12" class="text-center">
-            <h2>--Me</h2>
+            <h2>{{$t('home.me')}}</h2>
           </v-col>
           <v-col cols="12" class="text-center">
-            <v-avatar>
+            <v-avatar
+              height="10em"
+              width="10em"
+            >
               <img
                   src="https://cdn.vuetifyjs.com/images/john.jpg"
                   alt="John"
