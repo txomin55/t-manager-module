@@ -20,7 +20,7 @@
                               :key="item.tab"
                       >
                           <v-card flat>
-                              <v-card-text>{{ $t(item.content) }}</v-card-text>
+                              <v-card-text><p v-html="$t(item.content)"></p></v-card-text>
                           </v-card>
                       </v-tab-item>
                   </v-tabs>
