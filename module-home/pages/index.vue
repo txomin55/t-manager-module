@@ -12,12 +12,7 @@
           </v-col>
           <v-col cols="12" sm="6">
             <h2>{{$t('home.projectMotivation')}}</h2>
-            <p>
-              {{$t('home.projectMotivation.p1')}}
-            </p>
-            <p>
-              {{$t('home.projectMotivation.p2')}}
-            </p>
+            <p v-html="$t('home.projectMotivation.description')"></p>
           </v-col>
         </v-row>
       </v-container>
@@ -32,22 +27,22 @@
         </v-row>
         <v-row>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs :title="$t('home.projectFeatures.architecture')" text="--Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.architecture')" :text="$t('home.projectFeatures.architecture.sub')"/>
           </v-col>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs :title="$t('home.projectFeatures.internationalization')" text="--Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.internationalization')" :text="$t('home.projectFeatures.internationalization.sub')"/>
           </v-col>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs :title="$t('home.projectFeatures.exceptionHandling')" text="--Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.exceptionHandling')" :text="$t('home.projectFeatures.exceptionHandling.sub')"/>
           </v-col>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs :title="$t('home.projectFeatures.authentication')" text="--Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.authentication')" :text="$t('home.projectFeatures.authentication.sub')"/>
           </v-col>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs :title="$t('home.projectFeatures.security')" text="--Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.security')" :text="$t('home.projectFeatures.security.sub')"/>
           </v-col>
           <v-col cols="12" sm="6">
-            <AppProjectSpecs :title="$t('home.projectFeatures.documentation')" text="--Short description for the ones who look for something new. Awesome!"/>
+            <AppProjectSpecs :title="$t('home.projectFeatures.documentation')" :text="$t('home.projectFeatures.documentation.sub')"/>
           </v-col>
         </v-row>
       </v-container>
@@ -58,18 +53,18 @@
         <v-row>
           <v-col class="text-center">
             <h2>{{$t('home.pricingPlans')}}</h2>
-            <p>--Stop wasting time and money designing...</p>
+            <p v-html="$t('home.pricingPlans.description')"></p>
           </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" sm="4">
-            <AppFloatingBaloon :title="$t('home.pricingPlans.reinforcement')" price="10€/h" description="--Aprende a programar" :items="['asdfsdfsd', 'fasdfasdf']"/>
+            <AppFloatingBaloon :title="$t('home.pricingPlans.reinforcement')" price="10€/h" :description="$t('home.pricingPlans.reinforcement.sub')" :items="['asdfsdfsd', 'fasdfasdf']"/>
           </v-col>
           <v-col cols="12" sm="4">
-            <AppFloatingBaloon :title="$t('home.pricingPlans.poc')" price="1000€" description="--¿Necesitas alguna prueba de concepto?" :items="['asdfsdfsd', 'fasdfasdf']"/>
+            <AppFloatingBaloon :title="$t('home.pricingPlans.web')" price="500€" :description="$t('home.pricingPlans.web.sub')" :items="['asdfsdfsd', 'fasdfasdf', 'fasdfasdf']"/>
           </v-col>
           <v-col cols="12" sm="4">
-            <AppFloatingBaloon :title="$t('home.pricingPlans.web')" price="500€" description="--Creación de páginas web" :items="['asdfsdfsd', 'fasdfasdf', 'fasdfasdf']"/>
+            <AppFloatingBaloon :title="$t('home.pricingPlans.poc')" price="1000€" :description="$t('home.pricingPlans.poc.sub')" :items="['asdfsdfsd', 'fasdfasdf']"/>
           </v-col>
         </v-row>
       </v-container>
@@ -87,13 +82,13 @@
               width="10em"
             >
               <img
-                  src="https://cdn.vuetifyjs.com/images/john.jpg"
-                  alt="John"
+                  src="/avatar.jpg"
+                  alt="Txomin sirera"
               >
             </v-avatar>
           </v-col>
           <v-col cols="12" class="text-center">
-            <p>--INFORMACION SOBRE QUIEN SOY RESUMIDO</p>
+            <p><p v-html="$t('home.me.description')"></p>
           </v-col>
         </v-row>
       </v-container>

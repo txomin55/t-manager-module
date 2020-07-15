@@ -45,7 +45,7 @@
                 <v-card-actions>
                     <v-row>
                         <v-col class="text-center">
-                            <v-btn rounded>--ASK FOR IT</v-btn>
+                            <v-btn rounded>{{$t('home.pricingPlans.askForIt')}}</v-btn>
                         </v-col>
                     </v-row>
                 </v-card-actions>
