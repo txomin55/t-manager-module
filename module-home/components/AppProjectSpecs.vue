@@ -4,7 +4,7 @@
     hover
   >
     <v-card-title>
-      {{title}}
+      {{$t(title)}}
     </v-card-title>
     <v-card-text>
       <p v-html="$t(text)"></p>
