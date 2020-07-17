@@ -3,7 +3,7 @@
 
         <v-app-bar
                 app
-                :color="appColors.blue.base"
+                :color="appColors.black"
                 dark
         >
 
@@ -109,8 +109,7 @@ export default {
       drawer: false,
       items: [
         { icon: 'apps', title: 'home', to: 'index' },
-        { icon: 'bubble_chart', title: 'project', to: 'project' },
-        { icon: 'apps', title: 'services', to: 'services' }
+        { icon: 'bubble_chart', title: 'project', to: 'project' }
       ],
       isSMAndUp: true,
       showDrawer: false

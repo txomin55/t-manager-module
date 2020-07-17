@@ -5,7 +5,7 @@
         :active="loading"
         indeterminate
         background-color="secondary"
-        color="primary"
+        color="black"
       ></v-progress-circular>
     </v-overlay>
   </div>

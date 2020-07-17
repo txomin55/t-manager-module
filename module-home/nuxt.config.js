@@ -17,7 +17,7 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
-  plugins: ['~/plugins/i18n'],
+  plugins: ['~/plugins/i18n', { src: '~/plugins/vueTyper', ssr: false}],
   /*
   ** Customize the progress bar color
   */
@@ -26,7 +26,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    extractCSS: true,
+    extractCSS: true,/*
     extend (config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
@@ -40,7 +40,7 @@ module.exports = {
           }
         })
       }
-    }
+    }*/
   },
   buildModules:['@nuxtjs/vuetify'],
     vuetify: {

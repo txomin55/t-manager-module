@@ -1,15 +1,8 @@
 <template>
-  <v-card
-    outlined
-    hover
-  >
-    <v-card-title>
-      {{$t(title)}}
-    </v-card-title>
-    <v-card-text>
-      <p v-html="$t(text)"></p>
-    </v-card-text>
-  </v-card>
+  <div>
+    <h2>{{$t(title)}}</h2>
+    <p v-html="$t(text)"></p>
+  </div>
 </template>
 <script>
     export default {

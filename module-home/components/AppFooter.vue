@@ -1,7 +1,7 @@
 <template>
   <v-footer
     dark
-    :color="appColors.blue.base"
+    :color="appColors.black"
   >
     <v-col
       class="text-center"
