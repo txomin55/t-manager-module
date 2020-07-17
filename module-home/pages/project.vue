@@ -1,34 +1,40 @@
 <template>
-  <v-container>
-      <h2>T-MANAGER MODULE</h2>
-      <v-row>
-          <v-col>
-              <v-card>
-                  <v-tabs
-                      v-model="tab"
-                      vertical
+    <div class="header_background">
+      <v-container>
+          <h2 class="green--text">T-MANAGER MODULE</h2>
+          <v-row>
+              <v-col>
+                  <v-sheet
+                    color="transparent"
+                    class="project_features"
                   >
-                      <v-tab
-                              v-for="item in items"
-                              :key="item.tab"
+                      <v-tabs
+                          v-model="tab"
+                          vertical
                       >
-                          {{ $t(item.tab) }}
-                      </v-tab>
+                          <v-tab
+                                  v-for="item in items"
+                                  :key="item.tab"
+                                  class="green--text"
+                          >
+                              {{ $t(item.tab) }}
+                          </v-tab>
 
-                      <v-tab-item
-                              v-for="item in items"
-                              :key="item.tab"
-                      >
-                          <v-card flat>
-                              <v-card-text><p v-html="$t(item.content)"></p></v-card-text>
-                          </v-card>
-                      </v-tab-item>
-                  </v-tabs>
+                          <v-tab-item
+                                  v-for="item in items"
+                                  :key="item.tab"
+                          >
+                              <v-container>
+                                  <p class="green--text" v-html="$t(item.content)"></p>
+                              </v-container>
+                          </v-tab-item>
+                      </v-tabs>
 
-              </v-card>
-          </v-col>
-      </v-row>
-  </v-container>
+                  </v-sheet>
+              </v-col>
+          </v-row>
+      </v-container>
+    </div>
 </template>
 <script>
     export default {
@@ -69,3 +75,11 @@
       }
     }
 </script>
+<style>
+    .project_features .theme--light.v-tabs > .v-tabs-bar{
+        background-color: transparent !important;
+    }
+    .project_features .theme--light.v-tabs-items{
+        background-color: transparent !important;
+    }
+</style>

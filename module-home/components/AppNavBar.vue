@@ -5,6 +5,7 @@
                 app
                 :color="appColors.black"
                 dark
+                class="green--text"
         >
 
               <v-toolbar-title>{{$t('tManager')}}</v-toolbar-title>
@@ -15,6 +16,7 @@
                       text
                       v-for="(item, i) in items" :key="i"
                       :to="{ name: item.to }"
+                      class="green--text"
                     >
                     {{$t(item.title)}}
                   </v-btn>
@@ -52,13 +54,15 @@
                 :value="showDrawer"
                 app
                 elevation="0"
+                class="green--text"
         >
             <v-row v-for="(item, i) in items" :key="i">
                 <v-col cols="12">
                     <v-btn
-                            text
-                            :to="{ name: item.to }"
-                          >
+                        text
+                        :to="{ name: item.to }"
+                        class="green--text"
+                      >
                           {{$t(item.title)}}
                         </v-btn>
                     </v-col>

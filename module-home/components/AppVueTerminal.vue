@@ -1,14 +1,5 @@
 <template>
     <div class="vue-terminal"  @click="handleFocus">
-        <div class="terminal-header" v-if="showHeader">
-            <h4>{{title}}</h4>
-            <ul class="shell-dots">
-                <li class="shell-dots-red"></li>
-                <li class="shell-dots-yellow"></li>
-                <li class="shell-dots-green"></li>
-            </ul>
-        </div>
-
         <div >
             <div class="terminal-window" ref="terminalWindow">
                 <p v-if="greeting">{{greeting}}</p>
@@ -25,7 +16,7 @@
                 <span class="cmd" v-else>
                     <pre>{{item.message.text}}</pre>
                     <ul>
-                      <li v-for="(li,index) in item.message.list" :key="index">
+                      <li v-for="(li,index) in item.message.list" :key="index" style="list-style-type: none;">
                           <template v-if="li.html">
                               <pre v-html="li.message"></pre>
                           </template>
@@ -86,11 +77,6 @@
                 required: false,
                 type: String,
                 default: 'vTerminal'
-            },
-            showHeader: {
-                required: false,
-                type: Boolean,
-                default: true
             },
             greeting: {
                 required: false,
@@ -296,46 +282,6 @@
         pre {
             display: inline;
         }
-    }
-    .terminal-header ul.shell-dots li {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        border-radius: 6px;
-        margin-left: 6px
-    }
-    .terminal-header ul .shell-dots-red {
-        background-color: rgb(200, 48, 48);
-    }
-    .terminal-header ul .shell-dots-yellow {
-        background-color: rgb(247, 219, 96);
-    }
-    .terminal-header ul .shell-dots-green {
-        background-color: rgb(46, 201, 113);
-    }
-    .terminal-header {
-        position: absolute;
-        z-index: 2;
-        top: 0;
-        right: 0;
-        left: 0;
-        background-color: rgb(149, 149, 152);
-        text-align: center;
-        padding: 2px;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px
-    }
-    .terminal-header h4 {
-        font-size: 14px;
-        margin: 5px;
-        letter-spacing: 1px;
-    }
-    .terminal-header ul.shell-dots {
-        position: absolute;
-        top: 5px;
-        left: 8px;
-        padding-left: 0;
-        margin: 0;
     }
     .vue-terminal .terminal-window .prompt::before {
         margin-right: 10px;

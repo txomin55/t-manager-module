@@ -4,7 +4,7 @@
     :color="appColors.black"
   >
     <v-col
-      class="text-center"
+      class="text-center green--text"
     >
       &copy; {{ new Date().getFullYear() }} - <b>{{$t('tManager')}}</b>
     </v-col>
