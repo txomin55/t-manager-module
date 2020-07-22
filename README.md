@@ -1,3 +1,4 @@
+<https://txomin55.github.io/web/>
 # TMANAGER-MODULE
 
 La motivación de este proyecto es meramente personal, aunque creo que tiene bastantes usos tanto didácticos como profesionales. Basado en el framework SpringBoot para todo el backend y Vue para el frontend. El propósito es tener un ejemplo de una arquitectura limpia y preparada para poder empezar a desarrollar sin tener que lidiar con temas como la autenticación, manejo de excepciones, internacionalización etc. El proyecto está pensado para ser usado como microservicio y microfrontend, gracias a Vue, la aplicación web es una SPA que expone todo el js compilado (webpack) en una ruta accesible por una petición get, así pudiendo cargar el js del proyecto y pintarlo en un div en concreto de una aplicación mayor (ej: un dashboard).
